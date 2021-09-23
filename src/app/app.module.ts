@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-<<<<<<< Updated upstream
-=======
 import { ReactiveFormsModule } from '@angular/forms';
 
 //Angular material
@@ -17,10 +15,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './components/login/login.component';
 
 //Conectar con backend
-import { LoginService } from './login.service';
+import { LoginService } from './components/login/login.service';
 import {HttpClientModule} from '@angular/common/http';
 
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -28,9 +25,6 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-<<<<<<< Updated upstream
-    AppRoutingModule
-=======
     AppRoutingModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
@@ -40,7 +34,6 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
 
 
->>>>>>> Stashed changes
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
