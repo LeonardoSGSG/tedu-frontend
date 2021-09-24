@@ -7,32 +7,36 @@
 <!--form-->
 <div id="form-register"  class="card container mt-3">
     <h1 class="card-header mt-3">Regístrate</h1>
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="postForm(registerForm.value)">
         <div class="card-body form-group">
             <mat-form-field appearance="fill">
                 <mat-label>Nombres y Apellidos</mat-label>
-                    <input name="name" type="text" matInput required>
+                <input formControlName="name" name="name" type="text" matInput required>
+                <mat-error *ngIf="name.invalid">{{getErrorCampo()}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Correo Electrónico</mat-label>
-                <input matInput placeholder="pat@ejemplo.com"  required>
-                <!--mat-error *ngIf="email.invalid">{{getErrorCampo()}}</mat-error-->
+                <input formControlName="email" matInput placeholder="pat@ejemplo.com"  required>
+                <mat-error *ngIf="email.invalid">{{getErrorCampo()}}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Institución Educativa</mat-label>
-                <input matInput >
+                <input formControlName="institucion" matInput >
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input matInput value="" placeholder="999-999-999" mask="000-000-000">
+                <input matInput formControlName="phone" value="" placeholder="999-999-999" mask="000-000-000">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput required>
-                <!--mat-error *ngIf="password.invalid">{{getErrorCampo()}}</mat-error-->               
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"   required>
+                <mat-error *ngIf="password.invalid">{{getErrorCampo()}}</mat-error>               
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>  
             <div class="form-group mt-3">
-                <button mat-raised-button color="primary">
+                <button mat-raised-button color="primary"  [disabled]="registerForm.invalid">
                     Crear Cuenta
                 </button>
                 <button id="btnCancelar" routerLink="../" mat-stroked-button color="primary">Cancelar</button>
