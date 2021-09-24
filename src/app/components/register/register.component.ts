@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserI } from 'src/app/models/user.interface';
+import { RegisterService } from 'src/app/services/register.service';
 export * from './register.component'
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
     phone : new FormControl(''),
     password : new FormControl('',[Validators.required])
   })
-  constructor() { }
+  constructor(private api:RegisterService) { }
 
   ngOnInit(): void {
   }
@@ -32,10 +33,11 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.hasError('') ? 'El valor del campo no es válido' : '';
   }
   postForm(form:UserI){
-    console.log(form);
-    /*this.api.postUser(form).subscribe(data =>{
+    //console.log(form);
+    this.api.postUser(form).subscribe(data =>{
       console.log(data);
     })
+    /*
     this.dialog.open(SuccessfulRegistrationComponent);
     this.router.navigateByUrl('/login');*/
 }

@@ -1,0 +1,112 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Diana Rios",
+      "email": "dianarios@hotmail.com",
+      "institucion": "ULima",
+      "phone": 912311456,
+      "password": "dianita"
+    },
+    {
+      "id": 2,
+      "name": "Ricardo Suarez",
+      "email": "ricardo@hotmail.com",
+      "institucion": "PUCP",
+      "phone": 922345872,
+      "password": "richi"
+    },
+    {
+      "id": 3,
+      "name": "Maria Palacios",
+      "email": "maria@gmail.com",
+      "institucion": "PUCP",
+      "phone": "934242455",
+      "password": "kjckmfrre"
+    },
+    {
+      "id": 4,
+      "name": "Ana",
+      "email": "ana@hotmail.com",
+      "institucion": "ULima",
+      "phone": "937-342-349",
+      "password": "cdscdscsd"
+    },
+    {
+      "id": 5,
+      "name": "Lucas",
+      "email": "lucas@hotmail.com",
+      "institucion": "PUCP",
+      "phone": "937-342-349",
+      "password": "lkljdlcdsc"
+    },
+    {
+      "id": 6,
+      "name": "Ana",
+      "email": "ana@hotmail.com",
+      "institucion": "ULima",
+      "phone": "999999999",
+      "password": "kmckdscksjcdsc"
+    },
+    {
+      "id": 7,
+      "name": "Lucas",
+      "email": "lucas@hotmail.com",
+      "institucion": "ULima",
+      "phone": "937342349",
+      "password": "cdcdcdscd"
+    }
+  ],
+  "course": [
+    {
+      "id": 1,
+      "name": "Software",
+      "teacher_id": 1,
+      "start_date": "2021-09-14",
+      "end_date": "2021-10-07",
+      "vacancies": 20,
+      "description": "Este curso es de Software"
+    },
+    {
+      "id": 2,
+      "name": "Gestion de Proyectos",
+      "teacher_id": 2,
+      "start_date": "2021-10-08",
+      "end_date": "2021-10-29",
+      "vacancies": 15,
+      "description": "Este curso es de Gestión de Proyectos"
+    },
+    {
+      "id": 3,
+      "name": "Marketing Digital",
+      "teacher_id": 2,
+      "start_date": "2021-09-22",
+      "end_date": "2021-10-29",
+      "vacancies": 20,
+      "description": "Este curso es de  Marketing Digital"
+    }
+  ],
+  "validar": [
+    {
+      "status": "ok",
+      "token": "cdcdcdfkssdc12323"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

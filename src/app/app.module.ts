@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 //Angular material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,7 +40,9 @@ import { RegisterComponent } from './components/register/register.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    NgxMaskModule.forRoot()
 
   ],
   providers: [],
