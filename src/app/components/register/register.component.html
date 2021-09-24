@@ -1,0 +1,42 @@
+<!--Toolbar-->
+<p>
+    <mat-toolbar>
+      <span id="tedu">TEDU</span>
+    </mat-toolbar>
+ </p>
+<!--form-->
+<div id="form-register"  class="card container mt-3">
+    <h1 class="card-header mt-3">Regístrate</h1>
+    <form>
+        <div class="card-body form-group">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombres y Apellidos</mat-label>
+                    <input name="name" type="text" matInput required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput placeholder="pat@ejemplo.com"  required>
+                <!--mat-error *ngIf="email.invalid">{{getErrorCampo()}}</mat-error-->
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Institución Educativa</mat-label>
+                <input matInput >
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Teléfono</mat-label>
+                <input matInput value="" placeholder="999-999-999" mask="000-000-000">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Contraseña</mat-label>
+                <input matInput required>
+                <!--mat-error *ngIf="password.invalid">{{getErrorCampo()}}</mat-error-->               
+            </mat-form-field>  
+            <div class="form-group mt-3">
+                <button mat-raised-button color="primary">
+                    Crear Cuenta
+                </button>
+                <button id="btnCancelar" routerLink="../" mat-stroked-button color="primary">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>
