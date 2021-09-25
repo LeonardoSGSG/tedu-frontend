@@ -4,18 +4,19 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserI } from '../models/user.interface';
 import { ResponseI } from '../models/response.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-   url: string = "http://localhost:3000/";
+  private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http:HttpClient) { }
 
-  postUser(form:UserI):Observable<ResponseI>{
-    let direccion = this.url + "user";
+  public postUser(form:UserI):Observable<ResponseI>{
+    let direccion = this.apiServerUrl + "/register";
     return this.http.post<ResponseI>(direccion,form);
   }
 }

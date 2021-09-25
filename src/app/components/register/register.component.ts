@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     id : new FormControl(''),
     name : new FormControl('',[Validators.required]),
     email : new FormControl('', [Validators.required, Validators.email]),
-    institucion : new FormControl(''),
+    institution : new FormControl(''),
     phone : new FormControl(''),
     password : new FormControl('',[Validators.required])
   })
@@ -33,7 +33,6 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.hasError('') ? 'El valor del campo no es válido' : '';
   }
   postForm(form:UserI){
-    //console.log(form);
     this.api.postUser(form).subscribe(data =>{
       console.log(data);
     })

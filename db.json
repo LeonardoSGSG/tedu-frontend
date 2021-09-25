@@ -18,46 +18,30 @@
     },
     {
       "id": 3,
-      "name": "Maria Palacios",
-      "email": "maria@gmail.com",
-      "institucion": "PUCP",
-      "phone": "934242455",
-      "password": "kjckmfrre"
+      "name": "Ana",
+      "email": "ana@hotmail.com",
+      "institution": "ULima",
+      "phone": "937342349",
+      "password": "hvkjb,jhbhjv"
     },
     {
       "id": 4,
-      "name": "Ana",
-      "email": "ana@hotmail.com",
-      "institucion": "ULima",
-      "phone": "937-342-349",
-      "password": "cdscdscsd"
+      "name": "Lucas",
+      "email": "lucas@hotmail.com",
+      "institution": "ULima",
+      "phone": "937342349",
+      "password": "dcdscdsc"
     },
     {
       "id": 5,
       "name": "Lucas",
       "email": "lucas@hotmail.com",
-      "institucion": "PUCP",
-      "phone": "937-342-349",
-      "password": "lkljdlcdsc"
-    },
-    {
-      "id": 6,
-      "name": "Ana",
-      "email": "ana@hotmail.com",
-      "institucion": "ULima",
-      "phone": "999999999",
-      "password": "kmckdscksjcdsc"
-    },
-    {
-      "id": 7,
-      "name": "Lucas",
-      "email": "lucas@hotmail.com",
-      "institucion": "ULima",
+      "institution": "ULima",
       "phone": "937342349",
-      "password": "cdcdcdscd"
+      "password": "dcdscdsc"
     }
   ],
-  "course": [
+  "courses": [
     {
       "id": 1,
       "name": "Software",
@@ -65,7 +49,7 @@
       "start_date": "2021-09-14",
       "end_date": "2021-10-07",
       "vacancies": 20,
-      "description": "Este curso es de Software"
+      "desc": "Este curso es de Software"
     },
     {
       "id": 2,
@@ -74,7 +58,7 @@
       "start_date": "2021-10-08",
       "end_date": "2021-10-29",
       "vacancies": 15,
-      "description": "Este curso es de Gestión de Proyectos"
+      "desc": "Este curso es de Gestión de Proyectos"
     },
     {
       "id": 3,
@@ -83,7 +67,7 @@
       "start_date": "2021-09-22",
       "end_date": "2021-10-29",
       "vacancies": 20,
-      "description": "Este curso es de  Marketing Digital"
+      "desc": "Este curso es de  Marketing Digital"
     }
   ],
   "validar": [

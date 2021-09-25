@@ -1,0 +1,53 @@
+<!--Toolbar-->
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span id="tedu">TEDU</span>
+    <!--Boton Cuenta-->
+    <button id="btnCuenta" mat-icon-button mat-mini-fab color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Mi Perfil</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar Sesión</span>
+      </button>
+    </mat-menu>
+    <!--Boton Notificacion-->
+    <button id="btnNotification" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+      <mat-icon>notifications</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+<!--Ver cursos-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <div *ngFor='let course of courses' class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <div class="card card-small">
+            <div class="thumbnail">           
+                    <img alt="Opt alp thumbnail" src=".\assets\img\curso.jpg">
+                    <a href="#/product/awesome-landing-page">
+                        <div class="thumb-cover"></div>
+                    </a>                                           
+            </div>
+            <div class="card-info">
+                <div class="moving">
+                    <a href="#/product/awesome-landing-page">
+                        <h3>{{course.name}}</h3>
+                        <p>Descripción: {{course.desc}}</p>
+                    </a>                         
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
