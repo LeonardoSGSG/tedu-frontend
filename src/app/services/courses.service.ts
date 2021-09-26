@@ -17,4 +17,13 @@ export class CoursesService {
   public addCourse(course: CourseI): Observable<CourseI>{
     return this.http.post<CourseI>(`${this.apiServerUrl}/course/add`, course);
   }
+  public getCourseById(id: string): Observable<CourseI>{
+    return this.http.get<CourseI>(`${this.apiServerUrl}/course/${id}`)
+  }
+  public deleteCourse(id: string): Observable<CourseI>{
+    return this.http.delete<CourseI>(`${this.apiServerUrl}/course/${id}`)
+  }
+  public updateCourse(id: string, course: CourseI): Observable<CourseI>{
+    return this.http.put<CourseI>(`${this.apiServerUrl}/course/${id}`, course)
+  }
 }
