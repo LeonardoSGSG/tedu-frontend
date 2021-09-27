@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserI } from 'src/app/models/user.interface';
-import { RegisterService } from 'src/app/services/register.service';
+import { Usuario } from 'src/app/entities/usuario';
+import { RegisterService } from 'src/app/components/register/register.service';
 export * from './register.component'
 @Component({
   selector: 'app-register',
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     }
     return this.registerForm.hasError('') ? 'El valor del campo no es válido' : '';
   }
-  postForm(form:UserI){
+  postForm(form:Usuario){
     this.api.postUser(form).subscribe(data =>{
       console.log(data);
     })

@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CourseI } from 'src/app/models/course.interface';
-import { CoursesService } from 'src/app/services/courses.service';
+import { Curso } from 'src/app/entities/curso';
+import { CoursesService } from 'src/app/components/courses/courses.service';
 
 @Component({
   selector: 'app-courses',
@@ -9,7 +9,7 @@ import { CoursesService } from 'src/app/services/courses.service';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  public courses: CourseI[]=[];
+  public courses: Curso[]=[];
   
   constructor(private coursesService: CoursesService) { }
 
@@ -18,7 +18,7 @@ export class CoursesComponent implements OnInit {
   }
   public getCourses(): void{
     this.coursesService.getAllCourses().subscribe(
-      (response: CourseI[]) => {
+      (response: Curso[]) => {
         this.courses = response;
       },
       (error: HttpErrorResponse) => {
