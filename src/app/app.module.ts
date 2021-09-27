@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 
 //Angular material
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,8 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CoursesComponent } from './components/courses/courses.component';
 
-
-
+//Conectar con backend
+import { LoginService } from './components/login/login.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -50,9 +51,8 @@ import { CoursesComponent } from './components/courses/courses.component';
     MatMenuModule,
     MatSidenavModule,
     MatListModule
-
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
