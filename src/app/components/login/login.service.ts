@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/entities/usuario';
+import { Form } from '@angular/forms';
+import { FormularioLogin } from './DTOS/FormularioLogin';
+import { respuestaLogin } from './DTOS/respuestaLogin';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,9 +13,10 @@ export class LoginService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {
-   }
-   public getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiServerUrl+'/usuario/all');
+  constructor(private http: HttpClient) {}
+   
+   public Login(formulario: FormularioLogin): Observable<respuestaLogin> {
+    return this.http.post<respuestaLogin>(`${this.apiServerUrl}/login`, formulario);
+    
 }
 }

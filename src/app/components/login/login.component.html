@@ -1,19 +1,16 @@
 <div class="body">
-    <div class="login">
-        <form [formGroup]="form" (ngSubmit)="ingresar()">
-            <img src="./assets/img/usuario.png" width="50%">
-            <h1>Login</h1>
-            <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Usuario</mat-label>
-                <input type="text" matInput autocomplete="off" formControlName="usuario">
-              </mat-form-field>
-              <mat-form-field class="ancho" appearance="fill">
-                <mat-label>Contraseña</mat-label>
-                <input type="password" matInput autocomplete="off" formControlName="password">
-              </mat-form-field>
-            <br>
-            <button type="submit" class="ancho button" mat-raised-button color="primary" [disabled]="form.invalid">Ingresar</button>
-        </form>
-    </div>
+  <div class="login">
+    <form (submit)="ingresar()">
+      <div class="form-group">
+        <input type="text" name="email" [(ngModel)]="formularioLogin.email" class="form-control" placeholder="Email" autofocus>
+      </div>
+      <div class="form-group">
+        <input type="password" name="contraseña" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="contraseña">
+      </div>
+      <button class="btn btn-primary btn-block">
+        Enviar
+      </button>
+    </form>
+  </div>
 </div>
-
+<img src="../../../assets/img/usuario.png" width="50%">

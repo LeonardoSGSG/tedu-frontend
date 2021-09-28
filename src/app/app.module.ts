@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 
@@ -50,7 +50,8 @@ import {HttpClientModule} from '@angular/common/http';
     NgxMaskModule.forRoot(),
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    FormsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
