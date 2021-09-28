@@ -2,10 +2,19 @@
   <div class="login">
     <form (submit)="ingresar()">
       <div class="form-group">
-        <input type="text" name="email" [(ngModel)]="formularioLogin.email" class="form-control" placeholder="Email" autofocus>
+        <img src="../../../assets/usuario.png" width="50%">
+
+        <h1>Login</h1>
+        <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Usuario</mat-label>
+            <input type="text" name="email" matInput autocomplete="off" [(ngModel)]="formularioLogin.email" class="form-control" placeholder="Email" autofocus>
+          </mat-form-field>
       </div>
       <div class="form-group">
-        <input type="password" name="contraseña" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="contraseña">
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" name="password" matInput autocomplete="off" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="password" autofocus>
+        </mat-form-field>
       </div>
       <button class="btn btn-primary btn-block">
         Enviar
@@ -13,4 +22,3 @@
     </form>
   </div>
 </div>
-<img src="../../../assets/img/usuario.png" width="50%">
