@@ -7,36 +7,33 @@
 <!--form-->
 <div id="form-register"  class="card container mt-3">
     <h1 class="card-header mt-3">Regístrate</h1>
-    <form [formGroup]="registerForm" (ngSubmit)="postForm(registerForm.value)">
+    <form (submit)="submitRegister()">
         <div class="card-body form-group">
             <mat-form-field appearance="fill">
                 <mat-label>Nombres y Apellidos</mat-label>
-                <input formControlName="name" name="name" type="text" matInput required>
-                <mat-error *ngIf="name.invalid">{{getErrorCampo()}}</mat-error>
+                <input [(ngModel)]="usuario.name" name="name" type="text" matInput required>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Correo Electrónico</mat-label>
-                <input formControlName="email" matInput placeholder="pat@ejemplo.com"  required>
-                <mat-error *ngIf="email.invalid">{{getErrorCampo()}}</mat-error>
+                <input [(ngModel)]="usuario.email" name="email" matInput placeholder="pat@ejemplo.com"  required>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Institución Educativa</mat-label>
-                <input formControlName="institution" matInput >
+                <input [(ngModel)]="usuario.institution" name="institution" matInput >
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input matInput formControlName="phone" value="" placeholder="999-999-999" mask="000-000-000">
+                <input matInput [(ngModel)]="usuario.phone" name="phone" value="" placeholder="999-999-999" mask="000-000-000">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"   required>
-                <mat-error *ngIf="password.invalid">{{getErrorCampo()}}</mat-error>               
+                <input matInput [(ngModel)]="usuario.password" placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" type="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+                 </button>
             </mat-form-field>  
             <div class="form-group mt-3">
-                <button mat-raised-button color="primary"  [disabled]="registerForm.invalid">
+                <button mat-raised-button color="primary">
                     Crear Cuenta
                 </button>
                 <button id="btnCancelar" routerLink="../" mat-stroked-button color="primary">Cancelar</button>

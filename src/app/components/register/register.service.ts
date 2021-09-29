@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Usuario } from 'src/app/entities/usuario';
 import { ResponseI } from 'src/app/entities/response';
 import { environment } from 'src/environments/environment';
+import { respuestaRegister } from './DTOS/respuestaRegister';
+import { FormularioRegister } from './DTOS/FormularioRegister';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,8 @@ export class RegisterService {
 
   constructor(private http:HttpClient) { }
 
-  public postUser(form:Usuario):Observable<ResponseI>{
+  public postUser(form:FormularioRegister):Observable<respuestaRegister>{
     let direccion = this.apiServerUrl + "/register";
-    return this.http.post<ResponseI>(direccion,form);
+    return this.http.post<respuestaRegister>(direccion,form);
   }
 }

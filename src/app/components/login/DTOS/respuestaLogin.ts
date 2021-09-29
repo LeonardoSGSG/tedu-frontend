@@ -1,5 +1,5 @@
-import { Usuario } from "src/app/entities/usuario";
+import { usuarioDTO } from "./UsuarioDTO";
 
 export interface respuestaLogin{
-    user: Usuario;
+    user: usuarioDTO;
 }

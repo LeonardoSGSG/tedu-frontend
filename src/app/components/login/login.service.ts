@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Usuario } from 'src/app/entities/usuario';
 import { Form } from '@angular/forms';
 import { FormularioLogin } from './DTOS/FormularioLogin';
 import { respuestaLogin } from './DTOS/respuestaLogin';
