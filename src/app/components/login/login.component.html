@@ -14,6 +14,9 @@
         <mat-form-field class="ancho" appearance="fill">
           <mat-label>Contraseña</mat-label>
           <input type="password" name="password" matInput autocomplete="off" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="password" autofocus>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+         </button>
         </mat-form-field>
       </div>
       <button class="btn btn-primary btn-block">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { FormularioLogin } from './DTOS/FormularioLogin';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,11 +10,12 @@ import { FormularioLogin } from './DTOS/FormularioLogin';
 })
 
 export class LoginComponent implements OnInit {
+  hide=true;
     formularioLogin:FormularioLogin={
       email: '',
       password: ''
     }
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService, private router: Router) {
       
 
     }
@@ -34,7 +36,7 @@ submitLogin()
       var token:string = res.user.token;
       console.log(res.user.token);
       sessionStorage.setItem('token', token);
-      
+      this.router.navigate(['/courses'])
     },
     err => {
       console.log(err);

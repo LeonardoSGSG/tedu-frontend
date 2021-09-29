@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormularioRegister } from './DTOS/FormularioRegister';
 import { RegisterService } from 'src/app/components/register/register.service';
+import { Router } from '@angular/router';
 export * from './register.component'
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent implements OnInit {
     institution:'',
     phone:''
   }
-  constructor(private api:RegisterService) { }
+  constructor(private api:RegisterService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +27,10 @@ export class RegisterComponent implements OnInit {
   public submitRegister(): void{
     this.api.postUser(this.usuario).subscribe(
       res =>{
+        var token:string = res.user.token;
         console.log(res.user.token);
+        sessionStorage.setItem('token', token);
+        this.router.navigate(['/courses'])
       },
       err=>{
         console.log(err);
