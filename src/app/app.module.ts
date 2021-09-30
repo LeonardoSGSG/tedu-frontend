@@ -27,6 +27,8 @@ import { CoursesComponent } from './components/courses/courses.component';
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
 import {HttpClientModule} from '@angular/common/http';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    CoursesComponent
+    CoursesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import {HttpClientModule} from '@angular/common/http';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    HttpHeaders
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
