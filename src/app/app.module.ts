@@ -33,6 +33,7 @@ import { coursesArrayPipe } from './components/courses/courses.pipe';
 import { LoginService } from './components/login/login.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CourseContentComponent } from './components/course-content/course-content.component';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     CoursesComponent,
     ProfileComponent,
-    AddCourseComponent,coursesArrayPipe
+    AddCourseComponent,coursesArrayPipe, CourseContentComponent
   ],
   imports: [
     BrowserModule,
