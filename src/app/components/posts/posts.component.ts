@@ -15,7 +15,7 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     var idCurso = sessionStorage.getItem('currentCourse');
-    //this.getPosts(idCurso!);
+    this.getPosts(idCurso!);
   }
   public getPosts(id:string): void{
     this.postsService.getPostsByCourseID(id).subscribe(
@@ -28,11 +28,13 @@ export class PostsComponent implements OnInit {
       }
     )
   }
+  /*
   public cargarPosts(){
     console.log("se dio click");
     sessionStorage.setItem('currentCourse',"6");
     this.getPosts("6")
   }
+  */
 }
 
 
