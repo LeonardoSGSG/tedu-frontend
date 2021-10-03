@@ -39,7 +39,7 @@ submitLogin()
       sessionStorage.setItem('id', id);
       sessionStorage.setItem('token', token);
       console.log(res.user.token);
-      this.router.navigate(['/courses'])
+      this.router.navigate(['/posts'])
       
 
     },
