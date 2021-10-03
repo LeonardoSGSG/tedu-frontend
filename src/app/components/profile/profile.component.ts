@@ -23,10 +23,28 @@ export class ProfileComponent implements OnInit {
   }
   public editar(): void
   {
-    this.profileService.Profile(this.formularioProfile).subscribe(
+    this.profileService.UpdateProfile(this.formularioProfile).subscribe(
       res=>{
-        
+        var id:number= res.id;
+        console.log(id);
         this.router.navigate(['/profile'])
+      },
+      err=>
+      {
+        console.log(err);
+      }
+    )
+  }
+  public eliminar(): void
+
+  {
+    this.profileService.DeleteProfile().subscribe(
+      res=>
+      {
+        var message:string= res.message;
+
+        console.log(message);
+        this.router.navigate(['/profile']);
       },
       err=>
       {
