@@ -1,5 +1,6 @@
-export interface Usuario{
+export interface usuarioDTO{
     id: number;
+    token: string;
     name: string;
     email: string;
     jobTitle: string;

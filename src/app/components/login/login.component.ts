@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { FormularioLogin } from './DTOS/FormularioLogin';
+import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,11 +11,12 @@ import { FormularioLogin } from './DTOS/FormularioLogin';
 })
 
 export class LoginComponent implements OnInit {
+  hide=true;
     formularioLogin:FormularioLogin={
       email: '',
       password: ''
     }
-    constructor(private loginService: LoginService) {
+    constructor(private loginService: LoginService, private router: Router) {
       
 
     }
@@ -32,9 +35,13 @@ submitLogin()
    this.loginService.Login(this.formularioLogin).subscribe(
     res => {
       var token:string = res.user.token;
-      console.log(res.user.token);
+      var id:string= res.user.id.toString();
+      sessionStorage.setItem('id', id);
       sessionStorage.setItem('token', token);
+      console.log(res.user.token);
+      this.router.navigate(['/courses'])
       
+
     },
     err => {
       console.log(err);
