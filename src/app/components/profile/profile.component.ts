@@ -19,12 +19,14 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService, private router: Router) { 
 
   }
+  ngOnInit(): void {
+  }
   public editar(): void
   {
     this.profileService.Profile(this.formularioProfile).subscribe(
       res=>{
         
-        this.router.navigate(['/courses'])
+        this.router.navigate(['/profile'])
       },
       err=>
       {
@@ -33,7 +35,6 @@ export class ProfileComponent implements OnInit {
     )
   }
 
-  ngOnInit(): void {
-  }
+  
 
 }

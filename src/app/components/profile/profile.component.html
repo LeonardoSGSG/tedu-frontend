@@ -1,1 +1,31 @@
-<p>profile works!</p>
+<div class="body">
+    <div class="Profile">
+      <form (submit)="editar()">
+        <div class="form-group">
+  
+          <h1>Editar perfil</h1>
+          <mat-form-field class="ancho" appearance="fill">
+              <mat-label>Institucion: </mat-label>
+              <input type="text" name="institucion" matInput autocomplete="off" [(ngModel)]="formularioProfile.institution" class="form-control" placeholder="Institucion" autofocus>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="ancho" appearance="fill">
+            <mat-label>Telefono </mat-label>
+            <input type="text" name="telefono" matInput autocomplete="off" [(ngModel)]="formularioProfile.phone" class="form-control" placeholder="Telefono" autofocus>
+            
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="ancho" appearance="fill">
+              <mat-label>Nombre </mat-label>
+              <input type="text" name="telefono" matInput autocomplete="off" [(ngModel)]="formularioProfile.name" class="form-control" placeholder="Nombre" autofocus>
+        
+            </mat-form-field>
+          </div>
+        <button class="btn btn-primary btn-block">
+          Actualizar
+        </button>
+      </form>
+    </div>
+  </div>

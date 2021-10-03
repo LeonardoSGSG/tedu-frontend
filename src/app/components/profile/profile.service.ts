@@ -16,14 +16,13 @@ export class ProfileService {
   constructor(private http: HttpClient) {}
    
    public Profile(formulario: FormularioProfile): Observable<respuestaProfile> {
-      const id=sessionStorage.getItem('id');
       const opts={
         headers: new HttpHeaders({
        'Authorization': 'Token ' + sessionStorage.getItem('token')
  
       })
      };
-    return this.http.put<respuestaProfile>(`${this.apiServerUrl}/user/` + id  ,  formulario, opts );
+    return this.http.put<respuestaProfile>(`${this.apiServerUrl}/user/`  ,  formulario, opts );
     
 }
 }
