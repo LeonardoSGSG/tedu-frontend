@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CourseContentComponent } from './components/course-content/course-content.component';
+import { PostsComponent } from './components/posts/posts.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'courses',component:CoursesComponent},
   {path:'profile',component:ProfileComponent},
-  {path:'courses/:id',component:CourseContentComponent}
+  {path:'courses/:id',component:CourseContentComponent},
+  {path:'posts',component:PostsComponent}
 
 ];
 

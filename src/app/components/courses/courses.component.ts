@@ -5,6 +5,7 @@ import { CoursesService } from 'src/app/components/courses/courses.service';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ownedCourses } from 'src/app/entities/ownedCourses';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -16,11 +17,17 @@ export class CoursesComponent implements OnInit {
   public editCourse: Curso | undefined;
   public deleteCourse!: Curso;
   
-  constructor(private coursesService: CoursesService, public dialog: MatDialog) { }
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getCourses();
   }
+
+  public entrarCurso(id:string): void{
+    sessionStorage.setItem('currentCourse',id)
+    this.router.navigate(['/posts'])
+  }
+
   public getCourses(): void{
     this.coursesService.getAllCourses().subscribe(
       (response: Curso[]) => {

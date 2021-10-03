@@ -28,6 +28,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { AddCourseComponent } from './components/courses/add-course/add-course.component';
 import { CoursesService } from './components/courses/courses.service';
 import { coursesArrayPipe } from './components/courses/courses.pipe';
+import { PostsComponent } from './components/posts/posts.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -43,7 +44,10 @@ import { CourseContentComponent } from './components/course-content/course-conte
     RegisterComponent,
     CoursesComponent,
     ProfileComponent,
-    AddCourseComponent,coursesArrayPipe, CourseContentComponent
+    AddCourseComponent,
+    coursesArrayPipe, 
+    CourseContentComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,

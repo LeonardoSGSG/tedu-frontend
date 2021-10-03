@@ -38,8 +38,8 @@ submitLogin()
       var id:string= res.user.id.toString();
       sessionStorage.setItem('id', id);
       sessionStorage.setItem('token', token);
-      console.log(res.user.token);
-      this.router.navigate(['/posts'])
+      console.log("token: " + res.user.token);
+      this.router.navigate(['/courses'])
       
 
     },
