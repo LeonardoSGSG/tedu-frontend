@@ -1,0 +1,36 @@
+<form [formGroup]="addCourseForm" (ngSubmit)="postForm(addCourseForm.value)">
+    <div class="card-body form-group">        
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre del curso</mat-label>
+            <input formControlName="name" name="name" type="text" matInput required>
+        </mat-form-field>  
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha Inicio</mat-label>
+            <input matInput formControlName="start_date" name="start_date" [matDatepicker]="picker1" required>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha Fin</mat-label>
+            <input matInput formControlName="end_date" name="end_date" [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> 
+        <mat-form-field appearance="fill">
+            <mat-label>Vacantes</mat-label>
+            <input formControlName="vacancies" name="vacancies" type="number" matInput required>
+        </mat-form-field>  
+        <!--mat-form-field appearance="fill">
+            <mat-label>Profesor</mat-label>
+            <input formControlName="teacher_id"  name="teacher_id" type="number" matInput required>
+        </mat-form-field-->
+        <mat-form-field appearance="fill">
+            <mat-label>Agregue una breve descripción</mat-label>
+            <textarea formControlName="desc" name="desc" matInput></textarea>
+        </mat-form-field>
+        <button [disabled]="addCourseForm.invalid" (click)="agregar()" mat-raised-button color="primary">
+            Crear Curso
+        </button>               
+        <button mat-button mat-dialog-close>Cancelar</button>        
+    </div>
+</form>

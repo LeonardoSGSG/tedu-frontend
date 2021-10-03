@@ -7,20 +7,23 @@
 #btnCuenta{
     position: absolute; right: 0;
     margin-right: 3em;
+
 }
 #btnNotification{
     position: absolute; right: 0;
     margin-right: 7em;
-    background-color:  #3c55d0d2;
 }
 .example-spacer {
   flex: 1 1 auto;
 }  
-
+#toolbar2 {
+  background-color: white;
+}
 body{
   margin-top:20px;
   background: #f5f5f5;
 }
+
 .card {
   overflow: hidden;
   border-radius: 6px;
@@ -32,12 +35,11 @@ body{
 .card-small .thumbnail {
   min-height: 200px;
 }
-
 .card .thumbnail {
   border: 0 none;
   padding: 0;
   margin: 0;
-  min-height: 270px;
+  min-height: 230px;
   position: relative;
 }
 
@@ -127,11 +129,13 @@ transition: all 0.2s ease 0s;
   font-size: 15px;
   font-weight: 500;
 }
-
+#card-curso{
+  width: 24em;
+  height: 24em;
+}
 .card-info {
-  background-color: #FFFFFF;
-  
-  
+  background-color: #FFFFFF;  
+  margin-left: 2em;
 }
 .card-info {
 -moz-osx-font-smoothing: grayscale;
@@ -181,7 +185,6 @@ transition: all 0.2s ease 0s;
   font-style: italic;
   margin: 0;
   color: #666666;
-  height: 60px;
 }
 
 .card-small .actions {

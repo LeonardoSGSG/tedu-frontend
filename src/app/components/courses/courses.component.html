@@ -1,12 +1,12 @@
 <!--Toolbar-->
 <p>
-  <mat-toolbar color="primary">
+  <mat-toolbar >
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span id="tedu">TEDU</span>
+    <span id="tedu">Tedu</span>
     <!--Boton Cuenta-->
-    <button id="btnCuenta" mat-icon-button mat-mini-fab color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button id="btnCuenta" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -18,36 +18,142 @@
         <mat-icon>logout</mat-icon>
         <span>Cerrar Sesión</span>
       </button>
-    </mat-menu>
+    </mat-menu>    
     <!--Boton Notificacion-->
-    <button id="btnNotification" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+    <button id="btnNotification" mat-icon-button aria-label="Example icon button with a menu icon">
       <mat-icon>notifications</mat-icon>
     </button>
   </mat-toolbar>
 </p>
+<p >
+  <mat-toolbar class="container" id="toolbar2">
+    <!--Dialog Crear Curso-->
+    <div class="container">
+      <button mat-raised-button (click)="onCreate()">
+        <mat-icon>add</mat-icon>Crear Curso
+      </button>
+    </div>
+    <!--Buscador-->
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" (ngModelChange)="searchCourses(key.value)" #key="ngModel" ngModel
+      name="key" id="searchName" class="form-control mr-sm-2" placeholder="Buscar cursos..." required>
+    </form>
+
+  </mat-toolbar>
+</p>
+
 <!--Ver cursos-->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
-<div class="container">
+<div class="container" id="main-container">
   <div class="row">
-    <div *ngFor='let course of courses' class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-        <div class="card card-small">
-            <div class="thumbnail">           
+    <div *ngFor='let ownedCourses of courses | coursesArray' class="row">      
+      <div *ngFor='let course of ownedCourses' class="col"> 
+        <div class="card card-small" id="card-curso">
+            <!--div class="thumbnail" id="img-curso">           
                     <img alt="Opt alp thumbnail" src=".\assets\img\curso.jpg">
                     <a href="#/product/awesome-landing-page">
                         <div class="thumb-cover"></div>
                     </a>                                           
+            </div-->
+            <div class="thumbnail" id="img-curso">                         
+              <a href="#/product/awesome-landing-page">
+                <img alt="thumbnail" src=".\assets\img\curso.jpg">
+              </a>                                           
             </div>
             <div class="card-info">
                 <div class="moving">
                     <a href="#/product/awesome-landing-page">
                         <h3>{{course.name}}</h3>
-                        <p>Descripción: {{course.desc}}</p>
+                        <p> {{course.desc}}</p>
                     </a>                         
                 </div>
             </div>
+            <span class="float-right btn-group btn-group-sm">
+              <button (click)="onOpenModal(course,'edit')" mat-icon-button color="primary" data-original-title="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="onOpenModal(course,'delete')" mat-icon-button color="warn" data-original-title="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </span>
         </div>
+      </div>
     </div>
-
   </div>
 </div>
+
+
+
+
+<!-- Modal Editar-->
+<div class="modal fade" id="updateCourseModal" tabindex="-1" aria-labelledby="courseEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateCourseModalLabel">Editar Curso</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="name">Nombre curso</label>
+            <input type="text" ngModel="{{editCourse?.name}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Nombre">
+          </div>
+          <input type="hidden" ngModel="{{editCourse?.id}}" name="id" class="form-control" id="id" placeholder="id">
+          <div class="form-group">
+            <label for="start_date">Fecha Inicio</label>
+            <input type="text" ngModel="{{editCourse?.start_date}}" name="start_date" class="form-control" id="start_date"  placeholder="Fecha Inicio">
+          </div> 
+          <div class="form-group">
+            <label for="end_date">Fecha Fin</label>
+            <input type="text" ngModel="{{editCourse?.end_date}}" name="end_date" class="form-control" id="end_date"  placeholder="Fecha Fin">
+          </div>
+          <div class="form-group">
+            <label for="vacancies">Vacantes</label>
+            <input type="number" ngModel="{{editCourse?.vacancies}}" name="vacancies" class="form-control" id="vacancies"  placeholder="Vacantes">
+          </div>
+          <div class="form-group">
+            <label for="desc">Descripcion</label>
+            <input type="text" ngModel="{{editCourse?.desc}}" name="desc" class="form-control" id="desc"  placeholder="Descripcion">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="onUpdateCourse(editForm.value.id,editForm.value)" data-dismiss="modal" type="button" class="btn btn-primary">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Eliminar-->
+<div class="modal fade" id="deleteCourseModal" tabindex="-1" aria-labelledby="courseDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCourseModalLabel">Eliminar Curso</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>¿Está seguro que desea eliminar el curso {{deleteCourse?.name}}?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button (click)="onDeleteCourse(deleteCourse?.id)" data-dismiss="modal" class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Notificacion si no hay cursos-->
+<!--div *ngIf="courses?.length == 0" class="col-lg-12 col-md-12 col-xl-12 mt-2">
+  <div class="container">
+    <div class="alert alert-info" role="alert"> 
+      <h4 class="alert-heading"> NO TIENES CURSOS</h4>
+      <p>No se encontraron cursos.</p>
+    </div>
+  </div>
+</div-->
