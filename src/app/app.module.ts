@@ -17,12 +17,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CoursesComponent } from './components/courses/courses.component';
+import { AddCourseComponent } from './components/courses/add-course/add-course.component';
+import { CoursesService } from './components/courses/courses.service';
+import { coursesArrayPipe } from './components/courses/courses.pipe';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -36,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     CoursesComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddCourseComponent,coursesArrayPipe
   ],
   imports: [
     BrowserModule,
@@ -53,10 +59,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
   ],
-  providers: [LoginService],
+  providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
