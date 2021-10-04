@@ -1,0 +1,33 @@
+.example-card {
+    max-width: 400px;
+  }
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedormain{
+    padding-bottom: 2em;
+}    
+#tedu{
+    font-size: 1.5em;
+  }
+#btnCuenta{
+    position: absolute; right: 0;
+    margin-right: 3em;
+
+}
+#btnNotification{
+    position: absolute; right: 0;
+    margin-right: 7em;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}  
+#toolbar2 {
+  background-color: white;
+}
+body{
+  
+  background: #FFFFFF;
+}

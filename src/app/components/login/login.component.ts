@@ -30,8 +30,6 @@ submitLogin()
 }
  public ingresar(): void
   {
-
-
    this.loginService.Login(this.formularioLogin).subscribe(
     res => {
       var token:string = res.user.token;
@@ -39,9 +37,7 @@ submitLogin()
       sessionStorage.setItem('id', id);
       sessionStorage.setItem('token', token);
       console.log("token: " + res.user.token);
-      this.router.navigate(['/courses'])
-      
-
+      this.router.navigate(['/courses']);
     },
     err => {
       console.log(err);

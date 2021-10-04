@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/entities/post';
+import { postDTO } from './DTOS/postDTO';
 import { PostsService } from './posts.service';
+import { formularioPost } from './DTOS/formularioPost';
 
 @Component({
   selector: 'app-posts',
@@ -9,7 +11,10 @@ import { PostsService } from './posts.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  public posts: Post[] = [];
+  public posts: postDTO[] = [];
+  formPost:formularioPost={
+    text:''
+  }
 
   constructor(private postsService: PostsService) { }
 
@@ -19,7 +24,7 @@ export class PostsComponent implements OnInit {
   }
   public getPosts(id:string): void{
     this.postsService.getPostsByCourseID(id).subscribe(
-      (response: Post[]) => {
+      (response: postDTO[]) => {
         this.posts = response;
         console.log("se cargaron los posts de este curso")
       },
@@ -28,13 +33,18 @@ export class PostsComponent implements OnInit {
       }
     )
   }
-  /*
-  public cargarPosts(){
-    console.log("se dio click");
-    sessionStorage.setItem('currentCourse',"6");
-    this.getPosts("6")
+  public crearPost():void{
+    var idCurs = sessionStorage.getItem('currentCourse');
+    
+    this.postsService.createPost(this.formPost,idCurs!).subscribe(
+      res =>{
+
+      },
+      err =>{
+        
+      }
+    )
   }
-  */
 }
 
 

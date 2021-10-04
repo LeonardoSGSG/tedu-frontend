@@ -20,6 +20,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -67,8 +69,8 @@ import { CourseContentComponent } from './components/course-content/course-conte
     FormsModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+    MatCardModule
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent]
