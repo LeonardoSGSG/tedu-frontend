@@ -4,6 +4,8 @@ import { Post } from 'src/app/entities/post';
 import { postDTO } from './DTOS/postDTO';
 import { PostsService } from './posts.service';
 import { formularioPost } from './DTOS/formularioPost';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { AddPostComponent } from './add-post/add-post.component';
 
 @Component({
   selector: 'app-posts',
@@ -12,11 +14,7 @@ import { formularioPost } from './DTOS/formularioPost';
 })
 export class PostsComponent implements OnInit {
   public posts: postDTO[] = [];
-  formPost:formularioPost={
-    text:''
-  }
-
-  constructor(private postsService: PostsService) { }
+  constructor(private postsService: PostsService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
     var idCurso = sessionStorage.getItem('currentCourse');
@@ -33,17 +31,17 @@ export class PostsComponent implements OnInit {
       }
     )
   }
-  public crearPost():void{
-    var idCurs = sessionStorage.getItem('currentCourse');
-    
-    this.postsService.createPost(this.formPost,idCurs!).subscribe(
-      res =>{
-
-      },
-      err =>{
-        
-      }
-    )
+  
+  public popupCreate(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="40%";
+    let currentDialog = this.dialog.open(AddPostComponent, dialogConfig)
+    currentDialog.afterClosed().subscribe(res=>{
+      this.getPosts(sessionStorage.getItem('currentCourse')!);
+    })
+    console.log("se muestra el pop up")
   }
 }
 

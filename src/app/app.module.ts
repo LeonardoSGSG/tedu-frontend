@@ -21,6 +21,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 //Componentes
@@ -37,6 +38,7 @@ import { LoginService } from './components/login/login.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CourseContentComponent } from './components/course-content/course-content.component';
+import { AddPostComponent } from './components/posts/add-post/add-post.component';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { CourseContentComponent } from './components/course-content/course-conte
     AddCourseComponent,
     coursesArrayPipe, 
     CourseContentComponent,
-    PostsComponent
+    PostsComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { CourseContentComponent } from './components/course-content/course-conte
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent]

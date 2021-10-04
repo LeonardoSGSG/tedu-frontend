@@ -1,1 +1,41 @@
-<p>course-content works!</p>
+    <!--Toolbar-->
+    <p>
+        <mat-toolbar >
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span id="tedu">Tedu</span>
+          <!--Boton Cuenta-->
+          <button id="btnCuenta" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>person</mat-icon>
+              <span>Mi Perfil</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>logout</mat-icon>
+              <span>Cerrar Sesión</span>
+            </button>
+          </mat-menu>    
+          <!--Boton Notificacion-->
+          <button id="btnNotification" mat-icon-button aria-label="Example icon button with a menu icon">
+            <mat-icon>notifications</mat-icon>
+          </button>
+        </mat-toolbar>
+    </p>
+    
+    <div class="container">
+        <div class="row">
+            <div class="column">
+
+            </div>
+            <div class="column">
+                <app-posts></app-posts>
+            </div>
+            <div class="column">
+                
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,12 @@
+<form [formGroup]="addPostForm" (ngSubmit)="postForm(addPostForm.value)">
+    <div class="card-body form-group">        
+        <mat-form-field appearance="fill">
+            <mat-label>Texto</mat-label>
+            <input formControlName="text" name="text" type="text" matInput required>
+        </mat-form-field>  
+        <button [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
+            Crear Curso
+        </button>               
+        <button mat-button mat-dialog-close>Cancelar</button>        
+    </div>
+</form>

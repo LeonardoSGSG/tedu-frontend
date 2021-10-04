@@ -25,7 +25,7 @@ export class CoursesComponent implements OnInit {
 
   public entrarCurso(id:string): void{
     sessionStorage.setItem('currentCourse',id)
-    this.router.navigate(['/posts'])
+    this.router.navigate(['/courses/'+id])
   }
 
   public getCourses(): void{

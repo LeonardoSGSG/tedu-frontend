@@ -33,4 +33,5 @@ export class PostsService {
    };
    return this.http.post<Post>(this.apiServerUrl+'/courses/'+id+'/posts', formul, opts)
   }
+  
 }

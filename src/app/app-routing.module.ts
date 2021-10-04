@@ -15,7 +15,6 @@ const routes: Routes = [
   {path:'profile',component:ProfileComponent},
   {path:'courses/:id',component:CourseContentComponent},
   {path:'posts',component:PostsComponent}
-
 ];
 
 @NgModule({
