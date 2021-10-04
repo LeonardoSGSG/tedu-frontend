@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   hide=true;
   usuario:FormularioRegister={
+    id : 0,
     name:'',
     email:'',
     password:'',

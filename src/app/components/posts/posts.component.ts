@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/entities/post';
 import { postDTO } from './DTOS/postDTO';
 import { PostsService } from './posts.service';
-import { formularioPost } from './DTOS/formularioPost';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { formularioPost } from '../DTOS/formularioPost';
+import { Post } from 'src/app/entities/post';
 import { PostsComponent } from '../posts.component';
 import { PostsService } from '../posts.service';
 
@@ -23,7 +23,7 @@ export class AddPostComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  postForm(form:formularioPost){
+  postForm(form:Post){
     this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
       res=>{
         console.log("se envió el formulario satisfactoriamente");

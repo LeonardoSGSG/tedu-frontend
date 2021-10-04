@@ -1,8 +1,5 @@
-export interface usuarioDTO{
-    id: number;
-    token: string;
-    name: string;
-    email: string;
-    phone: string;
-    institution: string;
+import { Usuario } from "src/app/entities/usuario";
+
+export interface usuarioDTO extends Usuario{
+    token: string;    
 }
