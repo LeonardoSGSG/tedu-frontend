@@ -22,6 +22,18 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.getCourses();
   }
+  public redirProfile()
+  {
+    this.router.navigate(['/profile']);
+
+  }
+  public LogOut()
+  {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
+
+  }
+
 
   public entrarCurso(id:string): void{
     sessionStorage.setItem('currentCourse',id)

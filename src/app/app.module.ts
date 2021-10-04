@@ -53,7 +53,8 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
     coursesArrayPipe, 
     CourseContentComponent,
     PostsComponent,
-    AddPostComponent
+    AddPostComponent,
+    DialogProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,7 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
     MatNativeDateModule,
     MatCardModule,
     MatGridListModule,
-    DialogProfileComponent
+    
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent]
