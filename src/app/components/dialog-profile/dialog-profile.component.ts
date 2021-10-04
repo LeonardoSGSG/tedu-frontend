@@ -2,32 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormularioProfile } from './DTOS/FormularioProfile';
-import {ProfileService} from './profile.service';
-import { DialogProfileComponent } from '../dialog-profile/dialog-profile.component';
 import { MatDialog } from '@angular/material/dialog';
-import { usuarioDTO } from './DTOS/UsuarioDTO';
+import { DialogProfileService } from './dialog-profile.service';
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'dialog-profile',
+  templateUrl: 'dialog-profile.component.html',
+  //styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class DialogProfileComponent implements OnInit {
 
-   public perfil!: usuarioDTO;
   hide=true;
     formularioProfile:FormularioProfile={
       institution: '',
       phone: '',
       name: ''
     }
-  constructor(private profileService: ProfileService, private router: Router, private dialog: MatDialog) { 
+  constructor(private DialogProfileService: DialogProfileService, private router: Router, private dialog: MatDialog) { 
 
   }
   ngOnInit(): void {
-
-    this.cargarPefil();
-    
-
   }
   openDialog() {
     const dialogRef = this.dialog.open(DialogProfileComponent);
@@ -37,13 +30,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  public cargarPefil(): void
+  public editar(): void
   {
-    this.profileService.getUserById().subscribe(
+    this.DialogProfileService.UpdateProfile(this.formularioProfile).subscribe(
       res=>{
-        this.perfil=res;
         var id:number= res.id;
         console.log(id);
+        this.router.navigate(['/profile'])
       },
       err=>
       {
@@ -51,7 +44,7 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
-  public eliminar(): void
+  /*public eliminar(): void
 
   {
     this.profileService.DeleteProfile().subscribe(
@@ -60,16 +53,15 @@ export class ProfileComponent implements OnInit {
         var message:string= res.message;
 
         console.log(message);
-        sessionStorage.clear();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/profile']);
       },
       err=>
       {
         console.log(err);
       }
     )
-  }}
+  }*/
 
   
-
+}
 

@@ -32,6 +32,7 @@ import { AddCourseComponent } from './components/courses/add-course/add-course.c
 import { CoursesService } from './components/courses/courses.service';
 import { coursesArrayPipe } from './components/courses/courses.pipe';
 import { PostsComponent } from './components/posts/posts.component';
+import { DialogProfileComponent } from './components/dialog-profile/dialog-profile.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -74,7 +75,8 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
     MatDatepickerModule,
     MatNativeDateModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    DialogProfileComponent
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent]

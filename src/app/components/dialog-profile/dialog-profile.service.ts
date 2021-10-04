@@ -5,21 +5,30 @@ import { environment } from 'src/environments/environment';
 import { FormularioLogin } from '../login/DTOS/FormularioLogin';
 import { usuarioDTO } from '../login/DTOS/UsuarioDTO';
 import { FormularioProfile } from './DTOS/FormularioProfile';
-import { resDeleteProfile } from './DTOS/resDeleteProfile';
+//import { resDeleteProfile } from './DTOS/resDeleteProfile';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class DialogProfileService {
 
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
    
-   public getUserById(): Observable<usuarioDTO> {
-    return this.http.get<usuarioDTO>(`${this.apiServerUrl}/user/` + sessionStorage.getItem('id') );
+   public UpdateProfile(formulario: FormularioProfile): Observable<usuarioDTO> {
+      const opts={
+        headers: new HttpHeaders({
+       'Authorization': 'Token ' + sessionStorage.getItem('token')
+ 
+      })
+     };
+    return this.http.put<usuarioDTO>(`${this.apiServerUrl}/user/`  ,  formulario, opts );
+    
+
+
 }
-  public DeleteProfile():Observable<resDeleteProfile>
+  /*public DeleteProfile():Observable<resDeleteProfile>
   {
     const opts={
       headers: new HttpHeaders({
@@ -28,7 +37,7 @@ export class ProfileService {
     };
     return this.http.delete<resDeleteProfile>(`${this.apiServerUrl}/user/` , opts )
   }
-  
+  */
 
   
 }

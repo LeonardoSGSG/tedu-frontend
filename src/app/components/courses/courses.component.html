@@ -10,12 +10,12 @@
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="redirProfile()">
         <mat-icon>person</mat-icon>
         <span>Mi Perfil</span>
       </button>
-      <button mat-menu-item>
-        <mat-icon>logout</mat-icon>
+      <button mat-menu-item (click)="LogOut()">
+        <mat-icon>logout</mat-icon>      
         <span>Cerrar Sesión</span>
       </button>
     </mat-menu>    

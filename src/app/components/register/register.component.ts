@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormularioRegister } from './DTOS/FormularioRegister';
 import { RegisterService } from 'src/app/components/register/register.service';
 import { Router } from '@angular/router';
-export * from './register.component'
+//export * from './register.component'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,8 +28,10 @@ export class RegisterComponent implements OnInit {
     this.api.postUser(this.usuario).subscribe(
       res =>{
         var token:string = res.user.token;
+        var id:string= res.user.id.toString();
         console.log(res.user.token);
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem('id', id);
         this.router.navigate(['/courses'])
       },
       err=>{
