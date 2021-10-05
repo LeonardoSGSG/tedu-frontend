@@ -1,23 +1,33 @@
 <div class="body">
-    <div class="Profile">
-        <div class="form-group">
   
-          <h1>Perfil: </h1>
-          {{perfil.institution}}
-          {{perfil.phone}}
-          {{perfil.name}}
+    <div class="Profile">
+      
+
+      <div class="card-body form-group">
+  
+          <h1 class="card-header mt-3">Perfil</h1>
+          <div><mat-label>Institucion educativa: {{perfil.institution}}</mat-label><br>
+          <mat-label>Numero telefonico: {{perfil.phone}}</mat-label><br>
+          <mat-label>Nombre: {{perfil.name}}</mat-label></div>
+
+            
+            
           
-          </div>
+          
+          
+          
+ 
 
         
-
-      <form (submit)="eliminar()">
-        <button class="btn btn-primary">
+          <button mat-raised-button color="primary" class="btn btn-primary "  mat-button (click)="openDialog()">Editar perfil</button>
+          <br>
+            
+        <form (submit)="eliminar()">
+          <button id= "eliminar" class="btn btn-primary" style="background-color: red;"  >
             Eliminar cuenta
           </button>
-      </form>
-      <button mat-button (click)="openDialog()">Open dialog</button>
-
+        </form>
+ 
       
-    </div>
-  </div>
+
+     

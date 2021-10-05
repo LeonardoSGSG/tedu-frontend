@@ -45,4 +45,8 @@ submitLogin()
   )
 
   }
+  public registrar(): void{
+    this.router.navigate(['/register']);
+
+  }
 }
