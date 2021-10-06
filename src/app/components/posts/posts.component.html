@@ -21,7 +21,7 @@
                         {{post.text}}
                     </p>
                     <div *ngIf="post.user.id + '' == myId">
-                        <button mat-icon-button color="primary" data-original-title="Edit">
+                        <button (click)="popupCreate()" mat-icon-button color="primary" data-original-title="Edit">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete">

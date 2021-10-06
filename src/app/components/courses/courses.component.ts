@@ -122,6 +122,10 @@ export class CoursesComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "30%";
-    this.dialog.open(AddCourseComponent ,dialogConfig)
+    let dialogRef = this.dialog.open(AddCourseComponent ,dialogConfig);
+    dialogRef.afterClosed().subscribe(res=>{
+      this.getCourses();
+    })
+
   }
 }
