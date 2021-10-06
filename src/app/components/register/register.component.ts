@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormularioRegister } from './DTOS/FormularioRegister';
 import { RegisterService } from 'src/app/components/register/register.service';
 import { Router } from '@angular/router';
+import { HttpResponse } from '@angular/common/http';
 //export * from './register.component'
 @Component({
   selector: 'app-register',
@@ -34,6 +35,10 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('id', id);
         this.router.navigate(['/courses'])
+        if(res.statusCode==409)
+        {
+          console.log(res.error);
+        }
       },
       err=>{
         console.log(err);
