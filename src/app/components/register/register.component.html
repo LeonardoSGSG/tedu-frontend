@@ -27,13 +27,11 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="usuario.password" placeholder="Password" [type]="hide ? 'password' : 'text'" name="password" type="password" required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                 </button>
+                <input matInput [(ngModel)]="usuario.password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </mat-form-field>  
             <div class="form-group mt-3">
-                <button mat-raised-button color="primary">
+                <button type="submit" mat-raised-button color="primary">
                     Crear Cuenta
                 </button>
                 <button id="btnCancelar" routerLink="../" mat-stroked-button color="primary">Cancelar</button>
