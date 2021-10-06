@@ -20,6 +20,14 @@
                     <p>
                         {{post.text}}
                     </p>
+                    <div *ngIf="post.user.id + '' == myId">
+                        <button mat-icon-button color="primary" data-original-title="Edit">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete">
+                            <mat-icon >delete</mat-icon>
+                        </button>
+                    </div>
                 </mat-card-content>
             </mat-card>
         </div>

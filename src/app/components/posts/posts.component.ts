@@ -13,11 +13,12 @@ import { AddPostComponent } from './add-post/add-post.component';
 })
 export class PostsComponent implements OnInit {
   public posts: postDTO[] = [];
+  public course:string = sessionStorage.getItem('currentCourse')!;
+  public myId:string = sessionStorage.getItem('id')!;
   constructor(private postsService: PostsService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
-    var idCurso = sessionStorage.getItem('currentCourse');
-    this.getPosts(idCurso!);
+    this.getPosts(this.course);
   }
   public getPosts(id:string): void{
     this.postsService.getPostsByCourseID(id).subscribe(
@@ -38,9 +39,21 @@ export class PostsComponent implements OnInit {
     dialogConfig.width="40%";
     let currentDialog = this.dialog.open(AddPostComponent, dialogConfig)
     currentDialog.afterClosed().subscribe(res=>{
-      this.getPosts(sessionStorage.getItem('currentCourse')!);
+      this.getPosts(this.course);
     })
     console.log("se muestra el pop up")
+  }
+  public eliminarPost(postId:number){
+    console.log("curso: "+this.course+" idPost: "+postId)
+    this.postsService.deletePost(this.course, postId+"").subscribe(
+      res=>{
+        console.log("se elimino");
+        this.getPosts(this.course);
+      },
+      err=>{
+        console.log(err);
+      }
+    )
   }
 }
 
