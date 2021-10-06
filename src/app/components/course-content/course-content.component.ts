@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsComponent } from '../posts/posts.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-content',
@@ -8,9 +9,13 @@ import { PostsComponent } from '../posts/posts.component';
 })
 export class CourseContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+  public redirProfile(): void{
+    this.router.navigate(['/register']);
+
   }
 
 }
