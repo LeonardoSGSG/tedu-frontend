@@ -7,16 +7,14 @@ import { PostsComponent } from '../posts.component';
 import { PostsService } from '../posts.service';
 
 @Component({
-  selector: 'app-add-post',
-  templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css']
+  selector: 'app-update-post',
+  templateUrl: './update-post.component.html',
+  styleUrls: ['./update-post.component.css']
 })
-export class AddPostComponent implements OnInit {
+export class UpdatePostComponent implements OnInit {
   addPostForm = new FormGroup({
     text: new FormControl('',[Validators.required])
   })
-
-
   constructor(private api:PostsService,
               public router:Router,
               private dialogRef:MatDialogRef<PostsComponent>) { }
@@ -24,7 +22,7 @@ export class AddPostComponent implements OnInit {
   ngOnInit(): void {
   }
   postForm(form:Post){
-    this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
+    this.api.updatePost(form, sessionStorage.getItem('currentCourse')!, sessionStorage.getItem('currentPost')!).subscribe(
       res=>{
         console.log("se envió el formulario satisfactoriamente");
       },

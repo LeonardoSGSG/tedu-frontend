@@ -42,5 +42,14 @@ export class PostsService {
    };
     return this.http.delete<deleteMessageDTO>(this.apiServerUrl+'/courses/'+idCurso+'/posts/'+idPost, opts);
   }
+  public updatePost(formul:Post, idCurso:string, idPost:string):Observable<Post>{
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+
+    })
+   };
+   return this.http.put<Post>(this.apiServerUrl+'/courses/'+idCurso+'/posts/'+idPost, formul, opts);
+  }
   
 }

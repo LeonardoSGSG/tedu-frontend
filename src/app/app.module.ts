@@ -40,6 +40,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CourseContentComponent } from './components/course-content/course-content.component';
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
+import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
     CourseContentComponent,
     PostsComponent,
     AddPostComponent,
-    DialogProfileComponent
+    DialogProfileComponent,
+    UpdatePostComponent,
   ],
   imports: [
     BrowserModule,
