@@ -1,5 +1,5 @@
 <form [formGroup]="addPostForm" (ngSubmit)="postForm(addPostForm.value)">
-    <div style="text-align: center;" class="card-body form-group">        
+    <div style="text-align: center;" class="card-body form-group contBot">        
         <mat-form-field style="width: 75%;" appearance="fill">
             <mat-label>Texto</mat-label>
             <div class="contBot">
@@ -9,10 +9,9 @@
         </mat-form-field>
         <div class="row contBot">
             <button class="bot" [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
-                Crear Publicacion
+                Actualizar Publicacion
             </button>               
             <button class="bot" mat-button mat-dialog-close>Cancelar</button> 
         </div> 
-               
     </div>
 </form>

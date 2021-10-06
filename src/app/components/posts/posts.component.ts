@@ -5,6 +5,7 @@ import { postDTO } from './DTOS/postDTO';
 import { PostsService } from './posts.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AddPostComponent } from './add-post/add-post.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
 
 @Component({
   selector: 'app-posts',
@@ -54,6 +55,18 @@ export class PostsComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+  public popupUpdate(id:string){
+    sessionStorage.setItem('currentPost',id);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="40%";
+    let currentDialog = this.dialog.open(UpdatePostComponent, dialogConfig)
+    currentDialog.afterClosed().subscribe(res=>{
+      this.getPosts(this.course);
+    })
+    console.log("se muestra el pop up")
   }
 }
 
