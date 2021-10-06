@@ -41,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CourseContentComponent } from './components/course-content/course-content.component';
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
 import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
+import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { UpdatePostComponent } from './components/posts/update-post/update-post.
     PostsComponent,
     AddPostComponent,
     DialogProfileComponent,
+    ConfirmDeleteProfileComponent,
     UpdatePostComponent,
   ],
   imports: [
