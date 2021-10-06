@@ -51,6 +51,11 @@ body{
 #img-curso{
   width: 100%;
 }
+#InUnirCurso{
+  height: 3px;
+  width: 15em;
+  margin-right: 1em;
+}
 .card .thumb-cover {
   padding: 15px 20px;
   height: 100%;

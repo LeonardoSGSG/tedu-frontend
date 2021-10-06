@@ -44,11 +44,6 @@ export class CoursesService {
    };
     return this.http.delete<Curso>(`${this.apiServerUrl}/courses/${idCourse}`,opts)
   }
-  /*
-    public updateCourse(id: number, course: Curso): Observable<Curso>{
-    return this.http.put<Curso>(`${this.apiServerUrl}/courses/${id}`, course)
-  }
-   */
   public updateCourse(idCourse: number, course: Curso): Observable<Curso>{
     const id=sessionStorage.getItem('id');
     const opts={
@@ -58,5 +53,14 @@ export class CoursesService {
     })
    };
     return this.http.put<Curso>(`${this.apiServerUrl}/courses/${idCourse}`, course,opts);
+  }
+  public joinCourse(course: Curso): Observable<Curso>{
+    const id=sessionStorage.getItem('id');
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+    return this.http.post<Curso>(`${this.apiServerUrl}/enrollment`, course, opts);
   }
 }

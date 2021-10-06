@@ -6,6 +6,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ownedCourses } from 'src/app/entities/ownedCourses';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -18,10 +19,20 @@ export class CoursesComponent implements OnInit {
   public deleteCourse!: Curso;
   public codeCourse: Curso | undefined;
   
+  joinCourseForm = new FormGroup({
+    code: new FormControl(''),
+  })
+
   constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getCourses();
+  }
+  postJoinForm(form:Curso){
+    console.log(form);
+    this.coursesService.joinCourse(form).subscribe(data =>{
+      console.log(data);
+    })
   }
   public redirProfile()
   {

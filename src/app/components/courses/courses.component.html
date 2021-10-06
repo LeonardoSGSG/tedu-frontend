@@ -33,12 +33,18 @@
         <mat-icon>add</mat-icon>Crear Curso
       </button>
     </div>
-    <!--Buscador-->
-    <form class="form-inline my-2 my-lg-0">
-      <input type="search" (ngModelChange)="searchCourses(key.value)" #key="ngModel" ngModel
-      name="key" id="searchName" class="form-control mr-sm-2" placeholder="Buscar cursos..." required>
+    <!--Input para unirse a curso -->
+    <form [formGroup]="joinCourseForm" (ngSubmit)="postJoinForm(joinCourseForm.value)">
+      <div class="card-body form-group">
+        <mat-form-field id="InUnirCurso">
+          <input formControlName="code" name="code" type="text" matInput  placeholder="Ingrese el código de curso">
+        </mat-form-field>
+        <button  mat-stroked-button color="primary">
+          Unirse
+        </button>
+      </div>
     </form>
-
+    
   </mat-toolbar>
 </p>
 
