@@ -6,6 +6,7 @@ import {ProfileService} from './profile.service';
 import { DialogProfileComponent } from '../dialog-profile/dialog-profile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { usuarioDTO } from './DTOS/UsuarioDTO';
+import { ConfirmDeleteProfileComponent } from '../confirm-delete-profile/confirm-delete-profile.component';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,7 +21,7 @@ export class ProfileComponent implements OnInit {
       phone: '',
       name: ''
     }
-  constructor(private profileService: ProfileService, private router: Router, private dialog: MatDialog) { 
+  constructor(private profileService: ProfileService, private router: Router, private dialog: MatDialog, private dialogDelete: MatDialog) { 
 
   }
   ngOnInit(): void {
@@ -35,6 +36,10 @@ export class ProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+  eliminar()
+  {
+    const dialogRef= this.dialogDelete.open(ConfirmDeleteProfileComponent);
   }
 
   public cargarPefil(): void
@@ -51,7 +56,7 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
-  public eliminar(): void
+  /*public eliminar(): void
 
   {
     this.profileService.DeleteProfile().subscribe(
@@ -68,7 +73,7 @@ export class ProfileComponent implements OnInit {
         console.log(err);
       }
     )
-  }}
+  }*/}
 
   
 

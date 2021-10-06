@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormularioProfile } from './DTOS/FormularioProfile';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogProfileService } from './dialog-profile.service';
 @Component({
   selector: 'dialog-profile',
@@ -17,7 +17,7 @@ export class DialogProfileComponent implements OnInit {
       phone: '',
       name: ''
     }
-  constructor(private DialogProfileService: DialogProfileService, private router: Router, private dialog: MatDialog) { 
+  constructor(private DialogProfileService: DialogProfileService, private router: Router, private dialog: MatDialog, private dialog2: MatDialogRef<DialogProfileComponent>) { 
 
   }
   ngOnInit(): void {
@@ -29,7 +29,10 @@ export class DialogProfileComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
+  public closeDialog()
+  {
+    this.dialog2.close();
+  }
   public editar(): void
   {
     this.DialogProfileService.UpdateProfile(this.formularioProfile).subscribe(

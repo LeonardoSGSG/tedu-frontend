@@ -1,25 +1,24 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FormularioLogin } from '../login/DTOS/FormularioLogin';
 import { usuarioDTO } from '../login/DTOS/UsuarioDTO';
-import { FormularioProfile } from './DTOS/FormularioProfile';
+import { ConfirmDeleteProfileComponent } from './confirm-delete-profile.component';
 import { resDeleteProfile } from './DTOS/resDeleteProfile';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class confirmDelete {
 
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) {}
    
-   public getUserById(): Observable<usuarioDTO> {
-    return this.http.get<usuarioDTO>(`${this.apiServerUrl}/user/` + sessionStorage.getItem('id') );
-}
-  /*public DeleteProfile():Observable<resDeleteProfile>
+  
+  public DeleteProfile():Observable<resDeleteProfile>
   {
     const opts={
       headers: new HttpHeaders({
@@ -27,8 +26,21 @@ export class ProfileService {
       })
     };
     return this.http.delete<resDeleteProfile>(`${this.apiServerUrl}/user/` , opts )
-  }*/
+  }
   
 
   
-}
+
+  openConfirmDialog()
+    {
+      this.dialog.open(ConfirmDeleteProfileComponent,
+        {
+          width: '390px',
+          panelClass: 'confirm-dialog-container',
+          disableClose: true
+
+        });
+    
+      }
+    }
+   
