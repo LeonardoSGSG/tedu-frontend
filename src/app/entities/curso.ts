@@ -7,6 +7,7 @@ export interface Curso{
     name: string;
     vacancies: number;
     desc: string;
+    code: string;
     start_date: Date;
     end_date: Date;
     posts: Post[];

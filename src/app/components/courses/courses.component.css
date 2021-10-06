@@ -23,7 +23,9 @@ body{
   margin-top:20px;
   background: #f5f5f5;
 }
-
+#btnVerCodigo{
+  width: 100%;
+}
 .card {
   overflow: hidden;
   border-radius: 6px;
@@ -46,7 +48,9 @@ body{
 .card .thumbnail img {
   width: 100%;
 }
-
+#img-curso{
+  width: 100%;
+}
 .card .thumb-cover {
   padding: 15px 20px;
   height: 100%;
@@ -131,7 +135,7 @@ transition: all 0.2s ease 0s;
 }
 #card-curso{
   width: 24em;
-  height: 24em;
+  height: 27em;
 }
 .card-info {
   background-color: #FFFFFF;  

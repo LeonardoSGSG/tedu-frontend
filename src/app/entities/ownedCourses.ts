@@ -8,5 +8,6 @@ export interface ownedCourses{
     desc: string;
     start_date: Date;
     end_date: Date;
+    code: string;
     posts: Post[];
 }

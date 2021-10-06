@@ -48,19 +48,16 @@
   <div class="row">
     <div *ngFor='let ownedCourses of courses | coursesArray' class="row">      
       <div *ngFor='let course of ownedCourses' class="col"> 
-        <div (click) = "entrarCurso(course?.id)" class="card card-small" id="card-curso">
-            <!--div class="thumbnail" id="img-curso">           
-                    <img alt="Opt alp thumbnail" src=".\assets\img\curso.jpg">
-                    <a href="#/product/awesome-landing-page">
-                        <div class="thumb-cover"></div>
-                    </a>                                           
-            </div-->
-            <div class="thumbnail" id="img-curso">                         
-              <a>
+        <div class="card card-small" id="card-curso">
+            <div class="thumbnail" id="card-curso">                        
+              <a (click) = "entrarCurso(course?.id)">
                 <img alt="thumbnail" src=".\assets\img\curso.jpg">
               </a>                                           
             </div>
-            <div class="card-info">
+            <div>
+              <button mat-button id="btnVerCodigo" (click)="onOpenModal(course,'verCodigo')">Ver Código</button>
+            </div>
+            <div class="card-info" (click) = "entrarCurso(course?.id)">
                 <div class="moving">
                     <a>
                         <h3>{{course.name}}</h3>
@@ -148,12 +145,18 @@
   </div>
 </div>
 
-<!--Notificacion si no hay cursos-->
-<!--div *ngIf="courses?.length == 0" class="col-lg-12 col-md-12 col-xl-12 mt-2">
-  <div class="container">
-    <div class="alert alert-info" role="alert"> 
-      <h4 class="alert-heading"> NO TIENES CURSOS</h4>
-      <p>No se encontraron cursos.</p>
+<!--Modal ver Codigo-->
+<div class="modal fade" id="verCodigoModal" tabindex="-1" aria-labelledby="courseEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="name">Código de acceso al curso</label>
+            <input disabled type="text" ngModel="{{codeCourse?.code}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Nombre">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div-->
+</div>

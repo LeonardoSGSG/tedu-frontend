@@ -16,6 +16,7 @@ export class CoursesComponent implements OnInit {
   public ownedCourses: ownedCourses[] =[];
   public editCourse: Curso | undefined;
   public deleteCourse!: Curso;
+  public codeCourse: Curso | undefined;
   
   constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router) { }
 
@@ -97,6 +98,10 @@ export class CoursesComponent implements OnInit {
     if (mode === 'delete') {
       this.deleteCourse = course;
       button.setAttribute('data-target','#deleteCourseModal');
+    }
+    if (mode === 'verCodigo') {
+      this.codeCourse = course;
+      button.setAttribute('data-target','#verCodigoModal');
     }
     container?.appendChild(button);
     button.click();
