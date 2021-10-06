@@ -14,7 +14,7 @@ export class CourseContentComponent implements OnInit {
   ngOnInit(): void {
   }
   public redirProfile(): void{
-    this.router.navigate(['/register']);
+    this.router.navigate(['/profile']);
 
   }
 
