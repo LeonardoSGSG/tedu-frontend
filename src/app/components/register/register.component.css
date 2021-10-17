@@ -17,3 +17,6 @@ h1{
 #btnCancelar{
   margin-left: 10px;
 }
+.mat-button-focus-overlay {
+    background-color: transparent!important;
+}

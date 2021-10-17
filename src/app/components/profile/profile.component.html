@@ -1,21 +1,46 @@
-<div class="body">
-  
+  <mat-toolbar>
+    <span id="tedu">TEDU</span>
+  </mat-toolbar>
+
+
+<div  class="body">
+  <div id="form-profile"  class="card container mt-3">
+    <h1 class="card-header mt-3">Perfil</h1>
     <div class="Profile">
+      <div id="cartas">
+        <div id="card-profile" class="carta-perfil">
+          <mat-card>Institución educativa: </mat-card>
+        </div>
+        <div id="card-profile" class="carta-perfil">
+          <mat-card>Número telefónico: </mat-card>
+        </div>
+        <div id="card-profile" class="carta-perfil">
+          <mat-card>Nombre: </mat-card>
+        </div>
+      </div>
+      
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" class="btn btn-primary "  mat-button (click)="openDialog()">Editar perfil</button>
+        <form (submit)="eliminar()">
+          <button id= "eliminar" class="btn btn-primary" style="background-color: red;">Eliminar cuenta</button>
+
+            
       
 
-      <div class="card-body form-group">
   
-          <h1 class="card-header mt-3">Perfil</h1>
-          <div><mat-label>Institucion educativa: {{perfil.institution}}</mat-label><br>
+
+
+
+          
+          <!--<div><mat-label>Institucion educativa: {{perfil.institution}}</mat-label><br>
           <mat-label>Numero telefonico: {{perfil.phone}}</mat-label><br>
           <mat-label>Nombre: {{perfil.name}}</mat-label></div>
-          <button mat-raised-button color="primary" class="btn btn-primary "  mat-button (click)="openDialog()">Editar perfil</button>
-          <br>      
-        <form (submit)="eliminar()">
-          <button id= "eliminar" class="btn btn-primary" style="background-color: red;"  >
-            Eliminar cuenta
-          </button>
-        </form>
+          -->
+</form>
+</mat-card-actions>
+</div>          
+  </div>
+</div>        
  
       
 
