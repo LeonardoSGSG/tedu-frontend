@@ -4,12 +4,14 @@ import { Router } from '@angular/router';
 import { FormularioProfile } from './DTOS/FormularioProfile';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogProfileService } from './dialog-profile.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'dialog-profile',
   templateUrl: 'dialog-profile.component.html',
   //styleUrls: ['./profile.component.css']
 })
 export class DialogProfileComponent implements OnInit {
+  public perfil!: FormularioProfile;
 
   hide=true;
     formularioProfile:FormularioProfile={
@@ -17,14 +19,14 @@ export class DialogProfileComponent implements OnInit {
       phone: '',
       name: ''
     }
-  constructor(private DialogProfileService: DialogProfileService, private router: Router, private dialog: MatDialog, private dialog2: MatDialogRef<DialogProfileComponent>) { 
+  constructor(private DialogProfileService: DialogProfileService, private router: Router, private dialog: MatDialog, private dialog2: MatDialogRef<DialogProfileComponent>, private snackBar: MatSnackBar) { 
 
   }
   ngOnInit(): void {
   }
   openDialog() {
     const dialogRef = this.dialog.open(DialogProfileComponent);
-
+    
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -32,6 +34,10 @@ export class DialogProfileComponent implements OnInit {
   public closeDialog()
   {
     this.dialog2.close();
+  }
+  openSnackBar(message: string, action: string)
+  {
+    this.snackBar.open(message, action);
   }
   public editar(): void
   {
@@ -54,6 +60,10 @@ export class DialogProfileComponent implements OnInit {
       },
       err=>
       {
+        if(err.status==400)
+        {
+          this.openSnackBar('El nombre del usuario debe tener al menos 2 caracteres','Aceptar')
+        }
         console.log(err);
       }
     )
