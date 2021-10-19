@@ -4,6 +4,7 @@ import { LoginService } from './login.service';
 import { FormularioLogin } from './DTOS/FormularioLogin';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,10 +18,12 @@ export class LoginComponent implements OnInit {
       email: '',
       password: ''
     }
-    constructor(private loginService: LoginService, private router: Router) {
+    constructor(private loginService: LoginService, private router: Router, private snackBar: MatSnackBar) {
+      
       
 
     }
+    
 
   ngOnInit(): void {
   }
@@ -39,12 +42,18 @@ submitLogin()
       sessionStorage.setItem('token', token);
       console.log("token: " + res.user.token);
       this.router.navigate(['/courses']);
-      if(res.statusCode==404)
-      {
-
-      }
+      
     },
     err => {
+      if(err.status==404)
+      {
+        this.openSnackBar('Usuario no registrado','Aceptar');
+      }
+      if(err.status==401)
+      {
+        this.openSnackBar('Credenciales inválidas', 'Aceptar');
+      }
+      
       console.log(err);
   }
   )
@@ -54,4 +63,9 @@ submitLogin()
     this.router.navigate(['/register']);
 
   }
+  openSnackBar(message: string, action: string)
+  {
+    this.snackBar.open(message, action);
+  }
+  
 }

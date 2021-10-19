@@ -22,6 +22,7 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 //Componentes
@@ -42,7 +43,6 @@ import { CourseContentComponent } from './components/course-content/course-conte
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
 import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
 import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
-import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
 
 @NgModule({
@@ -60,7 +60,6 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     DialogProfileComponent,
     ConfirmDeleteProfileComponent,
     UpdatePostComponent,
-    LoginDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,6 +82,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
     MatNativeDateModule,
     MatCardModule,
     MatGridListModule,
+    MatSnackBarModule
     
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
