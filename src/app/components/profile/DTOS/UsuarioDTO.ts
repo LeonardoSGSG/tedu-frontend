@@ -3,6 +3,6 @@ export interface usuarioDTO{
     token: string;
     name: string;
     email: string;
-    phone: string;
-    institution: string;
+    phone: string|null;
+    institution: string|null;
 }

@@ -33,6 +33,15 @@ export class RegisterComponent implements OnInit {
   }
   
   public submitRegister(): void{
+    if (this.usuario.institution=="")
+    {
+      this.usuario.institution=null;
+    }
+    if (this.usuario.phone=="")
+    {
+      this.usuario.phone=null;
+    }
+
     this.api.postUser(this.usuario).subscribe(
       res =>{
         var token:string = res.user.token;
@@ -74,6 +83,7 @@ export class RegisterComponent implements OnInit {
           {
             this.openSnackBar('La contraseña debe tener al menos 4 caracteres', 'Aceptar');
           }
+
           
           
           //alert(err.error.message[0]);

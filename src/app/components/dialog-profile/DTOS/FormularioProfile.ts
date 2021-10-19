@@ -1,5 +1,5 @@
 export interface FormularioProfile{
-    institution: String,
-    phone: String,
+    institution: String|null,
+    phone: String|null,
     name: String
 }

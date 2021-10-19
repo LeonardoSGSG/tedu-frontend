@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
 
   public cargarPefil(): void
   {
+    
     this.profileService.getUserById().subscribe(
       res=>{
         this.perfil=res;

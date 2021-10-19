@@ -35,11 +35,22 @@ export class DialogProfileComponent implements OnInit {
   }
   public editar(): void
   {
+    if (this.formularioProfile.institution=="")
+    {
+      this.formularioProfile.institution=null;
+    }
+    if (this.formularioProfile.phone=="")
+    {
+      this.formularioProfile.phone=null;
+    }
+    
     this.DialogProfileService.UpdateProfile(this.formularioProfile).subscribe(
       res=>{
         var id:number= res.id;
         console.log(id);
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/profile']).then(()=>{
+          window.location.reload();
+        });
       },
       err=>
       {
