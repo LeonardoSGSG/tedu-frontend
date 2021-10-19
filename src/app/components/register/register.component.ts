@@ -4,6 +4,8 @@ import { FormularioRegister } from './DTOS/FormularioRegister';
 import { RegisterService } from 'src/app/components/register/register.service';
 import { Router } from '@angular/router';
 import { HttpResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 //export * from './register.component'
 @Component({
   selector: 'app-register',
@@ -21,9 +23,13 @@ export class RegisterComponent implements OnInit {
     institution:'',
     phone:''
   }
-  constructor(private api:RegisterService, private router:Router) { }
+  constructor(private api:RegisterService, private router:Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+  openSnackBar(message: string, action: string)
+  {
+    this.snackBar.open(message, action);
   }
   
   public submitRegister(): void{
@@ -41,6 +47,37 @@ export class RegisterComponent implements OnInit {
         }
       },
       err=>{
+        if(err.status==400)
+        {
+          if(err.error.message[0]=="name must be longer than or equal to 2 characters")
+          {
+            this.openSnackBar('El nombre del usuario debe tener al menos 2 caracteres', 'Aceptar');
+
+          }
+          if(err.error.message[0]=="institution must be longer than or equal to 2 characters")
+          {
+            this.openSnackBar('El nombre de la institución debe tener al menos 2 caracteres', 'Aceptar');
+          }
+          if(err.error.message[0]=="phone must be a valid phone number")
+          {
+            this.openSnackBar('Número de teléfono inválido', 'Aceptar');
+          }
+          if(err.error.message[0]=="email must be longer than or equal to 4 characters")
+          {
+            this.openSnackBar('El email debe tener al menos 4 caracteres', 'Aceptar');
+          }
+          if(err.error.message[0]=="email must be an email")
+          {
+            this.openSnackBar('Formato de email inválido', 'Aceptar');
+          }
+          if(err.error.message[0]=="password must be longer than or equal to 4 characters")
+          {
+            this.openSnackBar('La contraseña debe tener al menos 4 caracteres', 'Aceptar');
+          }
+          
+          
+          //alert(err.error.message[0]);
+        }
         console.log(err);
         //TODO: validar qué salió mal
       }
