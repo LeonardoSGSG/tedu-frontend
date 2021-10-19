@@ -42,6 +42,7 @@ import { CourseContentComponent } from './components/course-content/course-conte
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
 import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
 import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profi
     DialogProfileComponent,
     ConfirmDeleteProfileComponent,
     UpdatePostComponent,
+    LoginDialogComponent,
   ],
   imports: [
     BrowserModule,

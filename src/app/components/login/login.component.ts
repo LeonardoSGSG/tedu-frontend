@@ -11,6 +11,7 @@ import { throwError } from 'rxjs';
 })
 
 export class LoginComponent implements OnInit {
+  
   hide=true;
     formularioLogin:FormularioLogin={
       email: '',
@@ -38,6 +39,10 @@ submitLogin()
       sessionStorage.setItem('token', token);
       console.log("token: " + res.user.token);
       this.router.navigate(['/courses']);
+      if(res.statusCode==404)
+      {
+
+      }
     },
     err => {
       console.log(err);
