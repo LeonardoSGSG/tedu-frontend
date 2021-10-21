@@ -26,16 +26,7 @@
         </mat-toolbar>
     </p>
     
-    <div class="container">
-        <div class="row">
-            <div class="column">
-
-            </div>
-            <div class="column">
-                <app-posts></app-posts>
-            </div>
-            <div class="column">
-                
-            </div>
-        </div>
-    </div>
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab label="Publicaciones"> <app-posts></app-posts> </mat-tab>
+      <mat-tab label="Integrantes"><app-course-members></app-course-members></mat-tab>
+    </mat-tab-group>

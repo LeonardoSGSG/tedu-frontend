@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+.table{
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid;
+  padding-top: 3em;
+}  

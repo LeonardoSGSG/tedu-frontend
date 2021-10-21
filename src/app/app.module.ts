@@ -23,7 +23,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -43,6 +46,7 @@ import { CourseContentComponent } from './components/course-content/course-conte
 import { AddPostComponent } from './components/posts/add-post/add-post.component';
 import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
 import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
+import { CourseMembersComponent } from './components/course-members/course-members.component';
 
 
 @NgModule({
@@ -60,6 +64,7 @@ import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profi
     DialogProfileComponent,
     ConfirmDeleteProfileComponent,
     UpdatePostComponent,
+    CourseMembersComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,9 @@ import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profi
     MatNativeDateModule,
     MatCardModule,
     MatGridListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule,
+    MatTabsModule,MatButtonToggleModule,MatPaginatorModule,
     
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
