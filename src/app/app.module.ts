@@ -47,6 +47,7 @@ import { AddPostComponent } from './components/posts/add-post/add-post.component
 import { UpdatePostComponent } from './components/posts/update-post/update-post.component';
 import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
 import { CourseMembersComponent } from './components/course-members/course-members.component';
+import { DialogRemoveStudentComponent } from './components/course-members/dialog-remove-student/dialog-remove-student.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { CourseMembersComponent } from './components/course-members/course-membe
     ConfirmDeleteProfileComponent,
     UpdatePostComponent,
     CourseMembersComponent,
+    DialogRemoveStudentComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +95,7 @@ import { CourseMembersComponent } from './components/course-members/course-membe
     
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[DialogRemoveStudentComponent]
 })
 export class AppModule { }

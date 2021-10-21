@@ -1,9 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { membersObject } from 'src/app/entities/membersObject';
 import { Usuario } from 'src/app/entities/usuario';
 import { CourseMembersService } from './course-members.service';
+import { DialogRemoveStudentComponent } from './dialog-remove-student/dialog-remove-student.component';
 
 @Component({
   selector: 'app-course-members',
@@ -16,10 +19,12 @@ export class CourseMembersComponent implements OnInit {
   public students: Usuario[]=[];
   public course:string = sessionStorage.getItem('currentCourse')!;
   public myId:string = sessionStorage.getItem('id')!;
-  displayedColumns: string[]=['index','name','email','action'];
+  displayedColumns: string[]=['index','name','action'];
   dataSource = new MatTableDataSource<Usuario>(this.students);
+  durationInSeconds = 5;
 
-  constructor(private courseMembersSvc: CourseMembersService) { }
+  constructor(private courseMembersSvc: CourseMembersService, public dialog: MatDialog,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getMembers(this.course);
@@ -37,16 +42,28 @@ export class CourseMembersComponent implements OnInit {
       }
     )
   }
-  public removeStudent(student_id:number,course_id:string): void{
-    this.courseMembersSvc.deleteStudent(student_id,course_id).subscribe(
-      (response: Usuario[]) => {
-        console.log(response);
-        this.getMembers(this.course);
-      },
-      (error: HttpErrorResponse)=>{
-        alert(error.message);
+  onDelete(student_id:number,course_id:string){
+    this.dialog.open(DialogRemoveStudentComponent,{
+      disableClose: true,
+      data:{
+        student_id: student_id,
+        course_id: course_id
       }
-    );
+    }).afterClosed().subscribe(res =>{
+      this._snackBar.openFromComponent(snackBarRemoveStudent, {
+        duration: this.durationInSeconds * 1000,
+      });
+      this.getMembers(this.course);
+    })
   }
-
 }
+@Component({
+  selector: 'snack-bar-remove-student',
+  templateUrl: 'snack-bar-remove-student.html',
+  styles: [`
+    .rs-snack-bar {
+      color: hotpink;
+    }
+  `],
+})
+export class snackBarRemoveStudent {}

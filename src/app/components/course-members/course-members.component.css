@@ -16,3 +16,23 @@ table {
   border: 1px solid;
   padding-top: 3em;
 }  
+#students_title{
+  margin-top: 2em;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial;
+}
+#teacher_title{
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: Arial;
+}
+.thead{
+  font-size: 0.85em;
+  font-weight: lighter;
+}
+mat-card{
+  border-radius: 0%;
+  margin-bottom: 1px;
+}

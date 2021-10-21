@@ -5,6 +5,8 @@ import { Curso } from 'src/app/entities/curso';
 import { membersObject } from 'src/app/entities/membersObject';
 import { Usuario } from 'src/app/entities/usuario';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogRemoveStudentComponent } from './dialog-remove-student/dialog-remove-student.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import { environment } from 'src/environments/environment';
 export class CourseMembersService {
   private apiServerUrl = environment.apiBaseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   public getMembersByCourse(id: string): Observable<membersObject>{
     const opts={
@@ -21,18 +23,5 @@ export class CourseMembersService {
     })
    };
     return this.http.get<membersObject>(`${this.apiServerUrl}/courses/${id}/members`,opts);
-  }
-  public deleteStudent(student_id:number,course_id:string): Observable<Usuario[]>{
-    const id=sessionStorage.getItem('id');
-    const opts={
-      headers: new HttpHeaders({
-        'Authorization': 'Token ' + sessionStorage.getItem('token')
-      }),
-      body: {
-        student_id: student_id,
-        course_id: course_id
-      }
-   };
-    return this.http.delete<Usuario[]>(`${this.apiServerUrl}/enrollment`,opts);
   }
 }

@@ -1,7 +1,26 @@
 <div class="container">
-    <mat-card>Docente: {{teacher.name}}</mat-card>
+    <h4 id="teacher_title">Docente</h4>
+</div>
+<div class="container">
+    <mat-card id="teacher_card">
+        <div class="row">
+            <div class="col-sm thead">N°</div>
+            <div class="col-sm thead">Nombre</div>
+            <div class="col-sm thead">Email</div>                    
+        </div>        
+    </mat-card> 
+    <mat-card> 
+        <div class="row">
+            <div class="col-sm">1</div>
+            <div class="col-sm">{{teacher.name}}</div>
+            <div class="col-sm">{{teacher.email}}</div>
+        </div>        
+    </mat-card>    
 </div>
 
+<div class="container">
+    <h4 id="students_title">Alumnos</h4>
+</div>
 <div class="container">
     <table mat-table [dataSource]="students" class="mat-elevation-z8">
         <ng-container matColumnDef="index">
@@ -11,10 +30,6 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>  
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef></th>
@@ -23,7 +38,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button (click)="removeStudent(element.id,course)" mat-menu-item><mat-icon>remove_circle</mat-icon><span>Quitar</span></button>                    
+                    <button (click)="onDelete(element.id,course)" mat-menu-item><mat-icon>remove_circle</mat-icon><span>Quitar</span></button>                    
                 </mat-menu>                  
             </td>
           </ng-container>  
