@@ -19,7 +19,9 @@ export class CourseMembersComponent implements OnInit {
   public students: Usuario[]=[];
   public course:string = sessionStorage.getItem('currentCourse')!;
   public myId:string = sessionStorage.getItem('id')!;
+  public myIdN:number = Number(this.myId);
   displayedColumns: string[]=['index','name','action'];
+  displayedColumnsStudents: string[]=['index','name'];
   dataSource = new MatTableDataSource<Usuario>(this.students);
   durationInSeconds = 5;
 
@@ -35,7 +37,7 @@ export class CourseMembersComponent implements OnInit {
         this.members = response;
         this.teacher = this.members.teacher;
         this.students = this.members.students;
-        console.log(this.members)
+        //console.log(this.members)
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -43,17 +45,20 @@ export class CourseMembersComponent implements OnInit {
     )
   }
   onDelete(student_id:number,course_id:string){
-    this.dialog.open(DialogRemoveStudentComponent,{
+    return this.dialog.open(DialogRemoveStudentComponent,{
       disableClose: true,
       data:{
         student_id: student_id,
         course_id: course_id
       }
     }).afterClosed().subscribe(res =>{
-      this._snackBar.openFromComponent(snackBarRemoveStudent, {
-        duration: this.durationInSeconds * 1000,
-      });
-      this.getMembers(this.course);
+      //console.log(res)
+      if(res){
+        this._snackBar.openFromComponent(snackBarRemoveStudent, {
+          duration: this.durationInSeconds * 1000,
+        }); 
+        this.getMembers(this.course); 
+      }                
     })
   }
 }

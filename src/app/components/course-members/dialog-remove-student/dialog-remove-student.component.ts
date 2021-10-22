@@ -23,7 +23,8 @@ export class DialogRemoveStudentComponent implements OnInit {
 
   constructor(private removeStudentSvc: DialogRemoveStudentService,
               private courseMembersSvc: CourseMembersService,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public dialogRef: MatDialogRef<DialogRemoveStudentComponent>) { }
 
   ngOnInit(): void {
   }
@@ -65,5 +66,8 @@ export class DialogRemoveStudentComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+  public closeDialog(){
+    this.dialogRef.close(false);
   }
 }
