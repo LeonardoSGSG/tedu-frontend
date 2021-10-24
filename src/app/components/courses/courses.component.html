@@ -56,14 +56,14 @@
       <div *ngFor='let course of ownedCourses' class="col"> 
         <div class="card card-small" id="card-curso">
             <div class="thumbnail" id="card-curso">                        
-              <a (click) = "entrarCurso(course?.id)">
+              <a (click) = "entrarCurso(course?.id, '')">
                 <img alt="thumbnail" src=".\assets\img\curso.jpg">
               </a>                                           
             </div>
             <div>
               <button mat-button id="btnVerCodigo" (click)="onOpenModal(course,'verCodigo')">Ver Código</button>
             </div>
-            <div class="card-info" (click) = "entrarCurso(course?.id)">
+            <div class="card-info" (click) = "entrarCurso(course?.id, '')">
                 <div class="moving">
                     <a>
                         <h3>{{course.name}}</h3>
