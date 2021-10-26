@@ -1,6 +1,7 @@
 import { enrolledCourses } from "./enrolledCourses";
 import { ownedCourses } from "./ownedCourses";
 import { Post } from "./post";
+import { Schedule } from "./schedule";
 export interface Curso{
     id: number;
     teacher_id: number;
@@ -9,7 +10,8 @@ export interface Curso{
     desc: string;
     code: string;
     start_date: Date;
-    end_date: Date;
+    weeks: number;
+    schedule: Schedule[];
     posts: Post[];
     ownedCourses: ownedCourses[];
     enrolledCourses: enrolledCourses[]

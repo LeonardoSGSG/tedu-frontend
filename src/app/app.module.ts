@@ -27,6 +27,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select';
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -92,7 +94,8 @@ import { DialogRemoveStudentComponent } from './components/course-members/dialog
     MatSnackBarModule,
     MatTableModule,
     MatTabsModule,MatButtonToggleModule,MatPaginatorModule,
-    
+    MatExpansionModule,
+    MatSelectModule,
   ],
   providers: [LoginService,CoursesService,CoursesComponent],
   bootstrap: [AppComponent],

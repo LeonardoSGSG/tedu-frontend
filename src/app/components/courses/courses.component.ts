@@ -7,6 +7,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ownedCourses } from 'src/app/entities/ownedCourses';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -18,12 +20,13 @@ export class CoursesComponent implements OnInit {
   public editCourse: Curso | undefined;
   public deleteCourse!: Curso;
   public codeCourse: Curso | undefined;
-  
+  durationInSeconds = 5;
   joinCourseForm = new FormGroup({
     code: new FormControl(''),
   })
 
-  constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router) { }
+  constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -119,14 +122,23 @@ export class CoursesComponent implements OnInit {
     button.click();
   }
   onCreate(){
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = "30%";
-    let dialogRef = this.dialog.open(AddCourseComponent ,dialogConfig);
-    dialogRef.afterClosed().subscribe(res=>{
-      this.getCourses();
+    return this.dialog.open(AddCourseComponent,{
+      disableClose:true,
+      autoFocus:true,
+      width: "43%"
+    }).afterClosed().subscribe(res =>{
+      console.log(res);
+      if(res){
+        this._snackBar.openFromComponent(snackBarAddCourse, {
+          duration: this.durationInSeconds * 1000,
+        }); 
+        this.getCourses();      
+      }      
     })
-
   }
 }
+@Component({
+  selector: 'snack-bar-add-course',
+  templateUrl: 'snack-bar-add-course.html'
+})
+export class snackBarAddCourse {}
