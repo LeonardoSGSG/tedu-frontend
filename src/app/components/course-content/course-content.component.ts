@@ -10,7 +10,7 @@ import { CursoLeave } from './DTOS/cursoLeave';
   styleUrls: ['./course-content.component.css']
 })
 export class CourseContentComponent implements OnInit {
-  public pId:string = "";
+  public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
 
   constructor(private router: Router, private CCService:CourseContentService) { }

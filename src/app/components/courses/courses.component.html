@@ -56,14 +56,14 @@
       <div *ngFor='let course of ownedCourses' class="col"> 
         <div class="card card-small" id="card-curso">
             <div class="thumbnail" id="card-curso">                        
-              <a (click) = "entrarCurso(course?.id, '')">
+              <a (click) = "entrarCurso(course?.id, course?.teacher.id)">
                 <img alt="thumbnail" src=".\assets\img\curso.jpg">
               </a>                                           
             </div>
             <div>
               <button mat-button id="btnVerCodigo" (click)="onOpenModal(course,'verCodigo')">Ver Código</button>
             </div>
-            <div class="card-info" (click) = "entrarCurso(course?.id, '')">
+            <div class="card-info" (click) = "entrarCurso(course?.id, course?.teacher.id)">
                 <div class="moving">
                     <a>
                         <h3>{{course.name}}</h3>
@@ -71,14 +71,16 @@
                     </a>                         
                 </div>
             </div>
-            <span class="float-right btn-group btn-group-sm">
-              <button (click)="onOpenModal(course,'edit')" mat-icon-button color="primary" data-original-title="Edit">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button (click)="onOpenModal(course,'delete')" mat-icon-button color="warn" data-original-title="Delete">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </span>
+            <div *ngIf = "miId == course?.teacher.id+''">
+              <span class="float-right btn-group btn-group-sm">
+                <button (click)="onOpenModal(course,'edit')" mat-icon-button color="primary" data-original-title="Edit">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="onOpenModal(course,'delete')" mat-icon-button color="warn" data-original-title="Delete">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </span>
+            </div>
         </div>
       </div>
     </div>

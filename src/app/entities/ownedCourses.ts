@@ -1,8 +1,9 @@
+import { Usuario } from "./usuario"
 import { Post } from "./post";
 
 export interface ownedCourses{
     id: number;
-    teacher_id: number;
+    teacher: Usuario;
     name: string;
     vacancies: number;
     desc: string;

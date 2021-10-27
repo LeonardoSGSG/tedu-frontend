@@ -20,6 +20,7 @@ export class CoursesComponent implements OnInit {
   public editCourse: Curso | undefined;
   public deleteCourse!: Curso;
   public codeCourse: Curso | undefined;
+  public miId : string = sessionStorage.getItem('id')!;
   durationInSeconds = 5;
   joinCourseForm = new FormGroup({
     code: new FormControl(''),
