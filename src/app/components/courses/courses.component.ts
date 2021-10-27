@@ -36,6 +36,7 @@ export class CoursesComponent implements OnInit {
     console.log(form);
     this.coursesService.joinCourse(form).subscribe(data =>{
       console.log(data);
+      this.getCourses();
     })
   }
   public redirProfile()
@@ -129,11 +130,11 @@ export class CoursesComponent implements OnInit {
       width: "43%"
     }).afterClosed().subscribe(res =>{
       console.log(res);
+      this.getCourses();
       if(res){
         this._snackBar.openFromComponent(snackBarAddCourse, {
           duration: this.durationInSeconds * 1000,
-        }); 
-        this.getCourses();      
+        });       
       }      
     })
   }

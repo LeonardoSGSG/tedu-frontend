@@ -3,6 +3,7 @@ import { PostsComponent } from '../posts/posts.component';
 import { Router } from '@angular/router';
 import { CourseContentService } from './course-content.service';
 import { CursoLeave } from './DTOS/cursoLeave';
+import { Curso } from 'src/app/entities/curso';
 
 @Component({
   selector: 'app-course-content',
@@ -31,5 +32,6 @@ export class CourseContentComponent implements OnInit {
       this.router.navigate(['/courses'])
     })
   }
+  
 
 }
