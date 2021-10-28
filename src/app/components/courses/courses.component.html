@@ -60,7 +60,7 @@
                 <img alt="thumbnail" src=".\assets\img\curso.jpg">
               </a>                                           
             </div>
-            <div>
+            <div *ngIf = "miId == course?.teacher.id+''">
               <button mat-button id="btnVerCodigo" (click)="onOpenModal(course,'verCodigo')">Ver Código</button>
             </div>
             <div class="card-info" (click) = "entrarCurso(course?.id, course?.teacher.id)">

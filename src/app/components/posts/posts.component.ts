@@ -16,6 +16,7 @@ export class PostsComponent implements OnInit {
   public posts: postDTO[] = [];
   public course:string = sessionStorage.getItem('currentCourse')!;
   public myId:string = sessionStorage.getItem('id')!;
+  public pId:string = sessionStorage.getItem('pId')!;
   constructor(private postsService: PostsService, private dialog:MatDialog) { }
 
   ngOnInit(): void {

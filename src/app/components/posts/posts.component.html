@@ -20,10 +20,12 @@
                     <p style="word-wrap: break-word;">
                         {{post.text}}
                     </p>
-                    <div *ngIf="post.user.id + '' == myId">
+                    <div class="boton" *ngIf="post.user.id + '' == myId">
                         <button (click)="popupUpdate(post.id+'')" mat-icon-button color="primary" data-original-title="Edit">
                             <mat-icon>edit</mat-icon>
                         </button>
+                    </div>
+                    <div class="boton" *ngIf="post.user.id + '' == myId || myId == pId">
                         <button (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete">
                             <mat-icon >delete</mat-icon>
                         </button>
