@@ -9,7 +9,7 @@
         </div>
     </mat-toolbar>
 </p>
-    <div class="row">
+    <!--div class="row">
         <div *ngFor="let post of posts" layout-align="center center" class="contenedor">
             <mat-card class="example-card row example-card" >
                 <mat-card-header>
@@ -31,7 +31,97 @@
                         </button>
                     </div>
                 </mat-card-content>
-            </mat-card>
-        </div>
+            </mat-card>                        
+        </div>        
+    </div-->
+
+<div class="row">
+    <div *ngFor="let post of posts; let i=index" ayout-align="center center" class="contenedor">
+        <mat-card class="box box-widget example-card row example-card">
+            <mat-card-header class="box-header with-border">
+                <div class="user-block">
+                    <img class="img-circle" src=".\assets\img\user.png" alt="User Image">
+                    <mat-card-title class="username">{{post.user.name}}</mat-card-title>
+                    <mat-card-subtitle class="description">Fecha publicado: {{post.created}}</mat-card-subtitle>
+                </div>
+                <div class="box-tools">
+                    <button class="boton" *ngIf="post.user.id + '' == myId" (click)="popupUpdate(post.id+'')" mat-icon-button color="primary" data-original-title="Edit"><mat-icon>edit</mat-icon></button>
+                    <button class="boton" *ngIf="post.user.id + '' == myId || myId == pId" (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete"><mat-icon >delete</mat-icon></button>
+                </div>
+            </mat-card-header>            
+            <mat-card-content class="post-content">
+                <p style="word-wrap: break-word;">{{post.text}}</p>                                                                                           
+            </mat-card-content>                      
+            <mat-card-actions align="end">
+                <span class="pull-right text-muted"><a type="button" (click)="getComments(post.id+'')">Ver comentarios</a></span>
+            </mat-card-actions>
+            <mat-card-content *ngIf="post.id+'' == idPost">
+                <div *ngFor="let comment of comments">
+                    <div class="post-comment">
+                        <div class="box-footer box-comments">
+                            <div class="box-comment">
+                                <div class="comment-text">
+                                    <span class="username">
+                                        {{post.user.name}}
+                                        <a *ngIf="post.user.id + '' == myId" class="pull-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></a>
+                                        <mat-menu #menu="matMenu">
+                                            <button (click)="editInputComment(comment.id)" mat-menu-item>Editar</button>
+                                            <button (click)="deleteComment(post.id+'',comment.id)" mat-menu-item>Eliminar</button>                                            
+                                        </mat-menu> 
+                                        <div class="text-muted">{{comment.created}}</div>                                                                                                       
+                                    </span>
+                                    {{comment.text}}
+                                    <div *ngIf="shouldRun">
+                                        <form *ngIf="comment.id+'' == idComment" #editForm="ngForm">
+                                            <div class="form-group">
+                                              <label for="text">Actualizar comentario</label>
+                                              <input type="text" ngModel="{{editCom?.text}}" name="text" class="form-control" id="text">
+                                            </div>
+                                            <button (click)="editComment(editForm.value,post.id+'',comment.id)" type="button">Actualizar</button>                            
+                                        </form>                                                                                                 
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>                                                                                  
+                    </div>                   
+                </div>                
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-footer>
+                <div class="box-footer-form">                  
+                  <form [formGroup]="addCommentForm" (ngSubmit)="postFormComment(addCommentForm.value,post.id+'')">
+                    <div class="card-body form-group img-push">
+                        <div>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Escribe un comentario</mat-label>
+                                <input matInput formControlName="text" name="text" type="text">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button class="btn-comentar pull-right" color="basic" (click)="postFormComment(addCommentForm.value,post.id+'')" mat-raised-button color="primary">
+                                Comentar
+                            </button>
+                        </div>
+                    </div>                            
+                </form>
+                </div>
+            </mat-card-footer>
+        </mat-card>
     </div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

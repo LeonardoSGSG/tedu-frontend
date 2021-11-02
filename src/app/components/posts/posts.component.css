@@ -1,5 +1,6 @@
 .example-card {
-    width: 400px;
+    margin-bottom: 20px;
+    width: 53em;
   }
 .contenedor{
     display: flex;
@@ -35,4 +36,228 @@ body{
 .boton{
   width: 35px;
   float:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+body{margin-top:20px;}
+
+/*==================================================
+  Post Contents CSS
+  ==================================================*/
+
+.post-content .post-container{
+  padding: 20px;
+}
+
+.post-content .post-container .post-detail .post-text{
+  line-height: 24px;
+  margin: 0;
+}
+
+.post-content .post-container .post-detail .post-comment .form-control{
+  height: 30px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  margin: 7px 0;
+  min-width: 0;
+}
+
+
+/*
+TEMPLATE
+*/
+body{
+  margin-top:20px;
+  background-color: #ecf0f5;
+}
+.box-header.with-border {  
+  border-bottom: 1px solid #f4f4f4;
+}
+.box-header {
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;  
+  height: 4em;
+  padding-bottom: 0%;
+}
+.post-content{
+  padding: 12px;
+  border-bottom: 1px solid #f4f4f4;
+  margin-bottom: 0%;
+}
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+  display: block;
+}
+.description{
+  margin-bottom: 0%;
+}
+.user-block img {
+  width: 40px;
+  height: 40px;
+  float: left;
+}
+.user-block .username {
+  font-size: 16px;
+  font-weight: 600;
+}
+.user-block .description {
+  color: #999;
+  font-size: 13px;
+}
+.user-block .username, 
+.user-block .description, 
+.user-block .comment {
+  display: block;
+  margin-left: 50px;
+}
+.box-header>.box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.btn-box-tool {
+  padding: 5px;
+  font-size: 12px;
+  background: transparent;
+  color: #97a0b3;
+}
+.box-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 10px;
+  margin-bottom: -5%;
+}
+.pad {
+  padding: 10px;
+}
+.box .btn-default {
+  background-color: #f4f4f4;
+  color: #444;
+  border-color: #ddd;
+}
+.box-comments {
+  background: #f7f7f7 !important;
+}
+.box-footer {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top: 1px solid #f4f4f4;
+  padding: 10px;
+  background-color: #fff;
+}
+.box-comments .box-comment:first-of-type {
+  padding-top: 0;
+}
+.box-comments .box-comment {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+.img-sm, 
+.box-comments .box-comment img, 
+.user-block.user-block-sm img {
+  width: 30px !important;
+  height: 30px !important;
+}
+.img-sm, .img-md, 
+.img-lg, .box-comments .box-comment img, 
+.user-block.user-block-sm img {
+  float: left;
+}
+.box-comments .comment-text {
+  color: #555;
+}
+.box-comments .username {
+  color: #444;
+  display: block;
+  font-weight: 600;
+}
+.box-comments .text-muted {
+  font-weight: 400;
+  font-size: 12px;
+}
+.img-sm+.img-push {
+  margin-left: 40px;
+}
+.box .form-control {
+  border-radius: 0;
+  box-shadow: none;
+  border-color: #d2d6de;
+}
+.attachment-block {
+  border: 1px solid #f4f4f4;
+  padding: 5px;
+  margin-bottom: 10px;
+  background: #f7f7f7;
+}
+.attachment-block .attachment-img {
+  max-width: 100px;
+  max-height: 100px;
+  height: auto;
+  float: left;
+}
+.attachment-block .attachment-pushed {
+  margin-left: 110px;
+}
+.attachment-block .attachment-heading {
+  margin: 0;
+}
+.attachment-block .attachment-heading .h4, .attachment-block .attachment-heading h4 {
+  font-size: 18px;
+}
+.attachment-block .attachment-text {
+  color: #555;
+}
+.post-comment {
+  margin-bottom: 0.5em;
+}
+.box-footer.box-comments {
+  border-radius: 23px;
+}
+.mat-card-footer {
+  display: block;
+  margin: 0 -16px -16px -16px;
+  height: 8em;
+}
+.box-footer-form {
+  height: 4em;
+}
+form.ng-untouched.ng-pristine.ng-valid {
+  height: 4em;
+}
+.card-body.form-group.img-push {
+  height: 4em;
+  padding: 0;
+  margin-bottom: 0;
+  margin-left: 1.5em;
+  padding-top: 0.5em;
+}
+.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 48em;
+  height: 1em;
+}
+.btn-comentar{
+  margin-top: 1.5em;
+  height: 1em;
+}
+button.mat-focus-indicator.mat-raised-button.btn-comentar {
+  font-size: 11px;
+  height: 2.5em;
+  line-height: 2.5em;
 }
