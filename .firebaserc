@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angulartedu-9b782": {
+      "hosting": {
+        "tedu-frontend": [
+          "angulartedu-9b782"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angulartedu-9b782"
+  }
+}

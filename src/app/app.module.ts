@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +30,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { MatIcon } from '@angular/material/icon';
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -39,6 +41,7 @@ import { CoursesService } from './components/courses/courses.service';
 import { coursesArrayPipe } from './components/courses/courses.pipe';
 import { PostsComponent } from './components/posts/posts.component';
 import { DialogProfileComponent } from './components/dialog-profile/dialog-profile.component';
+import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -50,6 +53,17 @@ import { UpdatePostComponent } from './components/posts/update-post/update-post.
 import { ConfirmDeleteProfileComponent } from './components/confirm-delete-profile/confirm-delete-profile.component';
 import { CourseMembersComponent } from './components/course-members/course-members.component';
 import { DialogRemoveStudentComponent } from './components/course-members/dialog-remove-student/dialog-remove-student.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { provideMessaging,getMessaging } from '@angular/fire/messaging';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -69,6 +83,7 @@ import { DialogRemoveStudentComponent } from './components/course-members/dialog
     UpdatePostComponent,
     CourseMembersComponent,
     DialogRemoveStudentComponent,
+    AsistenciaComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,8 +111,18 @@ import { DialogRemoveStudentComponent } from './components/course-members/dialog
     MatTabsModule,MatButtonToggleModule,MatPaginatorModule,
     MatExpansionModule,
     MatSelectModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics()),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideRemoteConfig(() => getRemoteConfig()),
+    provideStorage(() => getStorage()),
   ],
-  providers: [LoginService,CoursesService,CoursesComponent],
+  providers: [LoginService,CoursesService,CoursesComponent, ScreenTrackingService,UserTrackingService],
   bootstrap: [AppComponent],
   entryComponents:[DialogRemoveStudentComponent]
 })

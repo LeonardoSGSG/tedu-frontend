@@ -95,11 +95,20 @@
               "src/assets"
             ],
             "styles": [
-
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "tedu-frontend:build:production",
+            "firebaseProject": "angulartedu-9b782",
+            "firebaseHostingSite": "angulartedu-9b782"
           }
         }
       }
