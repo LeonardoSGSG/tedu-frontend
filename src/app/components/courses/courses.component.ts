@@ -130,7 +130,7 @@ export class CoursesComponent implements OnInit {
       width: "43%"
     }).afterClosed().subscribe(res =>{
       console.log(res);
-      this.getCourses();
+      window.location.reload();
       if(res){
         this._snackBar.openFromComponent(snackBarAddCourse, {
           duration: this.durationInSeconds * 1000,

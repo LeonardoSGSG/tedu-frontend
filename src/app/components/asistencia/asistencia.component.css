@@ -1,0 +1,16 @@
+.contenedorAsistencias{
+    width: 50%; 
+    justify-self: center;
+}
+.asistencia{
+    margin-left: 0%;
+    margin-right: 0%;
+}
+.columna1{
+    float: left;
+    width: 90%;
+}
+.columna2{
+    float: left;
+    width: 10%;
+}

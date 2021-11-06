@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CourseContentService } from './course-content.service';
 import { CursoLeave } from './DTOS/cursoLeave';
 import { Curso } from 'src/app/entities/curso';
+import { AsistenciaComponent } from '../asistencia/asistencia.component';
 
 @Component({
   selector: 'app-course-content',
