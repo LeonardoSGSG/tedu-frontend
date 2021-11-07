@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/entities/post';
 import { postDTO } from './DTOS/postDTO';
 import { PostsService } from './posts.service';
@@ -9,6 +9,7 @@ import { UpdatePostComponent } from './update-post/update-post.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Comment } from 'src/app/entities/comment';
 import { CommentService } from './comment.service';
+import { ConfirmDeleteCommentComponent } from './confirm-delete-comment/confirm-delete-comment.component';
 
 @Component({
   selector: 'app-posts',
@@ -19,9 +20,14 @@ export class PostsComponent implements OnInit {
   addCommentForm = new FormGroup({
     text: new FormControl('')
   })
+  editForm= new FormGroup({
+    text: new FormControl('')
+  })
+  @Input()
+  
+  public cont!:number;
   public posts: postDTO[] = [];
   public comments: Comment[]=[];
-  public editCom: Comment | undefined;
   public rep: [1] = [1];
   public idPost: string ='';
   public idComment: string ='';
@@ -32,16 +38,14 @@ export class PostsComponent implements OnInit {
   constructor(private postsService: PostsService, private dialog:MatDialog, private comSvc:CommentService) { }
 
   ngOnInit(): void {
-    this.getPosts(this.course);    
-    //this.getComments('7');
-    //this.getComments('6');    
+    this.getPosts(this.course);  
   }
   public getPosts(id:string): void{
     this.postsService.getPostsByCourseID(id).subscribe(
       (response: postDTO[]) => {
         this.posts = response;
         console.log("se cargaron los posts de este curso")
-        console.log(response)
+        this.cont=this.posts.length;
       },
       (error: HttpErrorResponse)=>{
         alert(error.message);
@@ -88,7 +92,7 @@ export class PostsComponent implements OnInit {
       (response: any) => {
         this.comments = response;
         this.idPost = idPost;        
-        console.log(this.comments);
+        //console.log(this.comments);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -96,10 +100,17 @@ export class PostsComponent implements OnInit {
     )
   }
   postFormComment(formu:Comment,postId:string){        
+    if(this.cont == 1){
+      this.addComment(formu,postId)
+    }else{
+      this.cont = this.cont-1;
+    }        
+  }  
+  addComment(formu:Comment,postId:string){
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
       console.log(formu);
-      console.log(postId);
-      console.log(data)
+      this.getComments(postId);
+      this.cont = this.posts.length;
     })
     ,
     (error: HttpErrorResponse) => {
@@ -107,29 +118,36 @@ export class PostsComponent implements OnInit {
     }
   }
   deleteComment(postId:string,commentId:number){
-    this.comSvc.deleteComment(this.course,postId,commentId).subscribe(
-      data =>{    
-        console.log(data)  
+    return this.dialog.open(ConfirmDeleteCommentComponent,{
+      disableClose: true,
+      data:{
+        postId: postId,
+        commentId: commentId
       }
-    ),
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
+    }).afterClosed().subscribe(res =>{
+      //console.log(res)    
+      this.getComments(postId);                       
+    })
   }
-  editComment(form:Comment,postId:string,commentId:number){
+  editComment(form:Comment,postId:string,commentId:number): void{
     this.comSvc.updateComment(form,this.course,postId,commentId).subscribe(
-      data =>{    
-        console.log(data)  
+      (response: Comment) =>{    
+        console.log(form);
+        this.idComment = '';
+        this.shouldRun=false;
+        this.getComments(postId);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
       }
-    ),
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
+    );
   }
   editInputComment(commentId:number){
     this.idComment = commentId+''; 
-    this.shouldRun=true;
+    this.shouldRun = true;
+  }
+  cancelUpdate(){
+    this.idComment = '';
+    this.shouldRun=false;
   }
 }
-
-

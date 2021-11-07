@@ -42,6 +42,7 @@ import { coursesArrayPipe } from './components/courses/courses.pipe';
 import { PostsComponent } from './components/posts/posts.component';
 import { DialogProfileComponent } from './components/dialog-profile/dialog-profile.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
+import { ConfirmDeleteCommentComponent } from './components/posts/confirm-delete-comment/confirm-delete-comment.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -84,6 +85,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     CourseMembersComponent,
     DialogRemoveStudentComponent,
     AsistenciaComponent,
+    ConfirmDeleteCommentComponent,
   ],
   imports: [
     BrowserModule,
