@@ -46,7 +46,7 @@ import { AsistenciaComponent } from './components/asistencia/asistencia.componen
 import { ConfirmDeleteCommentComponent } from './components/posts/confirm-delete-comment/confirm-delete-comment.component';
 import { VerAsistenciaComponent } from './components/asistencia/ver-asistencia/ver-asistencia.component';
 import { RegistrarAsistenciaComponent } from './components/asistencia/registrar-asistencia/registrar-asistencia.component';
-
+import { EditarAsistenciaComponent } from './components/asistencia/editar-asistencia/editar-asistencia.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -73,6 +73,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +95,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     ConfirmDeleteCommentComponent,
     VerAsistenciaComponent,
     RegistrarAsistenciaComponent,
+    EditarAsistenciaComponent,
   ],
   imports: [
     BrowserModule,

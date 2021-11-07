@@ -1,0 +1,25 @@
+.columna1{
+    float: left;
+    width: 10%;
+}
+.columna2{
+    float: left;
+    width: 80%;
+}
+.columna3{
+    float: left;
+    width: 10%;
+}
+.bot{
+    width:30%;
+    margin-right: 10%;
+    margin-left: 10%;
+    vertical-align: middle;
+    justify-content: center;
+}
+.contBot{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 5%;
+}

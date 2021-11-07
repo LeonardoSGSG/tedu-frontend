@@ -5,6 +5,7 @@ import { AsistenciaGeneral } from 'src/app/entities/asistenciaGeneral';
 import { AsistenciaService } from './asistencia.service';
 import { VerAsistenciaComponent } from './ver-asistencia/ver-asistencia.component';
 import { RegistrarAsistenciaComponent } from './registrar-asistencia/registrar-asistencia.component';
+import { EditarAsistenciaComponent } from './editar-asistencia/editar-asistencia.component';
 
 @Component({
   selector: 'app-asistencia',
@@ -25,7 +26,10 @@ export class AsistenciaComponent implements OnInit {
   public getAttendances():void{
     this.asistenciaService.getAllAttendances().subscribe(
       (response: AsistenciaGeneral[]) => {
-        this.asistenciasGenerales = response;
+        var sorted_asists = response.sort(function(a, b) {
+          return a.id - b.id;
+        });
+        this.asistenciasGenerales = sorted_asists;
       }
     )
   }
@@ -41,12 +45,31 @@ export class AsistenciaComponent implements OnInit {
       }
     )
   }
-  public crearAsistencia(id:number){
+  public crearAsistencia(id:number, incompleto:boolean){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width="40%";
     let currentDialog = this.dialog.open(RegistrarAsistenciaComponent, dialogConfig)
     currentDialog.componentInstance.asistenciaId=id;
+    currentDialog.componentInstance.incompleto=incompleto;
+    currentDialog.afterClosed().subscribe(res=>{
+      this.getAttendances();
+    })
+  }
+  public editarAsistencia(id:number){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width="40%";
+    let currentDialog = this.dialog.open(EditarAsistenciaComponent, dialogConfig)
+    currentDialog.componentInstance.asistenciaId=id;
+    currentDialog.afterClosed().subscribe(res=>{
+      if(currentDialog.componentInstance.incompleto == true){
+        this.crearAsistencia(id, true);
+      }else{
+        this.getAttendances();
+      }
+    })
   }
 }

@@ -4,7 +4,7 @@
             <mat-list-item>
                 <mat-divider></mat-divider>
                 <div class="columna1">
-                    {{i}}
+                    {{i+1}}
                 </div>
                 <div class="columna2">
                     {{st.name}}
@@ -15,6 +15,7 @@
     </div>
     <div class="row contBot">
         <button class="bot mat-warn mat-button-base" mat-button mat-dialog-close>Cerrar</button>
-        <button (click)="registrarAsistencia()" class="bot mat-button-base mat-primary" mat-button>Registrar</button> 
+        <button *ngIf="incompleto==false" (click)="registrarAsistencia()" class="bot mat-button-base mat-primary" mat-button>Registrar</button>
+        <button *ngIf="incompleto==true" (click)="reRegistrarAsistencia()" class="bot mat-button-base mat-primary" mat-button>Volver a registrar</button>
     </div> 
 </div>

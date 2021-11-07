@@ -19,7 +19,6 @@ export class AsistenciaService {
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
-
     })
    };
     return this.http.get<AsistenciaGeneral[]>(this.apiServerUrl + "/courses/"+idCurso+"/attendances", opts)
@@ -34,13 +33,26 @@ export class AsistenciaService {
    };
    return this.http.get<AsistenciaGeneral>(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAs, opts);
   }
-  public registerAttendance(formulario:FormularioAsistencia[], idAsist:number):void{
+  public registerAttendance(formulario:FormularioAsistencia[], idAsist:number):Observable<{registered:boolean}>{
     const idCurso=sessionStorage.getItem('currentCourse');
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };
-   this.http.post(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAsist,formulario, opts);
+   const data = JSON.stringify(formulario);
+   const jsonData = JSON.parse(data);
+   return this.http.post<{registered:boolean}>(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAsist+"/register",jsonData, opts);
+  }
+  public updateAttendance(formulario:FormularioAsistencia[], idAsist:number):Observable<{updated:boolean}>{
+    const idCurso=sessionStorage.getItem('currentCourse');
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+   const data = JSON.stringify(formulario);
+   const jsonData = JSON.parse(data);
+   return this.http.put<{updated:boolean}>(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAsist+"/edit",jsonData, opts)
   }
 }
