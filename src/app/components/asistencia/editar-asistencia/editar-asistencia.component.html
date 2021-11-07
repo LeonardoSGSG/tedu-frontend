@@ -1,0 +1,28 @@
+<div style="text-align: center;" class="card-body form-group">        
+    <div>
+        <mat-list id="lista" *ngFor="let st of asistencias; let i=index">
+            <mat-list-item>
+                <mat-divider></mat-divider>
+                <div class="columna1">
+                    {{i+1}}
+                </div>
+                <div class="columna2">
+                    {{st.user.name}}
+                </div>
+                <mat-checkbox [checked]="st.attended" #c (click)="actualizarCheckbox(!c.checked, i)"></mat-checkbox>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <div class="row contBot">
+        <button class="bot mat-warn mat-button-base" mat-button mat-dialog-close>Cerrar</button>
+        <button (click)="registrarAsistencia()" class="bot mat-button-base mat-primary" mat-button>Confirmar edición</button>
+    </div>
+    <div class="row" style="margin-top: 10%;">
+        <div style="width: 40%; float: right; text-align: right; ">
+            <h1 style="font-size:85%; margin: 0px; padding: 0px;">¿Está incompleta la lista?</h1>
+        </div>
+        <div style="width: 40%; float: right; text-align: left; margin: 0px; padding: 0px;">
+            <button style="width: 80%; margin: 0px; padding: 0px;" (click)="recrearAsist()" class="bot mat-button-base" mat-button>re-crear asistencia</button>
+        </div>
+    </div>  
+</div>

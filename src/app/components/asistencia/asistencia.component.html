@@ -16,7 +16,8 @@
                 <h2 class="asistencia">{{asistencia.attendance_date}}</h2>
             </div>
             <div class="columna2">
-                <mat-icon style="cursor: pointer;" (click)="crearAsistencia(asistencia.id)">edit</mat-icon>
+                <mat-icon *ngIf="asistencia.registered==true" style="cursor: pointer;" (click)="editarAsistencia(asistencia.id)">edit</mat-icon>
+                <mat-icon *ngIf="asistencia.registered==false" style="cursor: pointer;" (click)="crearAsistencia(asistencia.id, false)">note_add</mat-icon>
             </div>
             <mat-divider></mat-divider>
         </mat-list-item>

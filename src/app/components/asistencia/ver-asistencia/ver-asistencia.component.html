@@ -1,8 +1,11 @@
 <div style="text-align: center;" class="card-body form-group">        
     <div style="width: 75%;" appearance="fill">
-        <mat-list>
+        <mat-list id="lista">
             <div *ngFor="let asist of asistencia!.userAttendances; let i=index">
-            <mat-list-item>{{i}}</mat-list-item>
+            <mat-list-item *ngIf="asist.user.id+'' == myId">
+                <h2 *ngIf="asist.attended==true">Usted si asistió a esta clase</h2>
+                <h2 *ngIf="asist.attended==false">Usted no asistió a esta clase</h2>
+            </mat-list-item>
             </div>
         </mat-list>
     </div>
