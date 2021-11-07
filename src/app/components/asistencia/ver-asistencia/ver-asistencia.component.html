@@ -1,0 +1,12 @@
+<div style="text-align: center;" class="card-body form-group">        
+    <div style="width: 75%;" appearance="fill">
+        <mat-list>
+            <div *ngFor="let asist of asistencia!.userAttendances; let i=index">
+            <mat-list-item>{{i}}</mat-list-item>
+            </div>
+        </mat-list>
+    </div>
+    <div class="row contBot">
+        <button class="bot" mat-button mat-dialog-close>Cerrar</button> 
+    </div> 
+</div>

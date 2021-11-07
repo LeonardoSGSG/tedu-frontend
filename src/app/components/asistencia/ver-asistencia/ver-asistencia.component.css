@@ -1,0 +1,12 @@
+.bot{
+    width:50%;
+    margin-right: 10%;
+    margin-left: 10%;
+    vertical-align: middle;
+    justify-content: center;
+}
+.contBot{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

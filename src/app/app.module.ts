@@ -31,6 +31,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -43,6 +44,9 @@ import { PostsComponent } from './components/posts/posts.component';
 import { DialogProfileComponent } from './components/dialog-profile/dialog-profile.component';
 import { AsistenciaComponent } from './components/asistencia/asistencia.component';
 import { ConfirmDeleteCommentComponent } from './components/posts/confirm-delete-comment/confirm-delete-comment.component';
+import { VerAsistenciaComponent } from './components/asistencia/ver-asistencia/ver-asistencia.component';
+import { RegistrarAsistenciaComponent } from './components/asistencia/registrar-asistencia/registrar-asistencia.component';
+
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -67,6 +71,8 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,6 +92,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     DialogRemoveStudentComponent,
     AsistenciaComponent,
     ConfirmDeleteCommentComponent,
+    VerAsistenciaComponent,
+    RegistrarAsistenciaComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +108,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     HttpClientModule,
     NgxMaskModule.forRoot(),
     MatMenuModule,
+    MatCheckboxModule,
     MatSidenavModule,
     MatListModule,
     FormsModule,
