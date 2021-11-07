@@ -131,7 +131,7 @@ export class PostsComponent implements OnInit {
   }
   editComment(form:Comment,postId:string,commentId:number): void{
     this.comSvc.updateComment(form,this.course,postId,commentId).subscribe(
-      (response: Comment) =>{    
+      (response: {updated:boolean;}) =>{    
         console.log(form);
         this.idComment = '';
         this.shouldRun=false;

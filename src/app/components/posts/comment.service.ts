@@ -29,14 +29,14 @@ export class CommentService {
    };
     return this.http.get<Comment>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`,opts);
   }
-  public updateComment(comment:Comment,idCourse:string,idPost:string,idComment:number): Observable<Comment>{
+  public updateComment(comment:Comment,idCourse:string,idPost:string,idComment:number): Observable<{updated:boolean;}>{
     const id=sessionStorage.getItem('id');
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };
-    return this.http.put<Comment>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments/${idComment}`,comment,opts);
+    return this.http.put<{updated:boolean;}>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments/${idComment}`,comment,opts);
   }
   public deleteComment(idCourse:string,idPost:string,idComment:number): Observable<Comment>{
     const id=sessionStorage.getItem('id');
