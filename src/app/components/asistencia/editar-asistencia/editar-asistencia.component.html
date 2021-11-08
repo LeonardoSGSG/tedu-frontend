@@ -17,7 +17,7 @@
         <button class="bot mat-warn mat-button-base" mat-button mat-dialog-close>Cerrar</button>
         <button (click)="registrarAsistencia()" class="bot mat-button-base mat-primary" mat-button>Confirmar edición</button>
     </div>
-    <div class="row" style="margin-top: 10%;">
+    <div *ngIf="true==valor" class="row" style="margin-top: 10%;">
         <div style="width: 40%; float: right; text-align: right; ">
             <h1 style="font-size:85%; margin: 0px; padding: 0px;">¿Está incompleta la lista?</h1>
         </div>

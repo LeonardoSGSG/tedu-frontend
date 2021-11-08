@@ -8,9 +8,13 @@
 }
 .columna1{
     float: left;
-    width: 90%;
+    width: 70%;
 }
 .columna2{
     float: left;
-    width: 10%;
+    width: 30%;
+    text-align: right;
+}
+.col2E{
+    margin-right: 5%;
 }

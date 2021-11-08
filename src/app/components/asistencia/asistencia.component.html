@@ -5,7 +5,8 @@
                 <h2 class="asistencia">{{asistencia.attendance_date}}</h2>
             </div>
             <div class="columna2">
-                <mat-icon *ngIf="asistencia.registered == true" style="cursor: pointer;" (click)="verAsistencia(asistencia.id)">visibility</mat-icon>
+                <mat-icon class="col2E" *ngIf="asistencia.registered == true" style="cursor: pointer;" (click)="verAsistencia(asistencia.id)">visibility</mat-icon>
+                <h3 class="col2E" *ngIf="asistencia.registered == false">No registrado aún</h3>
             </div>
             <mat-divider></mat-divider>
         </mat-list-item>

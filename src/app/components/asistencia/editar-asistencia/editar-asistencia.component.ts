@@ -25,6 +25,7 @@ export class EditarAsistenciaComponent implements OnInit {
   asistencias: AsistenciaDetalle[]=[];
   formulario: FormularioAsistencia[]=[];
   incompleto:boolean= false;
+  valor:boolean = false;
 
   constructor( private dialog:MatDialog, private api:AsistenciaService, private apiMembers:CourseMembersService, public router:Router, private dialogRef:MatDialogRef<AsistenciaComponent>) { }
 
