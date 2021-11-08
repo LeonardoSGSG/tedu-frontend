@@ -181,6 +181,7 @@ span.username {
   margin-left: 5px;
 }
 .box-footer.box-comments {
+  overflow: hidden;
   border-radius: 23px;
 }
 .mat-card-footer {
@@ -216,4 +217,14 @@ button.mat-focus-indicator.mat-raised-button.btn-comentar {
   font-size: 11px;
   height: 2.5em;
   line-height: 2.5em;
+}
+#estrellita .estrellita 
+{
+  width: 20px !important;
+  height:auto !important;
+}
+.estrella
+{
+  display:block;
+  margin-left: 80px;
 }

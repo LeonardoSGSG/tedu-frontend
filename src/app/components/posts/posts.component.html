@@ -20,6 +20,8 @@
                     <mat-card-subtitle class="description">{{post.created | date:'medium'}}</mat-card-subtitle>
                 </div>
                 <div class="box-tools">
+                    <span><img stlye="margin-left=80px;" width="20px" height="auto"  class="estrella" *ngIf="post.qualified==true" src="../../../assets/img/star.png"></span>
+                    <mat-checkbox  style="margin-top: 10px;" #c *ngIf="myId==pId && myId!= post.user.id+''" (click)="updatePostQualification(post.id+'', !c.checked)"   [checked]=post.qualified> Calificar </mat-checkbox> 
                     <button class="boton" *ngIf="post.user.id + '' == myId" (click)="popupUpdate(post.id+'')" mat-icon-button color="primary" data-original-title="Edit"><mat-icon>edit</mat-icon></button>
                     <button class="boton" *ngIf="post.user.id + '' == myId || myId == pId" (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete"><mat-icon >delete</mat-icon></button>
                 </div>
@@ -37,11 +39,11 @@
                         <div class="box-footer box-comments">
                             <div class="box-comment">
                                     <span class="username">
-                                        {{post.user.name}} &nbsp; <span class="fecha_coment">{{comment.created | date:'medium'}}</span>
+                                        {{comment.user.name}} &nbsp; <span class="fecha_coment">{{comment.created | date:'medium'}}</span>
                                         <a *ngIf="post.user.id + '' == myId" class="pull-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></a>
                                         <mat-menu #menu="matMenu">
                                             <button (click)="editInputComment(comment.id)" mat-menu-item>Editar</button>
-                                            <button (click)="deleteComment(post.id+'',comment.id)" mat-menu-item>Eliminar</button>                                            
+                                            <button (click)="deleteComment(post.id+'',comment.id)" mat-menu-item>Eliminar</button>
                                         </mat-menu> 
                                     </span>
                                     <div *ngIf="shouldRun">
@@ -55,7 +57,13 @@
                                             </div>
                                         </form>                                                                                                 
                                     </div>     
-                                    <p *ngIf="comment.id+'' != idComment">{{comment.text}}</p>                                                                                                                        
+                                    <p *ngIf="comment.id+'' != idComment">{{comment.text}}</p>   
+                                    <div id="estrellita">
+
+                                        <mat-checkbox  style="margin-left: 5px;" #c *ngIf="myId == pId && myId!= comment.user.id+''" (click)="updateCommentQualification(post.id+'', comment.id, !c.checked)" [checked]=comment.qualified> Calificar </mat-checkbox> 
+                                        <span><img  class="estrellita" *ngIf="comment.qualified==true" src="../../../assets/img/star.png"></span>
+
+                                    </div>                                                                                                                                    
                             </div>
                         </div>                                                                                  
                     </div>                   

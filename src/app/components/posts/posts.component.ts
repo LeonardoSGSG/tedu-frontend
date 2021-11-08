@@ -10,6 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Comment } from 'src/app/entities/comment';
 import { CommentService } from './comment.service';
 import { ConfirmDeleteCommentComponent } from './confirm-delete-comment/confirm-delete-comment.component';
+import { updateCommentQualificationDTO } from './DTOS/updateCommentQualificationDTO';
+import { Curso } from 'src/app/entities/curso';
+import { updatePostQualificationDTO } from './DTOS/updatePostQualificationDTO';
 
 @Component({
   selector: 'app-posts',
@@ -40,6 +43,8 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.getPosts(this.course);  
   }
+  
+  checks=false;
   public getPosts(id:string): void{
     this.postsService.getPostsByCourseID(id).subscribe(
       (response: postDTO[]) => {
@@ -63,6 +68,13 @@ export class PostsComponent implements OnInit {
     })
     console.log("se muestra el pop up")
   }
+  public mensaje()
+  {
+    
+    console.log("funciona")
+  }
+
+  
   public eliminarPost(postId:number){
     console.log("curso: "+this.course+" idPost: "+postId)
     this.postsService.deletePost(this.course, postId+"").subscribe(
@@ -129,6 +141,43 @@ export class PostsComponent implements OnInit {
       this.getComments(postId);                       
     })
   }
+  
+  updateCommentQualification(postId: string, commentId:number, checked: boolean){
+    const updateCommentQualificationDTO:updateCommentQualificationDTO=<updateCommentQualificationDTO>{};
+    console.log(this.course, postId, commentId, checked);
+    updateCommentQualificationDTO.qualified=checked;
+    this.comSvc.updateCommentQualification(this.course, postId, commentId, updateCommentQualificationDTO).subscribe(
+    
+      res=>
+      {
+
+        console.log(res.message);
+
+      },
+      (error: HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    );
+    }
+  updatePostQualification(postId: string, checked: boolean)
+  {
+    console.log("hola");
+    const updatePostQualificationDTO: updatePostQualificationDTO=<updatePostQualificationDTO>{};
+    console.log(this.course,postId,checked);
+    updatePostQualificationDTO.qualified=checked;
+    this.postsService.updatePostQualification(this.course,postId,updatePostQualificationDTO).subscribe(
+      res=>
+      {
+        console.log(res.message);
+      },
+      (error:HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    )
+  }
+  
   editComment(form:Comment,postId:string,commentId:number): void{
     this.comSvc.updateComment(form,this.course,postId,commentId).subscribe(
       (response: {updated:boolean;}) =>{    

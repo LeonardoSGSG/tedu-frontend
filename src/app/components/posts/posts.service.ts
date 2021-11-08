@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Post } from 'src/app/entities/post';
 import { postDTO } from './DTOS/postDTO';
 import { deleteMessageDTO } from './DTOS/deleteMessageDTO';
+import { updatePostQualificationDTO } from './DTOS/updatePostQualificationDTO';
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +52,17 @@ export class PostsService {
     })
    };
    return this.http.put<Post>(this.apiServerUrl+'/courses/'+idCurso+'/posts/'+idPost, formul, opts);
+  }
+  public updatePostQualification(idCourse:string, idPost: string, calificado: updatePostQualificationDTO): Observable<{updated: boolean, message: string}>
+{
+  const id=sessionStorage.getItem('id');
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+   return this.http.put<{updated:boolean, message: string}>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/qual`,calificado, opts);
+
   }
   
 }

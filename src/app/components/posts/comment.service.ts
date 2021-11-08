@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Comment } from 'src/app/entities/comment';
+import { updateCommentQualificationDTO } from './DTOS/updateCommentQualificationDTO';
+import { Curso } from 'src/app/entities/curso';
 
 
 @Injectable({
@@ -38,6 +40,18 @@ export class CommentService {
    };
     return this.http.put<{updated:boolean;}>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments/${idComment}`,comment,opts);
   }
+  public updateCommentQualification(idCourse:string,idPost:string,idComment:number, calificado: updateCommentQualificationDTO): Observable<{updated:boolean, message: string}>
+  {
+    const id=sessionStorage.getItem('id');
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+  return this.http.put<{updated:boolean, message: string}>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments/${idComment}/qual`,calificado, opts);
+}
+
+  
   public deleteComment(idCourse:string,idPost:string,idComment:number): Observable<Comment>{
     const id=sessionStorage.getItem('id');
     const opts={
