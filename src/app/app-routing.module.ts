@@ -6,6 +6,7 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CourseContentComponent } from './components/course-content/course-content.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'courses',component:CoursesComponent},
   {path:'profile',component:ProfileComponent},
   {path:'courses/:id',component:CourseContentComponent},
-  {path:'posts',component:PostsComponent}
+  {path:'posts',component:PostsComponent},
+  {path:'chat', component: ChatComponent}
 ];
 
 @NgModule({

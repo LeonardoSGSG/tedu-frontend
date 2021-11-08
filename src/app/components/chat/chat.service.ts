@@ -32,7 +32,7 @@ export class ChatService {
 
     })
    };
-   return this.http.get<resMessage>(this.apiServerUrl+'/messages/' + id + '/outgoing',  opts)
+   return this.http.get<resMessage>(this.apiServerUrl+'/messages/' + id,  opts)
 
   }
   public outgoingMessages():Observable<resMessage>
