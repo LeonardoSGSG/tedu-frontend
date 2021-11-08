@@ -57,7 +57,7 @@ export class PostsService {
 {
   const id=sessionStorage.getItem('id');
     const opts={
-      headers: new HttpHeaders({
+        headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };

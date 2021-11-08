@@ -162,7 +162,6 @@ export class PostsComponent implements OnInit {
     }
   updatePostQualification(postId: string, checked: boolean)
   {
-    console.log("hola");
     const updatePostQualificationDTO: updatePostQualificationDTO=<updatePostQualificationDTO>{};
     console.log(this.course,postId,checked);
     updatePostQualificationDTO.qualified=checked;

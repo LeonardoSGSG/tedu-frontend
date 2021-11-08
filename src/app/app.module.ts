@@ -69,6 +69,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
@@ -96,6 +97,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     VerAsistenciaComponent,
     RegistrarAsistenciaComponent,
     EditarAsistenciaComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
