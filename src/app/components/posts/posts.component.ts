@@ -46,6 +46,7 @@ export class PostsComponent implements OnInit {
   
   checks=false;
   public getPosts(id:string): void{
+    
     this.postsService.getPostsByCourseID(id).subscribe(
       (response: postDTO[]) => {
         this.posts = response;
