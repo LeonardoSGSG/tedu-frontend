@@ -28,7 +28,6 @@ export class PostsComponent implements OnInit {
   })
   @Input()
   
-  public cont!:number;
   public posts: postDTO[] = [];
   public comments: Comment[]=[];
   public rep: [1] = [1];
@@ -51,7 +50,6 @@ export class PostsComponent implements OnInit {
       (response: postDTO[]) => {
         this.posts = response;
         console.log("se cargaron los posts de este curso")
-        this.cont=this.posts.length;
       },
       (error: HttpErrorResponse)=>{
         alert(error.message);
@@ -112,18 +110,13 @@ export class PostsComponent implements OnInit {
       }
     )
   }
-  postFormComment(formu:Comment,postId:string){        
-    if(this.cont == 1){
-      this.addComment(formu,postId)
-    }else{
-      this.cont = this.cont-1;
-    }        
+  postFormComment(formu:Comment,postId:string){
+      this.addComment(formu,postId);    
   }  
   addComment(formu:Comment,postId:string){
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
       console.log(formu);
       this.getComments(postId);
-      this.cont = this.posts.length;
     })
     ,
     (error: HttpErrorResponse) => {

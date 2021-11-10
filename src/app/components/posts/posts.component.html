@@ -40,9 +40,9 @@
                             <div class="box-comment">
                                     <span class="username">
                                         {{comment.user.name}} &nbsp; <span class="fecha_coment">{{comment.created | date:'medium'}}</span>
-                                        <a *ngIf="post.user.id + '' == myId" class="pull-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></a>
+                                        <a *ngIf="comment.user.id + '' == myId || pId == myId" class="pull-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></a>
                                         <mat-menu #menu="matMenu">
-                                            <button (click)="editInputComment(comment.id)" mat-menu-item>Editar</button>
+                                            <button *ngIf="comment.user.id+'' == myId" (click)="editInputComment(comment.id)" mat-menu-item>Editar</button>
                                             <button (click)="deleteComment(post.id+'',comment.id)" mat-menu-item>Eliminar</button>
                                         </mat-menu> 
                                     </span>
