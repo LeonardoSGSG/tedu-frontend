@@ -29,6 +29,10 @@ export class AsistenciaComponent implements OnInit {
         var sorted_asists = response.sort(function(a, b) {
           return a.id - b.id;
         });
+        sorted_asists.forEach(element => {
+          var asistenciaArr:string[] = element.attendance_date.split('T');
+          element.attendance_date = "Asistencia del día "+ asistenciaArr[0]+" - Horario: "+ asistenciaArr[1];
+        });
         this.asistenciasGenerales = sorted_asists;
       }
     )
