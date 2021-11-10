@@ -69,6 +69,7 @@ export class ChatComponent implements OnInit {
       res=>
       {
         console.log("Mensaje con id: " + idN + "eliminado");
+        this.allMessages();
       },
       (error:HttpErrorResponse)=>
       {
