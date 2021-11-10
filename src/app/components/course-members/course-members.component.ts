@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { membersObject } from 'src/app/entities/membersObject';
 import { Usuario } from 'src/app/entities/usuario';
 import { CourseMembersService } from './course-members.service';
@@ -25,7 +26,7 @@ export class CourseMembersComponent implements OnInit {
   dataSource = new MatTableDataSource<Usuario>(this.students);
   durationInSeconds = 5;
 
-  constructor(private courseMembersSvc: CourseMembersService, public dialog: MatDialog,
+  constructor(private courseMembersSvc: CourseMembersService, private router: Router, public dialog: MatDialog,
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -43,6 +44,11 @@ export class CourseMembersComponent implements OnInit {
         alert(error.message);
       }
     )
+  }
+  irChat(id: string)
+  {
+    sessionStorage.setItem('idChatDestino', id+'');
+    this.router.navigate(['/chat']);
   }
   onDelete(student_id:number,course_id:string){
     return this.dialog.open(DialogRemoveStudentComponent,{

@@ -21,7 +21,7 @@
 <div class="container">
     <h4 id="students_title">Alumnos</h4>
 </div>
-<div *ngIf="teacher.id==myIdN" class="container">
+<div  class="container">
     <table mat-table [dataSource]="students" class="mat-elevation-z8">
         <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef> N° </th>
@@ -38,7 +38,9 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button (click)="onDelete(element.id,course)" mat-menu-item><mat-icon>remove_circle</mat-icon><span>Quitar</span></button>                    
+                    <button *ngIf="teacher.id==myIdN" (click)="onDelete(element.id,course)" mat-menu-item><mat-icon>remove_circle</mat-icon><span>Quitar</span></button>   
+                    <button (click)="irChat(element.id)" mat-menu-item><mat-icon>message</mat-icon><span>Enviar mensaje</span></button>   
+
                 </mat-menu>                  
             </td>
           </ng-container>  

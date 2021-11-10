@@ -1,7 +1,5 @@
 <mat-card-content>
   <form id="form" onsubmit="return false;">
-    <input type="number" id="idUsuario"/>
-    <input style="position:absolute; top:50%; left:5%; width:40%;" type="submit" />
   </form>
     
 
@@ -10,7 +8,7 @@
           <div class="box-footer box-comments">
               <div class="box-comment">
                       <span class="username">
-                          {{message.text}} {{message.id}} &nbsp;
+                         Mensaje: {{message.text}} <br> &nbsp;
                           <mat-menu #menu="matMenu">
 
                           </mat-menu> 
@@ -18,6 +16,26 @@
                                                                                                                                                      
               </div>
           </div>                                                                                  
-      </div>                   
-  </div>                
+      </div>                     
+  </div>      
+  <mat-card-footer>
+    <div class="box-footer-form">                  
+      <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
+        <div class="card-body form-group img-push">
+            <div>
+                <mat-form-field appearance="outline"> 
+                    <mat-label>Escribe un mensaje</mat-label>
+                    <input matInput formControlName="text" name="text" type="text">
+                </mat-form-field>
+            </div>
+            <div>
+              <button type="submit"  color="basic"  mat-raised-button color="primary">
+                Enviar mensaje
+            </button>
+                
+            </div>
+        </div>                            
+    </form>
+    </div>
+</mat-card-footer>          
 </mat-card-content>

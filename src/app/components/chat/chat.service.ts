@@ -13,8 +13,10 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
-  public sendMessage(msg: message):Observable<msg>
+  public sendMessage(msg: msg):Observable<msg>
   {
+
+
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
@@ -24,8 +26,10 @@ export class ChatService {
    return this.http.post<msg>(this.apiServerUrl+'/messages/', msg, opts)
   }
 
-  public allMessages(idUser: string):Observable<message[]>
+  public allMessages():Observable<message[]>
   {
+    
+    const idUser= sessionStorage.getItem('idChatDestino')!
     const id=sessionStorage.getItem('id');
     const opts={
       headers: new HttpHeaders({
@@ -38,26 +42,26 @@ export class ChatService {
   }
   public outgoingMessages():Observable<message[]>
   {
-    const id=sessionStorage.getItem('id');
+    const idUser= sessionStorage.getItem('idChatDestino')!
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
 
     })
    };
-   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + id + '/outgoing',  opts)
+   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + idUser + '/outgoing',  opts)
 
   }
   public incomingMessages():Observable<message[]>
   {
-    const id=sessionStorage.getItem('id');
+    const idUser= sessionStorage.getItem('idChatDestino')!
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
 
     })
    };
-   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + id + '/incoming',  opts)
+   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + idUser + '/incoming',  opts)
 
   }
   public deleteMessage(idN: number):Observable<deleteMsg>

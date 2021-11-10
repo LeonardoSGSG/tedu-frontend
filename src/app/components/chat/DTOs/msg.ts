@@ -1,5 +1,5 @@
 export interface msg{
     text: string,
-    userId: number
+    userId: string | null
     
 }
