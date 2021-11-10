@@ -19,8 +19,15 @@ export class CourseContentComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public redirProfile(): void{
+  public redirProfile()
+  {
     this.router.navigate(['/profile']);
+
+  }
+  public LogOut()
+  {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
 
   }
   public leaveCourse(): void{
