@@ -1,43 +1,48 @@
 <mat-card-content>
-  <form id="form" onsubmit="return false;">
-  </form>
-    
+    <div *ngFor="let message of messages">
+        <div class="post-comment">
+            <div class="box-footer box-comments">
+                <div class="box-comment">
+                    <span class="username">
+                        <mat-card>
+                            <div class="row">
+                                <div class="col-sm">
+                                    {{message.sender.name}}dice: {{message.text}}
+                                </div>
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                    <mat-menu #menu="matMenu">
+                    
+                                        <button  (click)="deleteMessage(message.id)" mat-menu-item><mat-icon>message</mat-icon><span>Eliminar mensaje</span></button>   
+                                    </mat-menu>  
+                                </button>
+                                
+                            </div>
+                        </mat-card>
+                    </span>
 
-  <div *ngFor="let message of messages">
-      <div class="post-comment">
-          <div class="box-footer box-comments">
-              <div class="box-comment">
-                      <span class="username">
-                         {{message.receiver.name}}dice: {{message.text}} <br> 
-                         {{message.sender.name}}dice: {{message.text}}
-                         &nbsp;
-                          <mat-menu #menu="matMenu">
-
-                          </mat-menu> 
-                      </span>
-                                                                                                                                                     
-              </div>
-          </div>                                                                                  
-      </div>                     
-  </div>      
-  <mat-card-footer>
-    <div class="box-footer-form">                  
-      <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
-        <div class="card-body form-group img-push">
-            <div>
-                <mat-form-field appearance="outline"> 
-                    <mat-label>Escribe un mensaje</mat-label>
-                    <input matInput formControlName="text" name="text" type="text">
-                </mat-form-field>
+                </div>
             </div>
-            <div>
-              <button type="submit"  color="basic"  mat-raised-button color="primary">
-                Enviar mensaje
-            </button>
-                
-            </div>
-        </div>                            
-    </form>
+        </div>
     </div>
-</mat-card-footer>          
+    <mat-card-footer>
+        <div class="box-footer-form">
+            <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
+                <div class="card-body form-group img-push">
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Escribe un mensaje</mat-label>
+                            <input matInput formControlName="text" name="text" type="text">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button type="submit" color="basic" mat-raised-button color="primary">
+                            Enviar mensaje
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-card-footer>
 </mat-card-content>

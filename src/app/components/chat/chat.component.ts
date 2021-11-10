@@ -63,5 +63,18 @@ export class ChatComponent implements OnInit {
       }
     )
   }
-  
+  public deleteMessage(idN: number): void
+  {
+    this.chatSvc.deleteMessage(idN).subscribe(
+      res=>
+      {
+        console.log("Mensaje con id: " + idN + "eliminado");
+      },
+      (error:HttpErrorResponse)=>
+      {
+
+      }
+    )
+
+  }
 }
