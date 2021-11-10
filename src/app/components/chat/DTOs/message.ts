@@ -6,6 +6,6 @@ export interface message{
     created: Date,
     updated: Date,
     text: string,
-    receiver: receiver
+    receiver: receiver,
     sender: sender
 }
