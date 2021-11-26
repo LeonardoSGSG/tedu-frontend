@@ -5,14 +5,17 @@
             <div class="contBot">
                 <input formControlName="text" name="text" type="text" matInput required>
             </div>
+        </mat-form-field>
+        <mat-form-field>
             
         </mat-form-field>
         <div class="row contBot">
             <button class="bot" [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
                 Crear Publicacion
             </button>               
-            <button class="bot" mat-button mat-dialog-close>Cancelar</button> 
+             
         </div> 
                
     </div>
 </form>
+<div style="text-align: center;"><button class="bot" mat-button mat-dialog-close>Cancelar</button></div>

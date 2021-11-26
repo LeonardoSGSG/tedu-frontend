@@ -126,7 +126,7 @@ import { ChatComponent } from './components/chat/chat.component';
     MatTabsModule,MatButtonToggleModule,MatPaginatorModule,
     MatExpansionModule,
     MatSelectModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
@@ -137,7 +137,7 @@ import { ChatComponent } from './components/chat/chat.component';
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
   ],
-  providers: [LoginService,CoursesService,CoursesComponent, ScreenTrackingService,UserTrackingService],
+  providers: [LoginService,CoursesService,CoursesComponent/*, ScreenTrackingService,UserTrackingService*/],
   bootstrap: [AppComponent],
   entryComponents:[DialogRemoveStudentComponent]
 })
