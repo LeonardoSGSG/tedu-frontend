@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { ChatService } from './chat.service';
 import { message } from './DTOs/message';
 import { msg } from './DTOs/msg';
@@ -19,18 +20,29 @@ export class ChatComponent implements OnInit {
   public idMessage: string='';
   public myId:string = sessionStorage.getItem('id')!;
   public cont!:number;
-  idDestino: string| null= sessionStorage.getItem('idChatDestino');
+  idDestino: string| null= sessionStorage.getItem('idChatDestino'); 
   constructor(private chatSvc: ChatService) { }
 
   ngOnInit(): void {
     this.allMessages();
+    this.ordenarMensajes
   }
 
+  public ordenarMensajes()
+  {
+    const items= this.messages.sort((a,b)=> new Date(a.created).getTime() - new Date(b.created).getTime());
+    this.messages= items;
+
+
+  }
+  
   public allMessages(): void{
     
     this.chatSvc.allMessages().subscribe(
       (response: message[]) => {
         this.messages = response;
+        this.ordenarMensajes();
+  
         console.log("se cargaron los mensajes del usuario con id " + this.idDestino)
         this.cont=this.messages.length;
       },
@@ -48,7 +60,8 @@ export class ChatComponent implements OnInit {
   }  
   public sendMessage(msg: msg): void{
     
-    
+    this.ordenarMensajes;
+
     console.log("entra");
     this.chatSvc.sendMessage(msg).subscribe(
       res=>

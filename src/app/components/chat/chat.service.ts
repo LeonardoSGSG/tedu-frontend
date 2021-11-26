@@ -16,14 +16,14 @@ export class ChatService {
   public sendMessage(msg: msg):Observable<msg>
   {
 
-
+    const idUser= sessionStorage.getItem('idChatDestino')!
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
 
     })
    };
-   return this.http.post<msg>(this.apiServerUrl+'/messages/', msg, opts)
+   return this.http.post<msg>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
   }
 
   public allMessages():Observable<message[]>
