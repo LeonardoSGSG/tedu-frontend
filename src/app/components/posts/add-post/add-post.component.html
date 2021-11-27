@@ -6,9 +6,15 @@
                 <input formControlName="text" name="text" type="text" matInput required>
             </div>
         </mat-form-field>
-        <mat-form-field>
-            
-        </mat-form-field>
+        <div class="contenedorInputFile">
+            <label for="inputFile" color="primary"class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" >Subir archivo</label>
+            <div id="nombresArchivos">
+                <div *ngFor="let archivo of nombresArchivos">
+                    {{archivo}}
+                </div> 
+            </div>
+            <input id="inputFile"  #fileInput type="file" (change)="cargarImagen($event)" multiple>
+        </div>
         <div class="row contBot">
             <button class="bot" [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
                 Crear Publicacion

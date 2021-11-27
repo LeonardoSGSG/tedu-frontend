@@ -15,7 +15,7 @@ export class AddPostComponent implements OnInit {
   addPostForm = new FormGroup({
     text: new FormControl('',[Validators.required])
   })
-
+  nombresArchivos: string[]=[];
 
   constructor(private api:PostsService,
               public router:Router,
@@ -37,5 +37,25 @@ export class AddPostComponent implements OnInit {
     location.reload
     this.dialogRef.close();
   }
-
+  cargarImagen(event:any){
+    this.limpiarArchivos();
+    let archivo = event.target.files;
+    console.log(event.target.files);
+    let reader=new FileReader();
+    for(let i=0; i<event.target.files.length;i++){
+      this.nombresArchivos.push(archivo[i].name);
+    }
+    
+    //reader.
+  }
+  limpiarArchivos(){
+    var e = document.getElementById("nombresArchivos");
+        
+        //e.firstElementChild can be used.
+        var child = e!.lastElementChild; 
+        while (child) {
+            e!.removeChild(child);
+            child = e!.lastElementChild;
+        }
+  }
 }
