@@ -40,6 +40,8 @@ export class CourseContentComponent implements OnInit {
       this.router.navigate(['/courses'])
     })
   }
-  
+  regresarCursos(){
+    this.router.navigate(['/courses']);
+  }
 
 }

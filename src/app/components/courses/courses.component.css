@@ -2,8 +2,9 @@
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
 
 #tedu{
-    font-size: 1.5em;
-  }
+  margin-left: 1.3em;
+  font-size: 1.5em;
+}
 #btnCuenta{
     position: absolute; right: 0;
     margin-right: 3em;

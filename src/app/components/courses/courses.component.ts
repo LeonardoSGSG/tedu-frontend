@@ -138,6 +138,7 @@ export class CoursesComponent implements OnInit {
       }      
     })
   }
+  
 }
 @Component({
   selector: 'snack-bar-add-course',

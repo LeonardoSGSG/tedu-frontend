@@ -57,6 +57,9 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
+  regresarCursos(){
+    this.router.navigate(['/courses']);
+  }
   /*public eliminar(): void
 
   {
