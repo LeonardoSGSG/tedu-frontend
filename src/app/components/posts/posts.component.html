@@ -30,7 +30,7 @@
                 <p style="word-wrap: break-word;">{{post.text}}</p>
                 <mat-divider style="margin-right:3%;margin-left: 3%; width: 94%;" *ngIf="post.files.length>0"></mat-divider>
                 <div class="TLista">
-                    <a *ngIf="post.files.length>0">Lista de archivos anexados:</a>
+                    <a *ngIf="post.files.length>0">Lista de archivos adjuntos:</a>
                 </div>
                 <div style="height: auto; overflow: hidden" class="fila" *ngFor="let file of post.files; let i=index">
                     <mat-divider style="width: 80%;" class="dividerArchivos" *ngIf="i!=0"></mat-divider>

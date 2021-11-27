@@ -31,20 +31,39 @@ export class AddPostComponent implements OnInit {
   postForm(form:Post){
     this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
       res=>{
-        console.log("se envió el formulario satisfactoriamente");
         if(this.numeroArchivos>0){
+          var e = document.getElementById("ContenedroCreacion");
+          var child = e!.lastElementChild; 
+          while (child) {
+            e!.removeChild(child);
+            child = e!.lastElementChild;
+          }
+          var h1 =document.createElement("h1");
+          h1.classList.add(".mat-h1");
+          h1.textContent="No cierre ni recargue el navegador hasta que se cierre este mensaje";
+          document.getElementById("ContenedroCreacion")?.appendChild(h1);
           for(let i=0; i<this.numeroArchivos;i++){
             this.apiFiles.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(urlImagen=>{
               console.log(urlImagen);
               this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivos[i]).subscribe(res=>{
                 console.log(res.id+" "+res.key);
                 console.log("Se guardo la url de firebase en la BD")
+                var notification:any;
+                
+                if(i==this.numeroArchivos-1){
+                  location.reload
+                  //notification.close();
+                  this.dialogRef.close();
+                  
+                }
               }),
               (error: HttpErrorResponse)=>{
                 alert(error.message);
               }
             })
           }
+        }else{
+          this.agregar();
         }
       },
       err=>{

@@ -1,26 +1,28 @@
-<form [formGroup]="addPostForm" (ngSubmit)="postForm(addPostForm.value)">
-    <div style="text-align: center;" class="card-body form-group">        
-        <mat-form-field style="width: 75%;" appearance="fill">
-            <mat-label>Texto</mat-label>
-            <div class="contBot">
-                <input formControlName="text" name="text" type="text" matInput required>
+<div id="ContenedroCreacion">
+    <form [formGroup]="addPostForm" (ngSubmit)="postForm(addPostForm.value)">
+        <div style="text-align: center; margin-bottom: 0;" class="card-body form-group">        
+            <mat-form-field style="width: 75%;" appearance="fill">
+                <mat-label>Texto</mat-label>
+                <div class="contBot">
+                    <input formControlName="text" name="text" type="text" matInput required>
+                </div>
+            </mat-form-field>
+            <div class="contenedorInputFile">
+                <label for="inputFile" color="basic"class="mat-focus-indicator mat-raised-button mat-button-base mat-basic" >Subir archivo</label>
+                <div id="tNombres" class="TNombres"></div>
+                <div id="nombresArchivos" class="nombresArchivos">
+                    <div *ngFor="let archivo of nombresArchivos">
+                        • {{archivo}}
+                    </div> 
+                </div>
+                <input id="inputFile"  #fileInput type="file" (change)="cargarImagen($event)" multiple>
             </div>
-        </mat-form-field>
-        <div class="contenedorInputFile">
-            <label for="inputFile" color="primary"class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" >Subir archivo</label>
-            <div id="tNombres" class="TNombres"></div>
-            <div id="nombresArchivos" class="nombresArchivos">
-                <div *ngFor="let archivo of nombresArchivos">
-                    • {{archivo}}
-                </div> 
+            <div class="row contBot">
+                <button class="bot" [disabled]="addPostForm.invalid" mat-raised-button color="primary">
+                    Crear Publicacion
+                </button>          
             </div>
-            <input id="inputFile"  #fileInput type="file" (change)="cargarImagen($event)" multiple>
         </div>
-        <div class="row contBot">
-            <button class="bot" [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
-                Crear Publicacion
-            </button>          
-        </div>
-    </div>
-</form>
-<div style="text-align: center;"><button class="bot" mat-button mat-dialog-close>Cancelar</button></div>
+    </form>
+    <div style="text-align: center;"><button class="bot mat-focus-indicator mat-raised-button mat-button-base mat-warn" mat-button mat-dialog-close>Cancelar</button></div>    
+</div>
