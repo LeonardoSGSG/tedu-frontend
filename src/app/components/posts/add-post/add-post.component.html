@@ -8,9 +8,10 @@
         </mat-form-field>
         <div class="contenedorInputFile">
             <label for="inputFile" color="primary"class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" >Subir archivo</label>
-            <div id="nombresArchivos">
+            <div id="tNombres" class="TNombres"></div>
+            <div id="nombresArchivos" class="nombresArchivos">
                 <div *ngFor="let archivo of nombresArchivos">
-                    {{archivo}}
+                    • {{archivo}}
                 </div> 
             </div>
             <input id="inputFile"  #fileInput type="file" (change)="cargarImagen($event)" multiple>
@@ -18,10 +19,8 @@
         <div class="row contBot">
             <button class="bot" [disabled]="addPostForm.invalid" (click)="agregar()" mat-raised-button color="primary">
                 Crear Publicacion
-            </button>               
-             
-        </div> 
-               
+            </button>          
+        </div>
     </div>
 </form>
 <div style="text-align: center;"><button class="bot" mat-button mat-dialog-close>Cancelar</button></div>

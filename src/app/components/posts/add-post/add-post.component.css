@@ -19,3 +19,21 @@
 .contenedorInputFile{
     margin-bottom: 3%;
 }
+.TNombres{
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: left;
+}
+.TNombres div{
+    text-align: left;
+}
+.nombresArchivos{
+    text-align: left;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+.nombresArchivos div{
+    text-align: left;
+}

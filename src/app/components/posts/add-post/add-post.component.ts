@@ -36,7 +36,7 @@ export class AddPostComponent implements OnInit {
           for(let i=0; i<this.numeroArchivos;i++){
             this.apiFiles.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(urlImagen=>{
               console.log(urlImagen);
-              this.apiFiles.createPostFile(urlImagen!,res.id).subscribe(res=>{
+              this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivos[i]).subscribe(res=>{
                 console.log(res.id+" "+res.key);
                 console.log("Se guardo la url de firebase en la BD")
               }),
@@ -45,7 +45,6 @@ export class AddPostComponent implements OnInit {
               }
             })
           }
-          console.log("se envian los archivos a firestore y se retornan las urls")
         }
       },
       err=>{
@@ -63,6 +62,11 @@ export class AddPostComponent implements OnInit {
     this.limpiarArchivos();
     let archivo = event.target.files;
     this.numeroArchivos=event.target.files.length;
+    if(event.target.files.length>0){
+      let tNombres = document.createElement("div");
+      tNombres.textContent="Nombres de archivos:";
+      document.getElementById("tNombres")?.appendChild(tNombres);
+    }
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
       this.nombresArchivos.push(archivo[i].name);
@@ -77,13 +81,19 @@ export class AddPostComponent implements OnInit {
   }
   limpiarArchivos(){
     var e = document.getElementById("nombresArchivos");
+    var f = document.getElementById("tNombres")
     this.archivos=[];
     this.nombresArchivos=[];
-        //e.firstElementChild can be used.
-        var child = e!.lastElementChild; 
-        while (child) {
-            e!.removeChild(child);
-            child = e!.lastElementChild;
-        }
+    //e.firstElementChild can be used.
+    var child = e!.lastElementChild; 
+    while (child) {
+        e!.removeChild(child);
+        child = e!.lastElementChild;
+    }
+    var child2 = f!.lastChild;
+    while(child2){
+      f!.removeChild(child2);
+      child2=f!.lastElementChild;
+    }
   }
 }

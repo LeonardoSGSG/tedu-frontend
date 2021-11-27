@@ -13,6 +13,8 @@ import { ConfirmDeleteCommentComponent } from './confirm-delete-comment/confirm-
 import { updateCommentQualificationDTO } from './DTOS/updateCommentQualificationDTO';
 import { Curso } from 'src/app/entities/curso';
 import { updatePostQualificationDTO } from './DTOS/updatePostQualificationDTO';
+import { Archivo } from 'src/app/entities/archivo';
+import { StorageService } from '../storage/storage.service';
 
 @Component({
   selector: 'app-posts',
@@ -37,7 +39,7 @@ export class PostsComponent implements OnInit {
   public course:string = sessionStorage.getItem('currentCourse')!;
   public myId:string = sessionStorage.getItem('id')!;
   public pId:string = sessionStorage.getItem('pId')!;
-  constructor(private postsService: PostsService, private dialog:MatDialog, private comSvc:CommentService) { }
+  constructor(private postsService: PostsService, private dialog:MatDialog, private comSvc:CommentService, private apiFile:StorageService) { }
 
   ngOnInit(): void {
     this.getPosts(this.course);  
@@ -74,7 +76,8 @@ export class PostsComponent implements OnInit {
   }
 
   
-  public eliminarPost(postId:number){
+  public eliminarPost(postId:number, urls:Archivo[]){
+    this.apiFile.eliminarImagenes(urls);
     console.log("curso: "+this.course+" idPost: "+postId)
     this.postsService.deletePost(this.course, postId+"").subscribe(
       res=>{
@@ -191,5 +194,8 @@ export class PostsComponent implements OnInit {
   cancelUpdate(){
     this.idComment = '';
     this.shouldRun=false;
+  }
+  accederArchivo(url:string){
+    window.open(url, '_blank')
   }
 }

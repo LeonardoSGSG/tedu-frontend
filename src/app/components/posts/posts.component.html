@@ -23,12 +23,15 @@
                     <span><img stlye="margin-left=80px;" width="20px" height="auto"  class="estrella" *ngIf="post.qualified==true" src="../../../assets/img/star.png"></span>
                     <mat-checkbox  style="margin-top: 10px;" #c *ngIf="myId==pId && myId!= post.user.id+''" (click)="updatePostQualification(post.id+'', !c.checked)"   [checked]=post.qualified> Calificar </mat-checkbox> 
                     <button class="boton" *ngIf="post.user.id + '' == myId" (click)="popupUpdate(post.id+'')" mat-icon-button color="primary" data-original-title="Edit"><mat-icon>edit</mat-icon></button>
-                    <button class="boton" *ngIf="post.user.id + '' == myId || myId == pId" (click)="eliminarPost(post.id)" mat-icon-button color="warn" data-original-title="Delete"><mat-icon >delete</mat-icon></button>
+                    <button class="boton" *ngIf="post.user.id + '' == myId || myId == pId" (click)="eliminarPost(post.id,post.files)" mat-icon-button color="warn" data-original-title="Delete"><mat-icon >delete</mat-icon></button>
                 </div>
             </mat-card-header>            
             <mat-card-content class="post-content">
                 <p style="word-wrap: break-word;">{{post.text}}</p>                                                                                           
-            </mat-card-content>                      
+            </mat-card-content>
+            <mat-card-content *ngFor="let file of post.files" class="post-content">
+                <a (click)="accederArchivo(file.key)" style="word-wrap: break-word;">{{file.name}}</a>                                                                                           
+            </mat-card-content>                    
             <mat-card-actions align="end">
                 <span class="pull-right text-muted"><a type="button" (click)="getComments(post.id+'')">Ver comentarios</a></span>
             </mat-card-actions>
