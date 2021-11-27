@@ -28,11 +28,12 @@
             </mat-card-header>            
             <mat-card-content class="post-content">
                 <p style="word-wrap: break-word;">{{post.text}}</p>
-                <mat-divider *ngIf="post.files.length>0"></mat-divider>
+                <mat-divider style="margin-right:3%;margin-left: 3%; width: 94%;" *ngIf="post.files.length>0"></mat-divider>
                 <div class="TLista">
                     <a *ngIf="post.files.length>0">Lista de archivos anexados:</a>
                 </div>
-                <div style="height: wrap; overflow: hidden" class="fila" *ngFor="let file of post.files">
+                <div style="height: auto; overflow: hidden" class="fila" *ngFor="let file of post.files; let i=index">
+                    <mat-divider style="width: 80%;" class="dividerArchivos" *ngIf="i!=0"></mat-divider>
                     <div class="listaArchivos elementoArchivos1"><a style="word-wrap: break-word;">•{{file.name}}</a></div>
                     <div class="elementoArchivos2"><mat-icon style="cursor: pointer;" (click)="accederArchivo(file.key)">cloud_download</mat-icon></div>
                 </div>

@@ -1,8 +1,9 @@
 <div class="container contenedorAsistencias">
     <mat-list *ngIf="myId! != pId!">
-        <mat-list-item *ngFor='let asistencia of asistenciasGenerales'>
+        <mat-list-item class="conten" *ngFor='let asistencia of asistenciasGenerales'>
             <div class="columna1">
                 <h2 class="asistencia">{{asistencia.attendance_date}}</h2>
+                <h3 class="asistencia">{{asistencia.hora}}</h3>
             </div>
             <div class="columna2">
                 <mat-icon class="col2E" *ngIf="asistencia.registered == true" style="cursor: pointer;" (click)="verAsistencia(asistencia.id)">visibility</mat-icon>
@@ -12,15 +13,16 @@
         </mat-list-item>
     </mat-list>
     <mat-list *ngIf="myId! == pId!">
-        <mat-list-item *ngFor='let asistencia of asistenciasGenerales'>
+        <div class="conten" *ngFor='let asistencia of asistenciasGenerales; let i=index'>
             <div class="columna1">
                 <h2 class="asistencia">{{asistencia.attendance_date}}</h2>
+                <h3 class="asistencia">{{asistencia.hora}}</h3>
             </div>
             <div class="columna2">
                 <mat-icon *ngIf="asistencia.registered==true" style="cursor: pointer;" (click)="editarAsistencia(asistencia.id)">edit</mat-icon>
                 <mat-icon *ngIf="asistencia.registered==false" style="cursor: pointer;" (click)="crearAsistencia(asistencia.id, false)">note_add</mat-icon>
             </div>
-            <mat-divider></mat-divider>
-        </mat-list-item>
+            <mat-divider *ngIf="i!=0"></mat-divider>
+        </div>
     </mat-list>
 </div>

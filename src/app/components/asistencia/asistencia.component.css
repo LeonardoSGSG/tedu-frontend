@@ -5,6 +5,7 @@
 .asistencia{
     margin-left: 0%;
     margin-right: 0%;
+    margin-bottom: 0%;
 }
 .columna1{
     float: left;
@@ -17,4 +18,14 @@
 }
 .col2E{
     margin-right: 5%;
+}
+.conten{
+    overflow: hidden;
+    height: auto;
+}
+.conten div{
+    margin: 1% 0 1% 0;
+}
+.columna1 h3{
+    padding-left: 3%;
 }

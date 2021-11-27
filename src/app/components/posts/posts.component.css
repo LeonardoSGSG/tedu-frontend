@@ -72,12 +72,22 @@ body{
   width: 50%;
   float: left;
   height: auto;
+  margin-top: 3%;
 }
 .elementoArchivos2{
   width: 50%;
   float: left;
   height: auto;
   text-align: right;
+  margin-top: 3%;
+  vertical-align: middle;
+}
+.dividerArchivos{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: auto;
 }
 .mat-card-actions, .mat-card-subtitle, .mat-card-content {
   display: block;
