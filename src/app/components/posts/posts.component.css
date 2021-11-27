@@ -56,6 +56,29 @@ body{
   padding: 12px;
   margin-bottom: 0%;
 }
+.listaArchivos{
+  padding: 0px 12px 0px 17px;
+  margin-bottom: 0%;
+}
+.TLista{
+  padding: 2%;
+  margin-top: 3% 0 3% 0;
+  height: auto;
+}
+.fila{
+  height: auto;
+}
+.elementoArchivos1{
+  width: 50%;
+  float: left;
+  height: auto;
+}
+.elementoArchivos2{
+  width: 50%;
+  float: left;
+  height: auto;
+  text-align: right;
+}
 .mat-card-actions, .mat-card-subtitle, .mat-card-content {
   display: block;
 }

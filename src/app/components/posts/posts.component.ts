@@ -198,4 +198,5 @@ export class PostsComponent implements OnInit {
   accederArchivo(url:string){
     window.open(url, '_blank')
   }
+  
 }

@@ -27,11 +27,17 @@
                 </div>
             </mat-card-header>            
             <mat-card-content class="post-content">
-                <p style="word-wrap: break-word;">{{post.text}}</p>                                                                                           
+                <p style="word-wrap: break-word;">{{post.text}}</p>
+                <mat-divider *ngIf="post.files.length>0"></mat-divider>
+                <div class="TLista">
+                    <a *ngIf="post.files.length>0">Lista de archivos anexados:</a>
+                </div>
+                <div style="height: wrap; overflow: hidden" class="fila" *ngFor="let file of post.files">
+                    <div class="listaArchivos elementoArchivos1"><a style="word-wrap: break-word;">•{{file.name}}</a></div>
+                    <div class="elementoArchivos2"><mat-icon style="cursor: pointer;" (click)="accederArchivo(file.key)">cloud_download</mat-icon></div>
+                </div>
             </mat-card-content>
-            <mat-card-content *ngFor="let file of post.files" class="post-content">
-                <a (click)="accederArchivo(file.key)" style="word-wrap: break-word;">{{file.name}}</a>                                                                                           
-            </mat-card-content>                    
+                                                  
             <mat-card-actions align="end">
                 <span class="pull-right text-muted"><a type="button" (click)="getComments(post.id+'')">Ver comentarios</a></span>
             </mat-card-actions>
