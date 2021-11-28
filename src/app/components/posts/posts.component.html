@@ -97,7 +97,7 @@
                         <div>
                             <mat-form-field style="height: auto; overflow: hidden;" class="my-form-field" appearance="outline">
                                 <mat-label>Escribe un comentario</mat-label>
-                                <input matInput formControlName="text" name="text" type="text">
+                                <input id="{{'inputComentario'+post.id}}" matInput formControlName="text" name="text" type="text">
                             </mat-form-field>
                             <div class="contenedorInputFile">
                                 <label style="font-size: 11px;height: 2.5em;line-height: 2.5em;" for="{{'inputFile'+j}}" color="basic"class="mat-focus-indicator mat-raised-button mat-button-base mat-basic" >Subir archivo</label>

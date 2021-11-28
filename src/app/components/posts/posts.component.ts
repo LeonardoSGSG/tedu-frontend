@@ -123,30 +123,45 @@ export class PostsComponent implements OnInit {
   }  
   addComment(formu:Comment,postId:string){
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
-      var dialog = this.dialog.open(ConfirmDeleteCommentComponent,{
-        disableClose: true,
-        data:{
-          postId: null,
-          commentId:null
-        }
-      });
-      for(let i=0;i<this.numeroArchivos;i++){
-        this.apiFile.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(url=>{
-          console.log(url);
-          this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[i]).subscribe(res=>{
-          console.log("Se guardo la url de firebase en la BD")
-          if(i==this.numeroArchivos-1){
-            window.setTimeout(this.refrescar, 3000);
-            dialog.close();
+      if(this.numeroArchivos>0){
+        var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
+          disableClose: true,
+          data:{
+            postId: null,
+            commentId:null
           }
+        });
+        for(let i=0;i<this.numeroArchivos;i++){
+          this.apiFile.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(url=>{
+            console.log(url);
+            this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[i]).subscribe(res=>{
+            console.log("Se guardo la url de firebase en la BD")
+            if(i==this.numeroArchivos-1){
+              window.setTimeout(() => {
+                (<HTMLInputElement>document.getElementById("inputComentario"+postId)!).value="";
+                this.idPostFiles=-1;
+                this.nombresArchivos=[];
+                this.archivos=[];
+                this.numeroArchivos=0;
+                this.getComments(postId);
+                dialogo.close();
+              },2500);
+            }
+            })
           })
-        })
-        
+        }
+      }else{
+        (<HTMLInputElement>document.getElementById("inputComentario"+postId)!).value="";
+        this.idPostFiles=-1;
+        this.nombresArchivos=[];
+        this.archivos=[];
+        this.numeroArchivos=0;
+        this.getComments(postId);
       }
     })
   }
   refrescar(){
-    window.location.reload();
+    location.reload
   }
   deleteComment(postId:string,commentId:number, archivos:Archivo[]){
     return this.dialog.open(ConfirmDeleteCommentComponent,{
