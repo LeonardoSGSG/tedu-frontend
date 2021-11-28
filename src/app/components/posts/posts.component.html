@@ -92,7 +92,7 @@
             <!--form enviar comentario-->
             <mat-card-footer style="height: auto; overflow: hidden;">
                 <div style="height: auto; overflow: hidden;" class="box-footer-form">                  
-                  <form [formGroup]="addCommentForm" style="height: auto; overflow: hidden;" (ngSubmit)="postFormComment(addCommentForm.value,post.id+'')">
+                  <form [formGroup]="addCommentForm" style="height: auto; overflow: hidden;" (ngSubmit)="postFormComment(addCommentForm.value,post.id+'',j)">
                     <div class="card-body form-group img-push">
                         <div>
                             <mat-form-field style="height: auto; overflow: hidden;" class="my-form-field" appearance="outline">

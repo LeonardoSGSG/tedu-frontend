@@ -12,7 +12,7 @@
                 <div id="tNombres" class="TNombres"></div>
                 <div id="nombresArchivos" class="nombresArchivos">
                     <div *ngFor="let archivo of nombresArchivosPost">
-                        • {{archivo}}
+                        •{{archivo}}
                     </div> 
                 </div>
                 <input id="inputFile" style="display: none;" #fileInput type="file" (change)="cargarImagenPost($event)" multiple>

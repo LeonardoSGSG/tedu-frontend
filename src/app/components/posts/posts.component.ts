@@ -139,11 +139,13 @@ export class PostsComponent implements OnInit {
       }
     )
   }
-  postFormComment(formu:Comment,postId:string){
-      this.addComment(formu,postId);    
+  postFormComment(formu:Comment,postId:string,j:number){
+      this.addComment(formu,postId,j);    
   }  
-  addComment(formu:Comment,postId:string){
+  addComment(formu:Comment,postId:string, j:number){
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
+      console.log(postId);
+      console.log(data.id);
       if(this.numeroArchivos>0){
         var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
           disableClose: true,
@@ -160,6 +162,7 @@ export class PostsComponent implements OnInit {
             if(i==this.numeroArchivos-1){
               window.setTimeout(() => {
                 (<HTMLInputElement>document.getElementById("inputComentario"+postId)!).value="";
+                (<HTMLInputElement>document.getElementById("inputFile"+j)!).value="";
                 this.idPostFiles=-1;
                 this.nombresArchivos=[];
                 this.archivos=[];
@@ -266,7 +269,13 @@ export class PostsComponent implements OnInit {
     
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
-      this.nombresArchivos.push(archivo[i].name);
+      var nomCort:string;
+      if(archivo[i].name.length>50){
+        nomCort = (archivo[i].name).substring(0,47)+"...";
+        this.nombresArchivos.push(nomCort);
+      }else{
+        this.nombresArchivos.push(archivo[i].name);
+      }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
         console.log(reader.result);

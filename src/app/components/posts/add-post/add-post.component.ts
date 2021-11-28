@@ -85,7 +85,13 @@ export class AddPostComponent implements OnInit {
     }
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
-      this.nombresArchivosPost.push(archivo[i].name);
+      var nomCort:string;
+      if(archivo[i].name.length>50){
+        nomCort = (archivo[i].name).substring(0,47)+"...";
+        this.nombresArchivosPost.push(nomCort);
+      }else{
+        this.nombresArchivosPost.push(archivo[i].name);
+      }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
         console.log(reader.result);

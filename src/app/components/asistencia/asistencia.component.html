@@ -6,7 +6,9 @@
                 <h3 class="asistencia">{{asistencia.hora}}</h3>
             </div>
             <div class="columna2">
-                <mat-icon class="col2E" *ngIf="asistencia.registered == true" style="cursor: pointer;" (click)="verAsistencia(asistencia.id)">visibility</mat-icon>
+                <div *ngIf="asistencia.registered == true">
+                    <mat-icon class="col2E" style="cursor: pointer;" (click)="verAsistencia(asistencia.id)">visibility</mat-icon>
+                </div>
                 <h3 class="col2E" *ngIf="asistencia.registered == false">No registrado aún</h3>
             </div>
             <mat-divider></mat-divider>
