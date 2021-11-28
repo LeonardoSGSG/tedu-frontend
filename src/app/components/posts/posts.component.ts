@@ -57,6 +57,15 @@ export class PostsComponent implements OnInit {
     
     this.postsService.getPostsByCourseID(id).subscribe(
       (response: postDTO[]) => {
+        for(let i=0; i<response.length;i++){
+          for(let j=i+1;j<response.length;j++){
+            if(response[j].id>response[i].id){
+              var temp=response[i];
+              response[i]=response[j];
+              response[j]=temp;
+            }
+          }
+        }
         this.posts = response;
         console.log("se cargaron los posts de este curso")
       },
