@@ -148,12 +148,13 @@ export class PostsComponent implements OnInit {
   refrescar(){
     window.location.reload();
   }
-  deleteComment(postId:string,commentId:number){
+  deleteComment(postId:string,commentId:number, archivos:Archivo[]){
     return this.dialog.open(ConfirmDeleteCommentComponent,{
       disableClose: true,
       data:{
         postId: postId,
-        commentId: commentId
+        commentId: commentId,
+        archivos: archivos
       }
     }).afterClosed().subscribe(res =>{
       //console.log(res)    

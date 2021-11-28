@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Archivo } from 'src/app/entities/archivo';
+import { StorageService } from '../../storage/storage.service';
 import { CommentService } from '../comment.service';
 import { ConfirmDeleteCommentService } from './confirm-delete-comment.service';
 
@@ -12,7 +14,7 @@ import { ConfirmDeleteCommentService } from './confirm-delete-comment.service';
 export class ConfirmDeleteCommentComponent implements OnInit {
   public course:string = sessionStorage.getItem('currentCourse')!;
 
-  constructor(private service: ConfirmDeleteCommentService, private comService: CommentService,
+  constructor(private service: ConfirmDeleteCommentService, private comService: CommentService, private apiFiles:StorageService,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
@@ -23,15 +25,16 @@ export class ConfirmDeleteCommentComponent implements OnInit {
           e!.removeChild(child);
           child = e!.lastElementChild;
       }
+      var h1 = document.createElement("h1");
+      h1.textContent="No cierre ni recargue el navegador"
+      h1.style.padding="5%";
+      e!.appendChild(h1);
     }
-    var h1 = document.createElement("h1");
-    h1.textContent="No cierre ni recargue el navegador"
-    h1.style.padding="5%";
-    e!.appendChild(h1);
   }
-  deleteComment(postId:string,commentId:number){
+  deleteComment(postId:string,commentId:number, archivos:Archivo[]){
     this.service.deleteComment(this.course,postId,commentId).subscribe(
-      data =>{    
+      data =>{
+        this.apiFiles.eliminarImagenes(archivos)
         console.log(data) 
         this.getComments(postId); 
       }

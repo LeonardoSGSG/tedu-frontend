@@ -53,7 +53,7 @@
                                         <a *ngIf="comment.user.id + '' == myId || pId == myId" class="pull-right" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_horiz</mat-icon></a>
                                         <mat-menu #menu="matMenu">
                                             <button *ngIf="comment.user.id+'' == myId" (click)="editInputComment(comment.id)" mat-menu-item>Editar</button>
-                                            <button (click)="deleteComment(post.id+'',comment.id)" mat-menu-item>Eliminar</button>
+                                            <button (click)="deleteComment(post.id+'',comment.id, comment.files)" mat-menu-item>Eliminar</button>
                                         </mat-menu> 
                                     </span>
                                     <div *ngIf="shouldRun">
