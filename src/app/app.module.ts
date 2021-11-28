@@ -47,6 +47,7 @@ import { ConfirmDeleteCommentComponent } from './components/posts/confirm-delete
 import { VerAsistenciaComponent } from './components/asistencia/ver-asistencia/ver-asistencia.component';
 import { RegistrarAsistenciaComponent } from './components/asistencia/registrar-asistencia/registrar-asistencia.component';
 import { EditarAsistenciaComponent } from './components/asistencia/editar-asistencia/editar-asistencia.component';
+import { ConfirmDeletePostComponent } from './components/posts/confirm-delete-post/confirm-delete-post.component';
 
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
@@ -75,6 +76,7 @@ import { ChatComponent } from './components/chat/chat.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +100,7 @@ import { ChatComponent } from './components/chat/chat.component';
     RegistrarAsistenciaComponent,
     EditarAsistenciaComponent,
     ChatComponent,
+    ConfirmDeletePostComponent,
   ],
   imports: [
     BrowserModule,

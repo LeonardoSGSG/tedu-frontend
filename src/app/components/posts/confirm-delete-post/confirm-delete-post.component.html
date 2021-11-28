@@ -1,0 +1,8 @@
+<div id="contenedorPrincipal">
+    <h1 mat-dialog-title>Eliminar Publicación</h1>
+    <div mat-dialog-content>¿Está seguro que desea eliminar esta publicación?</div>
+    <div mat-dialog-actions>
+        <button mat-button id="no-button" [mat-dialog-close]="false" cdkFocusInitial>Cancelar</button>
+        <button mat-button id="yes-button" [mat-dialog-close]="true" mat-dialog-close color="warn" (click)="deletePost(data.postId, data.archivos)">Eliminar</button>
+    </div>
+</div>

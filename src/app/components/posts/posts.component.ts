@@ -16,6 +16,7 @@ import { updatePostQualificationDTO } from './DTOS/updatePostQualificationDTO';
 import { Archivo } from 'src/app/entities/archivo';
 import { StorageService } from '../storage/storage.service';
 import {ViewEncapsulation} from '@angular/core';
+import { ConfirmDeletePostComponent } from './confirm-delete-post/confirm-delete-post.component';
 
 @Component({
   selector: 'app-posts',
@@ -83,6 +84,17 @@ export class PostsComponent implements OnInit {
 
   
   public eliminarPost(postId:number, urls:Archivo[]){
+    return this.dialog.open(ConfirmDeletePostComponent,{
+      disableClose: true,
+      data:{
+        postId: postId,
+        archivos: urls
+      }
+    }).afterClosed().subscribe(res =>{
+      //console.log(res)    
+      this.getPosts(this.course);                    
+    })
+  /*
     this.apiFile.eliminarImagenes(urls);
     console.log("curso: "+this.course+" idPost: "+postId)
     this.postsService.deletePost(this.course, postId+"").subscribe(
@@ -93,7 +105,7 @@ export class PostsComponent implements OnInit {
       err=>{
         console.log(err);
       }
-    )
+    )*/
   }
   public popupUpdate(id:string){
     sessionStorage.setItem('currentPost',id);
