@@ -35,11 +35,19 @@ export class StorageService {
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
-
     })
    };
    let envio={key:url, name:nombreAr};
    return this.http.post<{post:Post, key:string, id:number}>(this.apiServerUrl+"/courses/"+sessionStorage.getItem('currentCourse')+"/posts/"+postId+"/files",envio,opts);
+  }
+  public createCommentFile(url:string, postId:string, commentId:number, nombreAr:string):Observable<{}>{
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+   let envio={key:url, name:nombreAr};
+   return this.http.post<{comment:Comment, key:string, id:number}>(this.apiServerUrl+"/courses/"+sessionStorage.getItem('currentCourse')+"/posts/"+postId+"/comments/"+commentId+"/files",envio,opts);
   }
   async eliminarImagenes(urls:Archivo[]){
     try{

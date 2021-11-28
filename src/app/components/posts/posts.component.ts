@@ -15,11 +15,13 @@ import { Curso } from 'src/app/entities/curso';
 import { updatePostQualificationDTO } from './DTOS/updatePostQualificationDTO';
 import { Archivo } from 'src/app/entities/archivo';
 import { StorageService } from '../storage/storage.service';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.css']
+  styleUrls: ['./posts.component.css'],
+  //encapsulation : ViewEncapsulation.None,
 })
 export class PostsComponent implements OnInit {
   addCommentForm = new FormGroup({
@@ -30,8 +32,12 @@ export class PostsComponent implements OnInit {
   })
   @Input()
   
+  archivos: any[]=[];
+  nombresArchivos: string[]=[];
+  numeroArchivos: number=0;
   public posts: postDTO[] = [];
   public comments: Comment[]=[];
+  public idPostFiles: number|undefined;
   public rep: [1] = [1];
   public idPost: string ='';
   public idComment: string ='';
@@ -105,8 +111,7 @@ export class PostsComponent implements OnInit {
     this.comSvc.getComment(this.course,idPost).subscribe(
       (response: any) => {
         this.comments = response;
-        this.idPost = idPost;        
-        //console.log(this.comments);
+        this.idPost = idPost;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -118,13 +123,30 @@ export class PostsComponent implements OnInit {
   }  
   addComment(formu:Comment,postId:string){
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
-      console.log(formu);
-      this.getComments(postId);
+      var dialog = this.dialog.open(ConfirmDeleteCommentComponent,{
+        disableClose: true,
+        data:{
+          postId: null,
+          commentId:null
+        }
+      });
+      for(let i=0;i<this.numeroArchivos;i++){
+        this.apiFile.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(url=>{
+          console.log(url);
+          this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[i]).subscribe(res=>{
+          console.log("Se guardo la url de firebase en la BD")
+          if(i==this.numeroArchivos-1){
+            window.setTimeout(this.refrescar, 3000);
+            dialog.close();
+          }
+          })
+        })
+        
+      }
     })
-    ,
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
+  }
+  refrescar(){
+    window.location.reload();
   }
   deleteComment(postId:string,commentId:number){
     return this.dialog.open(ConfirmDeleteCommentComponent,{
@@ -198,5 +220,32 @@ export class PostsComponent implements OnInit {
   accederArchivo(url:string){
     window.open(url, '_blank')
   }
-  
+  cargarImagen(event:any, postId:number){
+    this.limpiarArchivos();
+    console.log(postId);
+    this.idPostFiles=postId;
+    let archivo = event.target.files;
+    this.numeroArchivos=event.target.files.length;
+    
+    for(let i=0; i<event.target.files.length;i++){
+      let reader=new FileReader();
+      this.nombresArchivos.push(archivo[i].name);
+      reader.readAsDataURL(archivo[i]);
+      reader.onloadend=()=>{
+        console.log(reader.result);
+        this.archivos.push(reader.result);
+      }
+    }
+  }
+  limpiarArchivos(){
+    var e = document.getElementById("nombresArchivos");
+    this.archivos=[];
+    this.nombresArchivos=[];
+    //e.firstElementChild can be used.
+    var child = e!.lastElementChild; 
+    while (child) {
+        e!.removeChild(child);
+        child = e!.lastElementChild;
+    }
+  }
 }

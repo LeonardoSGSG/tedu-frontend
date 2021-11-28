@@ -17,9 +17,9 @@ export class AddPostComponent implements OnInit {
   addPostForm = new FormGroup({
     text: new FormControl('',[Validators.required])
   })
-  archivos: any[]=[];
-  nombresArchivos: string[]=[];
-  numeroArchivos: number=0;
+  archivosPost: any[]=[];
+  nombresArchivosPost: string[]=[];
+  numeroArchivosPost: number=0;
 
   constructor(private api:PostsService,
               public router:Router,
@@ -31,7 +31,7 @@ export class AddPostComponent implements OnInit {
   postForm(form:Post){
     this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
       res=>{
-        if(this.numeroArchivos>0){
+        if(this.numeroArchivosPost>0){
           var e = document.getElementById("ContenedroCreacion");
           var child = e!.lastElementChild; 
           while (child) {
@@ -42,19 +42,16 @@ export class AddPostComponent implements OnInit {
           h1.classList.add(".mat-h1");
           h1.textContent="No cierre ni recargue el navegador hasta que se cierre este mensaje";
           document.getElementById("ContenedroCreacion")?.appendChild(h1);
-          for(let i=0; i<this.numeroArchivos;i++){
-            this.apiFiles.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(urlImagen=>{
+          for(let i=0; i<this.numeroArchivosPost;i++){
+            this.apiFiles.subirImagen(this.nombresArchivosPost[i]+"_"+Date.now(),this.archivosPost[i]).then(urlImagen=>{
               console.log(urlImagen);
-              this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivos[i]).subscribe(res=>{
+              this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivosPost[i]).subscribe(res=>{
                 console.log(res.id+" "+res.key);
                 console.log("Se guardo la url de firebase en la BD")
-                var notification:any;
-                
-                if(i==this.numeroArchivos-1){
+                if(i==this.numeroArchivosPost-1){
                   location.reload
                   //notification.close();
                   this.dialogRef.close();
-                  
                 }
               }),
               (error: HttpErrorResponse)=>{
@@ -77,10 +74,10 @@ export class AddPostComponent implements OnInit {
     location.reload
     this.dialogRef.close();
   }
-  cargarImagen(event:any){
+  cargarImagenPost(event:any){
     this.limpiarArchivos();
     let archivo = event.target.files;
-    this.numeroArchivos=event.target.files.length;
+    this.numeroArchivosPost=event.target.files.length;
     if(event.target.files.length>0){
       let tNombres = document.createElement("div");
       tNombres.textContent="Nombres de archivos:";
@@ -88,11 +85,11 @@ export class AddPostComponent implements OnInit {
     }
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
-      this.nombresArchivos.push(archivo[i].name);
+      this.nombresArchivosPost.push(archivo[i].name);
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
         console.log(reader.result);
-        this.archivos.push(reader.result);
+        this.archivosPost.push(reader.result);
       }
     }
     
@@ -101,8 +98,8 @@ export class AddPostComponent implements OnInit {
   limpiarArchivos(){
     var e = document.getElementById("nombresArchivos");
     var f = document.getElementById("tNombres")
-    this.archivos=[];
-    this.nombresArchivos=[];
+    this.archivosPost=[];
+    this.nombresArchivosPost=[];
     //e.firstElementChild can be used.
     var child = e!.lastElementChild; 
     while (child) {

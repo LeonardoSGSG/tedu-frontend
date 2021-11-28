@@ -16,6 +16,18 @@ export class ConfirmDeleteCommentComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    if(this.data.postId==null){
+      var e = document.getElementById("contenedorPrincipal");
+      var child = e!.lastElementChild; 
+      while (child) {
+          e!.removeChild(child);
+          child = e!.lastElementChild;
+      }
+    }
+    var h1 = document.createElement("h1");
+    h1.textContent="No cierre ni recargue el navegador"
+    h1.style.padding="5%";
+    e!.appendChild(h1);
   }
   deleteComment(postId:string,commentId:number){
     this.service.deleteComment(this.course,postId,commentId).subscribe(

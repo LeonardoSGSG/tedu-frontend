@@ -13,9 +13,7 @@
 .centrado{
     align-self: center;
 }
-#inputFile{
-    display: none;
-}
+
 .contenedorInputFile{
     margin-bottom: 3%;
 }

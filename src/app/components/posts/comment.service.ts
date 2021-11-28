@@ -15,13 +15,13 @@ export class CommentService {
   
   constructor(private http:HttpClient) { }
 
-  public createComment(comment:Comment,idCourse:string,idPost:string):Observable<Comment[]>{
+  public createComment(comment:Comment,idCourse:string,idPost:string):Observable<Comment>{
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };
-   return this.http.post<Comment[]>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`, comment, opts);
+   return this.http.post<Comment>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`, comment, opts);
   }
   public getComment(idCourse:string,idPost:string): Observable<Comment>{
     const opts={

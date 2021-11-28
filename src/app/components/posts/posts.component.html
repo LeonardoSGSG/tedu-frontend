@@ -8,10 +8,10 @@
           </button>
         </div>
     </mat-toolbar>
-</p>
+  </p>
 <!--Posts-->
 <div class="row">
-    <div *ngFor="let post of posts" layout-align="center center" class="contenedor">
+    <div *ngFor="let post of posts; let j=index" layout-align="center center" class="contenedor">
         <mat-card class="box example-card row">
             <mat-card-header class="box-header">
             <div class="user-block">
@@ -27,7 +27,7 @@
                 </div>
             </mat-card-header>            
             <mat-card-content class="post-content">
-                <p style="word-wrap: break-word;">{{post.text}}</p>
+                <p style="word-wrap: break-word; font-size: 20px;">{{post.text}}</p>
                 <mat-divider style="margin-right:3%;margin-left: 3%; width: 94%;" *ngIf="post.files.length>0"></mat-divider>
                 <div class="TLista">
                     <a *ngIf="post.files.length>0">Lista de archivos adjuntos:</a>
@@ -67,7 +67,16 @@
                                             </div>
                                         </form>                                                                                                 
                                     </div>     
-                                    <p *ngIf="comment.id+'' != idComment">{{comment.text}}</p>   
+                                    <p *ngIf="comment.id+'' != idComment" style="margin: 2% 2% 2% 2%; font-size: 18px;">{{comment.text}}</p>
+                                    <mat-divider style="margin-right:10%;margin-left: 10%; width: 80%;" *ngIf="comment.files.length>0"></mat-divider>
+                                    <div class="TLista">
+                                        <a *ngIf="comment.files.length>0" style="font-size: 14px;">Lista de archivos adjuntos:</a>
+                                    </div>
+                                    <div style="height: auto; overflow: hidden" class="fila" *ngFor="let file of comment.files; let i=index">
+                                        <mat-divider style="width: 80%;" class="dividerArchivos" *ngIf="i!=0"></mat-divider>
+                                        <div class="listaArchivos elementoArchivos1"><a style="word-wrap: break-word; font-size: 11px;">•{{file.name}}</a></div>
+                                        <div class="elementoArchivos2"><mat-icon style="cursor: pointer;" (click)="accederArchivo(file.key)">cloud_download</mat-icon></div>
+                                    </div>
                                     <div id="estrellita">
 
                                         <mat-checkbox  style="margin-left: 5px;" #c *ngIf="myId == pId && myId!= comment.user.id+''" (click)="updateCommentQualification(post.id+'', comment.id, !c.checked)" [checked]=comment.qualified> Calificar </mat-checkbox> 
@@ -81,18 +90,33 @@
             </mat-card-content>
             <mat-divider inset></mat-divider>
             <!--form enviar comentario-->
-            <mat-card-footer>
-                <div class="box-footer-form">                  
-                  <form [formGroup]="addCommentForm" (ngSubmit)="postFormComment(addCommentForm.value,post.id+'')">
+            <mat-card-footer style="height: auto; overflow: hidden;">
+                <div style="height: auto; overflow: hidden;" class="box-footer-form">                  
+                  <form [formGroup]="addCommentForm" style="height: auto; overflow: hidden;" (ngSubmit)="postFormComment(addCommentForm.value,post.id+'')">
                     <div class="card-body form-group img-push">
                         <div>
-                            <mat-form-field appearance="outline">
+                            <mat-form-field style="height: auto; overflow: hidden;" class="my-form-field" appearance="outline">
                                 <mat-label>Escribe un comentario</mat-label>
                                 <input matInput formControlName="text" name="text" type="text">
                             </mat-form-field>
+                            <div class="contenedorInputFile">
+                                <label style="font-size: 11px;height: 2.5em;line-height: 2.5em;" for="{{'inputFile'+j}}" color="basic"class="mat-focus-indicator mat-raised-button mat-button-base mat-basic" >Subir archivo</label>
+                                <div id="tNombres" class="TNombres"><div *ngIf="post.id==idPostFiles">
+                                    Nombres de archivos a adjuntar:
+                                </div></div>
+                                <div id="nombresArchivos" class="nombresArchivos">
+                                    <div *ngIf="post.id==idPostFiles">
+                                        <div  *ngFor="let archivo of nombresArchivos">
+                                            •{{archivo}}
+                                        </div> 
+                                    </div>
+                                    
+                                </div>
+                                <input id="{{'inputFile'+j}}" style="display: none;" class="inputFile" #fileInput type="file" (change)="cargarImagen($event, post.id)" multiple>
+                            </div>
                         </div>
-                        <div>
-                            <button type="submit" class="btn-comentar pull-right" color="basic"  mat-raised-button color="primary">
+                        <div style="overflow: hidden;">
+                            <button style="margin-bottom: 2%;" type="submit" class="btn-comentar pull-right" color="basic"  mat-raised-button color="primary">
                                 Comentar
                             </button>
                         </div>

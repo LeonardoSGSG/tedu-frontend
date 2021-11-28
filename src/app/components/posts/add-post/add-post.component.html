@@ -11,11 +11,11 @@
                 <label for="inputFile" color="basic"class="mat-focus-indicator mat-raised-button mat-button-base mat-basic" >Subir archivo</label>
                 <div id="tNombres" class="TNombres"></div>
                 <div id="nombresArchivos" class="nombresArchivos">
-                    <div *ngFor="let archivo of nombresArchivos">
+                    <div *ngFor="let archivo of nombresArchivosPost">
                         • {{archivo}}
                     </div> 
                 </div>
-                <input id="inputFile"  #fileInput type="file" (change)="cargarImagen($event)" multiple>
+                <input id="inputFile" style="display: none;" #fileInput type="file" (change)="cargarImagenPost($event)" multiple>
             </div>
             <div class="row contBot">
                 <button class="bot" [disabled]="addPostForm.invalid" mat-raised-button color="primary">

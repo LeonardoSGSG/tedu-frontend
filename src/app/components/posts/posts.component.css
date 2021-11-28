@@ -10,6 +10,7 @@
 }
 .contenedormain{
     padding-bottom: 2em;
+    /*background-color: white;*/
 }    
 #tedu{
     font-size: 1.5em;
@@ -38,6 +39,7 @@ body{
 }
 .box-footer-form .mat-form-field{
   width: 31em;
+  
 }
 body{margin-top:20px;}
 body{
@@ -69,13 +71,13 @@ body{
   height: auto;
 }
 .elementoArchivos1{
-  width: 50%;
+  width: 70%;
   float: left;
   height: auto;
   margin-top: 3%;
 }
 .elementoArchivos2{
-  width: 50%;
+  width: 25%;
   float: left;
   height: auto;
   text-align: right;
@@ -88,6 +90,31 @@ body{
   margin-top: 1%;
   margin-bottom: 1%;
   height: auto;
+}
+#inputFile{
+  display: none;
+}
+.contenedorInputFile{
+  margin-bottom: 3%;
+}
+.TNombres{
+  padding-left: 15%;
+  padding-right: 15%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: left;
+}
+.TNombres div{
+  text-align: left;
+}
+.nombresArchivos{
+  text-align: left;
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: 11px;
+}
+.nombresArchivos div{
+  text-align: left;
 }
 .mat-card-actions, .mat-card-subtitle, .mat-card-content {
   display: block;
@@ -229,7 +256,7 @@ form.ng-untouched.ng-pristine.ng-valid {
   height: 4em;
 }
 .card-body.form-group.img-push {
-  height: 4em;
+  height: auto;
   padding: 0;
   margin-bottom: 0;
   margin-left: 1.5em;
@@ -243,7 +270,7 @@ form.ng-untouched.ng-pristine.ng-valid {
   height: 1em;
 }
 .btn-comentar{
-  margin-top: 1.5em;
+  margin-top: 1em;
   height: 1em;
 }
 button.mat-focus-indicator.mat-raised-button.btn-comentar {
@@ -260,4 +287,10 @@ button.mat-focus-indicator.mat-raised-button.btn-comentar {
 {
   display:block;
   margin-left: 80px;
+}
+.my-form-field .mat-form-field-wrapper {
+  margin-bottom: -1.25em !important;
+}
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -1.25em !important;
 }
