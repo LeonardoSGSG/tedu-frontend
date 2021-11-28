@@ -23,13 +23,13 @@ export class CommentService {
    };
    return this.http.post<Comment>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`, comment, opts);
   }
-  public getComment(idCourse:string,idPost:string): Observable<Comment>{
+  public getComment(idCourse:string,idPost:string): Observable<Comment[]>{
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };
-    return this.http.get<Comment>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`,opts);
+    return this.http.get<Comment[]>(`${this.apiServerUrl}/courses/${idCourse}/posts/${idPost}/comments`,opts);
   }
   public updateComment(comment:Comment,idCourse:string,idPost:string,idComment:number): Observable<{updated:boolean;}>{
     const id=sessionStorage.getItem('id');

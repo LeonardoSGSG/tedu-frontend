@@ -110,6 +110,15 @@ export class PostsComponent implements OnInit {
   public getComments(idPost:string): void{
     this.comSvc.getComment(this.course,idPost).subscribe(
       (response: any) => {
+        for(let i=0;i<response.length;i++){
+          for(let j=i+1;j<response.length;j++){
+            if(response[j].id<response[i].id){
+              var temp = response[i];
+              response[i]=response[j];
+              response[j]=temp;
+            }
+          }
+        }
         this.comments = response;
         this.idPost = idPost;
       },
