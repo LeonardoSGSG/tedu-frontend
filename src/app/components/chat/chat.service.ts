@@ -27,25 +27,7 @@ export class ChatService {
    };
    return this.http.post<msg>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
   }
-  public updateNotifications(): Observable<updateNotiMsg>
-  {
-    const opts={
-      headers: new HttpHeaders({
-     'Authorization': 'Token ' + sessionStorage.getItem('token')
-    })
-   };
-   return this.http.put<updateNotiMsg>(this.apiServerUrl+'/notification', null, opts)
-  }
-
-  public getUnseen():Observable<notificationDTO[]>
-  {
-    const opts={
-      headers: new HttpHeaders({
-     'Authorization': 'Token ' + sessionStorage.getItem('token')
-    })
-   };
-   return this.http.get<notificationDTO[]>(this.apiServerUrl+'/notification', opts)
-  }
+  
 
 
   public allMessages():Observable<messageDTO[]>

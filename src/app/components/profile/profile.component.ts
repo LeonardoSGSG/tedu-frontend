@@ -7,13 +7,16 @@ import { DialogProfileComponent } from '../dialog-profile/dialog-profile.compone
 import { MatDialog } from '@angular/material/dialog';
 import { usuarioDTO } from './DTOS/UsuarioDTO';
 import { ConfirmDeleteProfileComponent } from '../confirm-delete-profile/confirm-delete-profile.component';
+import { NotificacionesService } from '../notificaciones/notificaciones.service';
+import { notificationDTO } from 'src/app/entities/notificationDTO';
+import { HttpErrorResponse } from '@angular/common/http';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  public notifications: notificationDTO[]=[];
    public perfil!: usuarioDTO;
   hide=true;
     formularioProfile:FormularioProfile={
@@ -21,7 +24,7 @@ export class ProfileComponent implements OnInit {
       phone: '',
       name: ''
     }
-  constructor(private profileService: ProfileService, private router: Router, private dialog: MatDialog, private dialogDelete: MatDialog) { 
+  constructor(private profileService: ProfileService, private router: Router, private dialog: MatDialog, private dialogDelete: MatDialog, private notisSvc: NotificacionesService) { 
 
   }
   ngOnInit(): void {
@@ -59,6 +62,45 @@ export class ProfileComponent implements OnInit {
   }
   regresarCursos(){
     this.router.navigate(['/courses']);
+  }
+  public redirProfile()
+  {
+    this.router.navigate(['/profile']);
+
+  }
+  public LogOut()
+  {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
+
+  }
+  public irTedu()
+  {
+this.router.navigate(['/courses']);
+
+  }
+  public getUnseen(): void{
+    this.notisSvc.getUnseen().subscribe(
+      (response: notificationDTO[])=>
+      {
+        this.notifications=response;
+      },
+      (error: HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    )
+  } 
+  public updateNotifications(): void{
+    this.notisSvc.updateNotifications().subscribe(
+    (response)=>
+    {
+      console.log("notis")
+    },
+    err=>{
+      console.log(err);
+    }
+    )
   }
   /*public eliminar(): void
 

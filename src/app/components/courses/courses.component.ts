@@ -8,6 +8,8 @@ import { ownedCourses } from 'src/app/entities/ownedCourses';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificacionesService } from '../notificaciones/notificaciones.service';
+import { notificationDTO } from 'src/app/entities/notificationDTO';
 
 @Component({
   selector: 'app-courses',
@@ -15,6 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
+  public notifications: notificationDTO[]=[];
   public courses: Curso[]=[];  
   public ownedCourses: ownedCourses[] =[];
   public editCourse: Curso | undefined;
@@ -27,7 +30,7 @@ export class CoursesComponent implements OnInit {
   })
 
   constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar, private notisSvc: NotificacionesService) { }
 
   ngOnInit(): void {
     this.getCourses();
@@ -137,6 +140,29 @@ export class CoursesComponent implements OnInit {
         });       
       }      
     })
+  }
+  public getUnseen(): void{
+    this.notisSvc.getUnseen().subscribe(
+      (response: notificationDTO[])=>
+      {
+        this.notifications=response;
+      },
+      (error: HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    )
+  } 
+  public updateNotifications(): void{
+    this.notisSvc.updateNotifications().subscribe(
+    (response)=>
+    {
+      console.log("notis")
+    },
+    err=>{
+      console.log(err);
+    }
+    )
   }
   
 }

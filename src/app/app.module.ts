@@ -71,6 +71,7 @@ import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './components/chat/chat.component';
+import { NotificacionesComponent } from './components/notificaciones/notificaciones.component';
 
 
 
@@ -101,6 +102,7 @@ import { ChatComponent } from './components/chat/chat.component';
     EditarAsistenciaComponent,
     ChatComponent,
     ConfirmDeletePostComponent,
+    NotificacionesComponent,
   ],
   imports: [
     BrowserModule,

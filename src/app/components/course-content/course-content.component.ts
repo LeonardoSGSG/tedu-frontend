@@ -5,6 +5,9 @@ import { CourseContentService } from './course-content.service';
 import { CursoLeave } from './DTOS/cursoLeave';
 import { Curso } from 'src/app/entities/curso';
 import { AsistenciaComponent } from '../asistencia/asistencia.component';
+import { NotificacionesService } from '../notificaciones/notificaciones.service';
+import { notificationDTO } from 'src/app/entities/notificationDTO';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-content',
@@ -12,10 +15,11 @@ import { AsistenciaComponent } from '../asistencia/asistencia.component';
   styleUrls: ['./course-content.component.css']
 })
 export class CourseContentComponent implements OnInit {
+  public notifications: notificationDTO[]=[];
   public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
 
-  constructor(private router: Router, private CCService:CourseContentService) { }
+  constructor(private router: Router, private CCService:CourseContentService, private notisSvc: NotificacionesService) { }
 
   ngOnInit(): void {
   }
@@ -43,5 +47,27 @@ export class CourseContentComponent implements OnInit {
   regresarCursos(){
     this.router.navigate(['/courses']);
   }
-
+  public getUnseen(): void{
+    this.notisSvc.getUnseen().subscribe(
+      (response: notificationDTO[])=>
+      {
+        this.notifications=response;
+      },
+      (error: HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    )
+  } 
+  public updateNotifications(): void{
+    this.notisSvc.updateNotifications().subscribe(
+    (response)=>
+    {
+      console.log("notis")
+    },
+    err=>{
+      console.log(err);
+    }
+    )
+  }
 }

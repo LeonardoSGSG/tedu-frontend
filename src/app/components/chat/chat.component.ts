@@ -9,7 +9,8 @@ import { ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { notificationDTO } from 'src/app/entities/notificationDTO';
 import { debug } from 'console';
-
+import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
+import { NotificacionesService } from '../notificaciones/notificaciones.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -26,7 +27,7 @@ export class ChatComponent implements OnInit {
   public cont!:number;
   idDestino: string| null= sessionStorage.getItem('idChatDestino'); 
   nombreDestino: string| null= sessionStorage.getItem('nombreChatDestino');
-  constructor(private chatSvc: ChatService, private router: Router) { }
+  constructor(private chatSvc: ChatService, private router: Router, private notisSvc: NotificacionesService) { }
 
   ngOnInit(): void {
     this.allMessages();
@@ -61,7 +62,7 @@ this.router.navigate(['/courses']);
     )
   } 
   public getUnseen(): void{
-    this.chatSvc.getUnseen().subscribe(
+    this.notisSvc.getUnseen().subscribe(
       (response: notificationDTO[])=>
       {
         this.notifications=response;
@@ -73,7 +74,7 @@ this.router.navigate(['/courses']);
     )
   } 
   public updateNotifications(): void{
-    this.chatSvc.updateNotifications().subscribe(
+    this.notisSvc.updateNotifications().subscribe(
     (response)=>
     {
       console.log("notis")
