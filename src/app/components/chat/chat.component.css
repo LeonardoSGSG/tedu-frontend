@@ -18,6 +18,28 @@ p
     align-self: flex-end;
     border-radius: 5px;
     padding: 5px;
-    font-size: medium;
+    font-size:large;
     margin:7px
+}
+#tedu{
+    margin-left: 1.3em;
+    font-size: 1.5em;
+  }
+  #btnCuenta{
+      position: absolute; right: 0;
+      margin-right: 3em;
+  
+  }
+  #btnNotification{
+      position: absolute; right: 0;
+      margin-right: 7em;
+  }
+  .scroll-div {
+    padding: 4px;
+    width: 100%;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+    
 }

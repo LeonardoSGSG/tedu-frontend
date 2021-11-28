@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { ChatService } from './chat.service';
 import { message } from './DTOs/message';
 import { msg } from './DTOs/msg';
+import { ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -21,7 +23,8 @@ export class ChatComponent implements OnInit {
   public myId:string = sessionStorage.getItem('id')!;
   public cont!:number;
   idDestino: string| null= sessionStorage.getItem('idChatDestino'); 
-  constructor(private chatSvc: ChatService) { }
+  nombreDestino: string| null= sessionStorage.getItem('nombreChatDestino');
+  constructor(private chatSvc: ChatService, private router: Router) { }
 
   ngOnInit(): void {
     this.allMessages();
@@ -35,7 +38,11 @@ export class ChatComponent implements OnInit {
 
 
   }
-  
+  public irTedu()
+  {
+this.router.navigate(['/courses']);
+
+  }
   public allMessages(): void{
     
     this.chatSvc.allMessages().subscribe(
@@ -63,12 +70,14 @@ export class ChatComponent implements OnInit {
     this.ordenarMensajes;
 
     console.log("entra");
+    
     this.chatSvc.sendMessage(msg).subscribe(
       res=>
       {
         console.log(res.text);
         console.log(msg.userId);
         this.allMessages();
+        
       },
       (error:HttpErrorResponse)=>
       {
@@ -89,6 +98,17 @@ export class ChatComponent implements OnInit {
 
       }
     )
+
+  }
+  public redirProfile()
+  {
+    this.router.navigate(['/profile']);
+
+  }
+  public LogOut()
+  {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
 
   }
 }

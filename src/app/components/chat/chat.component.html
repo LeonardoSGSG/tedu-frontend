@@ -1,5 +1,37 @@
-<mat-card-content>
-    <div *ngFor="let message of messages">
+<div>
+ 
+        <mat-toolbar >
+          <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+          </button>-->
+          <span id="tedu" (click)="irTedu()">Tedu</span>
+          <!--Boton Cuenta-->
+          <button id="btnCuenta" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>account_circle</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="redirProfile()">
+              <mat-icon>person</mat-icon>
+              <span>Mi Perfil</span>
+            </button>
+            <button mat-menu-item (click)="LogOut()">
+              <mat-icon>logout</mat-icon>      
+              <span>Cerrar Sesión</span>
+            </button>
+          </mat-menu>    
+          <!--Boton Notificacion-->
+          <button id="btnNotification" mat-icon-button aria-label="Example icon button with a menu icon">
+            <mat-icon>notifications</mat-icon>
+          </button>
+        </mat-toolbar>
+
+
+</div>
+<mat-card style="border-color: black; background-color:rgb(80, 115, 212); color: white">Conversando con: {{nombreDestino}} </mat-card>
+<mat-card-content >
+
+<div class="scroll-div">
+    <div  *ngFor="let message of messages">
         <div class="post-comment">
             <div class="box-footer box-comments">
                 <div class="box-comment">
@@ -9,20 +41,22 @@
                                 [ngClass]="{ownContainer: message.receiver.id.toString() === myId}">
                                 <div class="row">
 
-                                    <div  class="col-sm">
-                                        <p style="border-radius: 5px; margin:7px; padding: 5px; font-size: medium;" [ngClass]="{ownMessage: message.receiver.id.toString()===myId}">{{message.sender.name}} dice: {{message.text}}
-                                        
-                                        <button *ngIf="myId == message.sender.id.toString()" mat-icon-button
-                                            [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                                            <mat-icon>more_vert</mat-icon>
-                                            <mat-menu #menu="matMenu">
+                                    <div class="col-sm">
+                                        <p style="border-radius: 7px; margin:7px; padding: 15px; font-size: medium;"
+                                            [ngClass]="{ownMessage: message.receiver.id.toString()===myId}" >
+                                            {{message.sender.name}}: {{message.text}}
 
-                                                <button (click)="deleteMessage(message.id)" mat-menu-item>
-                                                    <mat-icon>remove_circle</mat-icon><span>Eliminar mensaje</span>
-                                                </button>
-                                            </mat-menu>
-                                        </button>
-                                    </p>
+                                            <button style="height: 0px; line-height: 0px;" *ngIf="myId == message.sender.id.toString()" mat-icon-button
+                                                [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                                <mat-icon>more_vert</mat-icon>
+                                                <mat-menu #menu="matMenu">
+
+                                                    <button (click)="deleteMessage(message.id)" mat-menu-item>
+                                                        <mat-icon >remove_circle</mat-icon><span>Eliminar mensaje</span>
+                                                    </button>
+                                                </mat-menu>
+                                            </button>
+                                        </p>
                                     </div>
 
 
@@ -35,13 +69,14 @@
             </div>
         </div>
     </div>
+</div>
     <mat-card-footer>
         <div class="box-footer-form">
             <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
                 <div class="card-body form-group img-push">
                     <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Escribe un mensaje</mat-label>
+                        <mat-form-field  appearance="outline">
+                            <mat-label id="cajaMensaje">Escribe un mensaje</mat-label>
                             <input matInput formControlName="text" name="text" type="text">
                         </mat-form-field>
                     </div>

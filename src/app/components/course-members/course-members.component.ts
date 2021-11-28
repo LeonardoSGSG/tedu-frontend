@@ -45,9 +45,11 @@ export class CourseMembersComponent implements OnInit {
       }
     )
   }
-  irChat(id: string)
+  irChat(id: string, nombre: string)
   {
     sessionStorage.setItem('idChatDestino', id+'');
+    sessionStorage.setItem('nombreChatDestino', nombre);
+
     this.router.navigate(['/chat']);
   }
   onDelete(student_id:number,course_id:string){
