@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { notification } from 'src/app/entities/notification';
+import {notificationDTO } from 'src/app/entities/notificationDTO';
+import { updateNotiMsg } from 'src/app/entities/updateNotiMsg';
 import { environment } from 'src/environments/environment';
 import { deleteMsg } from './DTOs/deleteMsg';
 import { messageDTO } from './DTOs/messageDTO';
@@ -11,7 +12,7 @@ import { msg } from './DTOs/msg';
 })
 export class ChatService {
   private apiServerUrl = environment.apiBaseUrl;
-
+  
   constructor(private http: HttpClient) { }
 
   public sendMessage(msg: msg):Observable<msg>
@@ -26,17 +27,26 @@ export class ChatService {
    };
    return this.http.post<msg>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
   }
-  public getUnseen():Observable<notification[]>
+  public updateNotifications(): Observable<updateNotiMsg>
   {
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
-
     })
    };
-   return this.http.get<notification[]>(this.apiServerUrl+'/notification/' +  opts)
-
+   return this.http.put<updateNotiMsg>(this.apiServerUrl+'/notification', opts)
   }
+
+  public getUnseen():Observable<notificationDTO[]>
+  {
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
+    })
+   };
+   return this.http.get<notificationDTO[]>(this.apiServerUrl+'/notification', opts)
+  }
+
 
   public allMessages():Observable<messageDTO[]>
   {

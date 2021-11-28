@@ -2,7 +2,7 @@ import { messageDTO } from "../components/chat/DTOs/messageDTO";
 import { postDTO } from "../components/posts/DTOS/postDTO";
 import { Comment } from "./comment";
 
-export interface notification{
+export interface notificationDTO{
 
     id:number,
     created: Date,

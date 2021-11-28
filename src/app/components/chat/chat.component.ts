@@ -7,6 +7,8 @@ import { messageDTO } from './DTOs/messageDTO';
 import { msg } from './DTOs/msg';
 import { ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
+import { notificationDTO } from 'src/app/entities/notificationDTO';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +19,7 @@ export class ChatComponent implements OnInit {
   addMessageForm = new FormGroup({
     text: new FormControl('')
   })
-  
+  public notifications: notificationDTO[]=[];
   public messages: messageDTO[]=[];
   public idMessage: string='';
   public myId:string = sessionStorage.getItem('id')!;
@@ -57,7 +59,30 @@ this.router.navigate(['/courses']);
         alert(error.message);
       }
     )
-  }  
+  } 
+  public getUnseen(): void{
+    this.chatSvc.getUnseen().subscribe(
+      (response: notificationDTO[])=>
+      {
+        this.notifications=response;
+      },
+      (error: HttpErrorResponse)=>
+      {
+        alert(error.message);
+      }
+    )
+  } 
+  public updateNotifications(): void{
+    this.chatSvc.updateNotifications().subscribe(
+    (response)=>
+    {
+      console.log("notis")
+    },
+    err=>{
+      console.log(err);
+    }
+    )
+  }
   postFormMessage(msg: msg){    
     msg.userId= this.idDestino;    
 
