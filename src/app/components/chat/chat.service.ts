@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { notification } from 'src/app/entities/notification';
 import { environment } from 'src/environments/environment';
 import { deleteMsg } from './DTOs/deleteMsg';
-import { message } from './DTOs/message';
+import { messageDTO } from './DTOs/messageDTO';
 import { msg } from './DTOs/msg';
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,19 @@ export class ChatService {
    };
    return this.http.post<msg>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
   }
+  public getUnseen():Observable<notification[]>
+  {
+    const opts={
+      headers: new HttpHeaders({
+     'Authorization': 'Token ' + sessionStorage.getItem('token')
 
-  public allMessages():Observable<message[]>
+    })
+   };
+   return this.http.get<notification[]>(this.apiServerUrl+'/notification/' +  opts)
+
+  }
+
+  public allMessages():Observable<messageDTO[]>
   {
     
     const idUser= sessionStorage.getItem('idChatDestino')!
@@ -37,10 +49,10 @@ export class ChatService {
 
     })
    };
-   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + idUser,  opts)
+   return this.http.get<messageDTO[]>(this.apiServerUrl+'/messages/' + idUser,  opts)
 
   }
-  public outgoingMessages():Observable<message[]>
+  public outgoingMessages():Observable<messageDTO[]>
   {
     const idUser= sessionStorage.getItem('idChatDestino')!
     const opts={
@@ -49,10 +61,10 @@ export class ChatService {
 
     })
    };
-   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + idUser + '/outgoing',  opts)
+   return this.http.get<messageDTO[]>(this.apiServerUrl+'/messages/' + idUser + '/outgoing',  opts)
 
   }
-  public incomingMessages():Observable<message[]>
+  public incomingMessages():Observable<messageDTO[]>
   {
     const idUser= sessionStorage.getItem('idChatDestino')!
     const opts={
@@ -61,7 +73,7 @@ export class ChatService {
 
     })
    };
-   return this.http.get<message[]>(this.apiServerUrl+'/messages/' + idUser + '/incoming',  opts)
+   return this.http.get<messageDTO[]>(this.apiServerUrl+'/messages/' + idUser + '/incoming',  opts)
 
   }
   public deleteMessage(idN: number):Observable<deleteMsg>

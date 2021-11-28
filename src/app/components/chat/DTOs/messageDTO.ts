@@ -1,7 +1,7 @@
 import { receiver } from "./receiver";
 import { sender } from "./sender";
 
-export interface message{
+export interface messageDTO{
     id: number,
     created: Date,
     updated: Date,

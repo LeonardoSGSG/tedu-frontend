@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ChatService } from './chat.service';
-import { message } from './DTOs/message';
+import { messageDTO } from './DTOs/messageDTO';
 import { msg } from './DTOs/msg';
 import { ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit {
     text: new FormControl('')
   })
   
-  public messages: message[]=[];
+  public messages: messageDTO[]=[];
   public idMessage: string='';
   public myId:string = sessionStorage.getItem('id')!;
   public cont!:number;
@@ -46,7 +46,7 @@ this.router.navigate(['/courses']);
   public allMessages(): void{
     
     this.chatSvc.allMessages().subscribe(
-      (response: message[]) => {
+      (response: messageDTO[]) => {
         this.messages = response;
         this.ordenarMensajes();
   
