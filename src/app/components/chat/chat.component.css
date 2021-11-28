@@ -42,12 +42,5 @@ p
     overflow-y: auto;
     text-align: justify;
     
-}.scroll-div2 {
-    padding: 4px;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align: justify;
     
 }

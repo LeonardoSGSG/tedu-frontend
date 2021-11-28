@@ -34,7 +34,7 @@ export class ChatService {
      'Authorization': 'Token ' + sessionStorage.getItem('token')
     })
    };
-   return this.http.put<updateNotiMsg>(this.apiServerUrl+'/notification', opts)
+   return this.http.put<updateNotiMsg>(this.apiServerUrl+'/notification', null, opts)
   }
 
   public getUnseen():Observable<notificationDTO[]>
