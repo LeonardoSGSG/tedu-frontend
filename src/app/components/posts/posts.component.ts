@@ -279,7 +279,7 @@ export class PostsComponent implements OnInit {
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
       var nomCort:string;
-      if(archivo[i].name.length>50){
+      if(false/*archivo[i].name.length>50*/){
         nomCort = (archivo[i].name).substring(0,47)+"...";
         this.nombresArchivos.push(nomCort);
       }else{
