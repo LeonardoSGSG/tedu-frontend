@@ -8,11 +8,14 @@
 #btnCuenta{
     position: absolute; right: 0;
     margin-right: 3em;
-
 }
 #btnNotification{
     position: absolute; right: 0;
     margin-right: 7em;
+}
+#btnCalendar{
+  position: absolute; right: 0;
+  margin-right: 11em;
 }
 .example-spacer {
   flex: 1 1 auto;

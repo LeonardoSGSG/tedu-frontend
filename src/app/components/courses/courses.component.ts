@@ -164,6 +164,9 @@ export class CoursesComponent implements OnInit {
     }
     )
   }
+  public redirCalendar(){
+    this.router.navigate(['/calendar']);
+  }
   
 }
 @Component({

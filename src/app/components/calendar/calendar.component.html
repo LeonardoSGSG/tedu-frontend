@@ -1,0 +1,26 @@
+<!--Toolbar-->
+<p>
+    <mat-toolbar >
+      <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>-->
+      <span (click)="regresarCursos()" style="cursor: pointer;" id="tedu">Tedu</span>
+      <!--Boton Cuenta-->
+      <button id="btnCuenta" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="redirProfile()">
+          <mat-icon>person</mat-icon>
+          <span>Mi Perfil</span>
+        </button>
+        <button mat-menu-item (click)="LogOut()">
+          <mat-icon>logout</mat-icon>      
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>    
+    </mat-toolbar>
+  </p>
+<div class="container">
+    <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
+</div>

@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CourseContentComponent } from './components/course-content/course-content.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'profile',component:ProfileComponent},
   {path:'courses/:id',component:CourseContentComponent},
   {path:'posts',component:PostsComponent},
-  {path:'chat', component: ChatComponent}
+  {path:'chat', component: ChatComponent},
+  {path:'calendar', component: CalendarComponent},
 ];
 
 @NgModule({

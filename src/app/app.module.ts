@@ -32,6 +32,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIcon } from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FullCalendarModule} from 'primeng/fullcalendar'
 
 //Componentes
 import { LoginComponent } from './components/login/login.component';
@@ -72,6 +73,7 @@ import { provideRemoteConfig,getRemoteConfig } from '@angular/fire/remote-config
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotificacionesComponent } from './components/notificaciones/notificaciones.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 
@@ -103,6 +105,7 @@ import { NotificacionesComponent } from './components/notificaciones/notificacio
     ChatComponent,
     ConfirmDeletePostComponent,
     NotificacionesComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -141,6 +144,7 @@ import { NotificacionesComponent } from './components/notificaciones/notificacio
     providePerformance(() => getPerformance()),
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
+    FullCalendarModule,
   ],
   providers: [LoginService,CoursesService,CoursesComponent/*, ScreenTrackingService,UserTrackingService*/],
   bootstrap: [AppComponent],
