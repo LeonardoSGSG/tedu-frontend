@@ -1,6 +1,6 @@
 <div>
 
-    <mat-toolbar>
+    <mat-toolbar >
         <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
           </button>-->
@@ -20,25 +20,30 @@
             </button>
         </mat-menu>
         <!--Boton Notificacion-->
-        <button (click)="getUnseen()" (click)="updateNotifications()" id="btnNotification" mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="Example icon button with a menu icon">
+        <button  (click)="getUnseen()" (click)="updateNotifications()"  id="btnNotification" mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="Example icon button with a menu icon">
             <mat-icon>notifications</mat-icon>
           </button>
+
+
+
           <mat-menu xPosition="before" #appMenu="matMenu">
                 
-  
-                        <div *ngFor="let notification of notifications">
-                           <p>{{notification.text}} </p> 
+                <div  style="padding: 5px; ">
+                        {{notificationsRes}}
+                        <div  *ngFor="let notification of notifications">
+                          {{notification.text}}
                         </div>
             
-
+                    </div>
           </mat-menu>
+
     </mat-toolbar>
 
 
 </div>
 <div style="width: 50%; margin: auto;">
 <mat-card style="border-color: black; background-color:rgb(80, 115, 212); color: white">Conversando con:
-    {{nombreDestino}} </mat-card>
+    {{nombreDestino}}  </mat-card>
 <mat-card-content>
 
     <div class="scroll-div">

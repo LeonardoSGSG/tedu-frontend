@@ -21,16 +21,18 @@
           </mat-menu>    
           <!--Boton Notificacion-->
           <button (click)="getUnseen()" (click)="updateNotifications()" id="btnNotification" mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="Example icon button with a menu icon">
+            
             <mat-icon>notifications</mat-icon>
           </button>
           <mat-menu xPosition="before" #appMenu="matMenu">
-                
+            <div  style="padding: 5px;  ">
+              {{notificationsRes}}
   
                         <div *ngFor="let notification of notifications">
                            <p>{{notification.text}} </p> 
                         </div>
             
-
+                        </div>
           </mat-menu>
         </mat-toolbar>
     </p>

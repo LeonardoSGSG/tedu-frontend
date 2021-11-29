@@ -25,11 +25,12 @@
         </button>
         <mat-menu xPosition="before" #appMenu="matMenu">
               
-
+          <div  style="padding: 5px;  ">
+            {{notificationsRes}}
                       <div *ngFor="let notification of notifications">
                          <p>{{notification.text}} </p> 
                       </div>
-          
+          </div>
 
         </mat-menu>
   </mat-toolbar>

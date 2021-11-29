@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
   addMessageForm = new FormGroup({
     text: new FormControl('')
   })
+  public notificationsRes='';
   public notifications: notificationDTO[]=[];
   public messages: messageDTO[]=[];
   public idMessage: string='';
@@ -66,6 +67,13 @@ this.router.navigate(['/courses']);
       (response: notificationDTO[])=>
       {
         this.notifications=response;
+        if(this.notifications.length==0)
+        {
+          this.notificationsRes="No hay notificaciones nuevas"
+        }
+        else{
+          this.notificationsRes=""
+        }
       },
       (error: HttpErrorResponse)=>
       {
