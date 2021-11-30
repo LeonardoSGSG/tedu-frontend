@@ -61,7 +61,12 @@ export class CoursesComponent implements OnInit {
     sessionStorage.setItem('pId',pId)
     this.router.navigate(['/courses/'+id])
   }
-
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+    this.router.navigate(['/courses/' + idCurso]);
+    console.log("debugeando")
+  }
   public getCourses(): void{
     this.coursesService.getAllCourses().subscribe(
       (response: Curso[]) => {

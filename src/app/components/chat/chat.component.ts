@@ -62,6 +62,12 @@ this.router.navigate(['/courses']);
       }
     )
   } 
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+    this.router.navigate(['/courses/' + idCurso]);
+    console.log("debugeando")
+  }
   public getUnseen(): void{
     this.notisSvc.getUnseen().subscribe(
       (response: notificationDTO[])=>
