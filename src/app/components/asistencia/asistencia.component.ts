@@ -34,7 +34,11 @@ export class AsistenciaComponent implements OnInit {
           element.attendance_date = "Asistencia del "+ asistenciaArr[0];
           
           let horaExacta=asistenciaArr[1].split('.')[0].substring(0,asistenciaArr[1].split('.')[0].length-3)
-          element.hora = "Horario: "+ horaExacta;
+          let horaExactaNum=horaExacta.split(':');
+          let hora = parseInt(horaExactaNum[0]);
+          hora = hora-5;
+          element.hora = "Horario: "+ hora+":00";
+
         });
         this.asistenciasGenerales = sorted_asists;
       }

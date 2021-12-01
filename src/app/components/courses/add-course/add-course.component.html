@@ -4,24 +4,24 @@
         <div class="card-body form-group">        
             <mat-form-field appearance="fill">
                 <mat-label>Nombre del curso</mat-label>
-                <input formControlName="name" name="name" type="text" matInput required>
+                <input formControlName="name" [maxlength]="80" name="name" type="text" matInput required>
             </mat-form-field>  
             <mat-form-field appearance="fill">
                 <mat-label>Fecha Inicio</mat-label>
-                <input matInput formControlName="start_date" name="start_date" [matDatepicker]="picker1" required>
+                <input matInput formControlName="start_date" name="start_date" [matDatepicker]="picker1" readonly required>
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Nro de semanas</mat-label>
-                <input matInput formControlName="weeks" name="weeks" type="number" required>
+                <input matInput formControlName="weeks" name="weeks" min="1" type="number" required>
             </mat-form-field>                              
             <div formArrayName="schedule" *ngFor="let s of schedule.controls; let i=index">
                 <div [formGroupName]="i">
                     <div class="form-group row">
                         <mat-form-field class="col-md-3" appearance="fill">
                             <mat-label [attr.for]="'day'+i">Día</mat-label>
-                            <mat-select [attr.id]="'day'+i"  formControlName="day">
+                            <mat-select [attr.id]="'day'+i" formControlName="day" required>
                             <mat-option *ngFor="let dia of dias" [value]="dia.value">
                                 {{dia.viewValue}}
                             </mat-option>
@@ -29,7 +29,7 @@
                         </mat-form-field>  
                         <mat-form-field class="col-md-4" appearance="fill">
                             <mat-label [attr.for]="'start'+i">Hora Inicio</mat-label>
-                            <mat-select [attr.id]="'start'+i" formControlName="start">
+                            <mat-select [attr.id]="'start'+i" formControlName="start" required>
                             <mat-option *ngFor="let hora of horas" [value]="hora.viewValue">
                                 {{hora.viewValue}}
                             </mat-option>
@@ -37,7 +37,7 @@
                         </mat-form-field>   
                         <mat-form-field class="col-md-4" appearance="fill">
                             <mat-label [attr.for]="'end'+i">Hora Fin</mat-label>
-                            <mat-select [attr.id]="'end'+i" formControlName="end">
+                            <mat-select [attr.id]="'end'+i" formControlName="end" required>
                             <mat-option *ngFor="let hora of horas" [value]="hora.viewValue">
                                 {{hora.viewValue}}
                             </mat-option>
@@ -50,7 +50,7 @@
             </div>
             <mat-form-field appearance="fill">
                 <mat-label>Vacantes</mat-label>
-                <input formControlName="vacancies" name="vacancies" type="number" matInput required>
+                <input formControlName="vacancies" name="vacancies" min="0" type="number" matInput required>
             </mat-form-field>  
             <mat-form-field appearance="fill">
                 <mat-label>Agregue una breve descripción</mat-label>
