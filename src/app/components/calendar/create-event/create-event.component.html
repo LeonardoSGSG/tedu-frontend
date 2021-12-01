@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Crear Evento</h2>
+<div mat-dialog-content>
+    <form [formGroup]="addEventForm" (ngSubmit)="postForm(addEventForm.value)">
+        <div class="card-body form-group">        
+            <mat-form-field appearance="fill">
+                <mat-label>Añade un título</mat-label>
+                <input formControlName="title" name="title" type="text" matInput required>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha Inicio</mat-label>
+                <input matInput formControlName="start" name="start" [matDatepicker]="picker1" required>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha Fin</mat-label>
+                <input matInput formControlName="end" name="end" [matDatepicker]="picker2" required>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>                                                             
+            <button [disabled]="addEventForm.invalid" [mat-dialog-close]="true" (click)="postForm(addEventForm.value)" mat-raised-button color="primary">
+                Agregar
+            </button>               
+            <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancelar</button>        
+        </div>
+    </form>
+</div>

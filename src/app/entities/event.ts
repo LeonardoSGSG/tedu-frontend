@@ -1,3 +1,5 @@
-export interface Event{
-    text: string
+export interface EventI{
+    title: string,
+    start: string,
+    end: string
 }

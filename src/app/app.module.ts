@@ -74,6 +74,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotificacionesComponent } from './components/notificaciones/notificaciones.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
+import { DeleteEventComponent } from './components/calendar/delete-event/delete-event.component';
 
 
 
@@ -106,6 +108,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     ConfirmDeletePostComponent,
     NotificacionesComponent,
     CalendarComponent,
+    CreateEventComponent,
+    DeleteEventComponent,
   ],
   imports: [
     BrowserModule,

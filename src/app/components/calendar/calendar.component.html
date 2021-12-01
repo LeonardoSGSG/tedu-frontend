@@ -20,7 +20,11 @@
         </button>
       </mat-menu>    
     </mat-toolbar>
-  </p>
+</p>
+
+<!--calendario-->
 <div class="container">
+    <!--crear evento-->
+    <button (click)="onCreateEvent()" mat-raised-button color="primary">Crear Evento</button>
     <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar>
 </div>

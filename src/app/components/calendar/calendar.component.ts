@@ -3,6 +3,13 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Router } from '@angular/router';
+import { CalendarService } from './calendar.service';
+import { EventI } from 'src/app/entities/event';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateEventComponent } from './create-event/create-event.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DeleteEventComponent } from './delete-event/delete-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -11,10 +18,12 @@ import { Router } from '@angular/router';
 })
 export class CalendarComponent implements OnInit {
 
-  public events: any[]=[];
+  public events: EventI[]=[];
   public options: any;
-
-  constructor(private router: Router) { }
+  durationInSeconds = 5;
+  
+  constructor(private router: Router, private calendarService: CalendarService,public dialog: MatDialog,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.options = {
@@ -25,13 +34,47 @@ export class CalendarComponent implements OnInit {
         center:'title',
         right:'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      editable: false
+      height: 500,
+      displayEventTime: false,
+      selectable: true,
+      selectHelper: true,
+      editable: false,
+      eventClick: (info:any) => {
+        let data = {          
+          id: info.event.id          
+        };
+        this.openModal(data.id);
+        console.log(data.id)
+      }  
+      /*eventClick: function(info: any){
+        let data = {          
+          id: info.event.id,          
+        };
+        //this.openModal(data);
+        this.event_id = data.id
+        console.log(this.event_id)
+      }  */
     }
-    this.events = [{title:"Evento 1", start: new Date(), description: "Evento 1"},
-                   {title:"Evento 2", start: new Date(new Date().getTime() + 86400000), description: "Evento 1"},
-                   {title:"Evento 3", start: new Date(new Date().getTime() + (86400000*2)), end: new Date(new Date().getTime() + (86400000*3)), description: "Evento 1"},]
+    
+    this.getAllUserEvents();
   }
-
+  openModal(id:any) {
+    const modalRef = this.dialog.open(DeleteEventComponent,{
+      disableClose: false,
+      data:{
+        id: id
+      }
+    }).afterClosed().subscribe(res =>{
+      //console.log(res)
+      if(res){
+        this._snackBar.openFromComponent(snackBarDeleteEvent, {
+          duration: this.durationInSeconds * 1000,
+        }); 
+        this.getAllUserEvents(); 
+      }                
+    });
+    //modalRef.componentInstance.data = data;    
+  }
   public redirProfile(){
     this.router.navigate(['/profile']);
   }
@@ -42,4 +85,58 @@ export class CalendarComponent implements OnInit {
   regresarCursos(){
     this.router.navigate(['/courses']);
   }
+  onCreateEvent(){
+    return this.dialog.open(CreateEventComponent,{
+      disableClose:true,
+      autoFocus:true,
+      width: "25%"
+    }).afterClosed().subscribe(res =>{
+      console.log(res);      
+      if(res){        
+        this._snackBar.openFromComponent(snackBarAddEvent, {
+          duration: this.durationInSeconds * 1000,
+        });   
+        window.location.reload();    
+      }
+    })
+  }
+  public onDeleteEvent(event_id:number){
+    this.dialog.open(DeleteEventComponent,{
+      disableClose: true,
+      data:{
+        event_id: event_id
+      }
+    }).afterClosed().subscribe(res =>{
+      //console.log(res)
+      if(res){
+        this._snackBar.openFromComponent(snackBarDeleteEvent, {
+          duration: this.durationInSeconds * 1000,
+        }); 
+        this.getAllUserEvents(); 
+      }                
+    })
+  }
+  public getAllUserEvents(){
+    this.calendarService.findAllUserEvents().subscribe(
+      (response: EventI[]) => {
+        this.events = response;
+        console.log(this.events);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
 }
+
+@Component({
+  selector: 'snack-bar-add-event',
+  templateUrl: 'snack-bar-add-event.html'
+})
+export class snackBarAddEvent {}
+
+@Component({
+  selector: 'snack-bar-delete-event',
+  templateUrl: 'snack-bar-delete-event.html'
+})
+export class snackBarDeleteEvent {}
