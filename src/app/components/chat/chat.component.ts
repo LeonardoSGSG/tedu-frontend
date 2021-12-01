@@ -100,7 +100,7 @@ this.router.navigate(['/courses']);
   }
   postFormMessage(msg: msg){    
     msg.userId= this.idDestino;    
-
+    (<HTMLInputElement>document.getElementById("envMensaje")).value = '';
       console.log("debug")
       this.sendMessage(msg);
           

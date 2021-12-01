@@ -70,7 +70,10 @@ export class CourseContentComponent implements OnInit {
   public redirigirCurso( idCurso: string)
   {
     sessionStorage.setItem('currentCourse',idCurso);
+
     this.router.navigate(['/courses/' + idCurso]);
+    location.reload();
+
     console.log("debugeando")
   }
   public updateNotifications(): void{
