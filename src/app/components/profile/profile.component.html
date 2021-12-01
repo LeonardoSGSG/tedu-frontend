@@ -25,11 +25,14 @@
         </button>
         <mat-menu xPosition="before" #appMenu="matMenu">
               
-
-                      <div *ngFor="let notification of notifications">
-                         <p>{{notification.text}} </p> 
-                      </div>
-          
+          <div  style="padding: 5px;  ">
+            {{notificationsRes}}
+            <div   *ngFor="let notification of notifications">
+              <p style="background-color: white; padding: 5px; font-size: medium; width: fit-content; border-radius: 5px; margin:7px; cursor: pointer;" 
+              (click)= "redirigirCurso(notification.comment!.post!.course!.id!.toString())" 
+              (click)="redirigirCurso(notification.post!.course!.id!.toString())">{{notification.text}}</p>
+            </div>
+          </div>
 
         </mat-menu>
   </mat-toolbar>

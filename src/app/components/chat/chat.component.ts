@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
   addMessageForm = new FormGroup({
     text: new FormControl('')
   })
+  public notificationsRes='';
   public notifications: notificationDTO[]=[];
   public messages: messageDTO[]=[];
   public idMessage: string='';
@@ -61,11 +62,24 @@ this.router.navigate(['/courses']);
       }
     )
   } 
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+    this.router.navigate(['/courses/' + idCurso]);
+    console.log("debugeando")
+  }
   public getUnseen(): void{
     this.notisSvc.getUnseen().subscribe(
       (response: notificationDTO[])=>
       {
         this.notifications=response;
+        if(this.notifications.length==0)
+        {
+          this.notificationsRes="No hay notificaciones nuevas"
+        }
+        else{
+          this.notificationsRes=""
+        }
       },
       (error: HttpErrorResponse)=>
       {
@@ -86,7 +100,7 @@ this.router.navigate(['/courses']);
   }
   postFormMessage(msg: msg){    
     msg.userId= this.idDestino;    
-
+    (<HTMLInputElement>document.getElementById("envMensaje")).value = '';
       console.log("debug")
       this.sendMessage(msg);
           

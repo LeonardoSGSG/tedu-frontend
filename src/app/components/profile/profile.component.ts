@@ -16,6 +16,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  public notificationsRes='';
   public notifications: notificationDTO[]=[];
    public perfil!: usuarioDTO;
   hide=true;
@@ -84,6 +85,13 @@ this.router.navigate(['/courses']);
       (response: notificationDTO[])=>
       {
         this.notifications=response;
+        if(this.notifications.length==0)
+        {
+          this.notificationsRes="No hay notificaciones nuevas"
+        }
+        else{
+          this.notificationsRes=""
+        }
       },
       (error: HttpErrorResponse)=>
       {
@@ -91,6 +99,12 @@ this.router.navigate(['/courses']);
       }
     )
   } 
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+    this.router.navigate(['/courses/' + idCurso]);
+    console.log("debugeando")
+  }
   public updateNotifications(): void{
     this.notisSvc.updateNotifications().subscribe(
     (response)=>

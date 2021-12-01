@@ -1,4 +1,6 @@
+import { postDTO } from "../components/posts/DTOS/postDTO";
 import { Archivo } from "./archivo";
+import { Post } from "./post";
 import { Usuario } from "./usuario";
 
 
@@ -9,4 +11,5 @@ export interface Comment{
     user: Usuario;
     qualified: boolean;
     files:Archivo[];
+    post: Post
 }

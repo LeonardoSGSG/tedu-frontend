@@ -17,6 +17,7 @@ import { notificationDTO } from 'src/app/entities/notificationDTO';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
+  public notificationsRes='';
   public notifications: notificationDTO[]=[];
   public courses: Curso[]=[];  
   public ownedCourses: ownedCourses[] =[];
@@ -60,7 +61,12 @@ export class CoursesComponent implements OnInit {
     sessionStorage.setItem('pId',pId)
     this.router.navigate(['/courses/'+id])
   }
-
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+    this.router.navigate(['/courses/' + idCurso]);
+    console.log("debugeando")
+  }
   public getCourses(): void{
     this.coursesService.getAllCourses().subscribe(
       (response: Curso[]) => {
@@ -146,6 +152,13 @@ export class CoursesComponent implements OnInit {
       (response: notificationDTO[])=>
       {
         this.notifications=response;
+        if(this.notifications.length==0)
+        {
+          this.notificationsRes="No hay notificaciones nuevas"
+        }
+        else{
+          this.notificationsRes=""
+        }
       },
       (error: HttpErrorResponse)=>
       {

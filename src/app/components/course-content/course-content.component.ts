@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./course-content.component.css']
 })
 export class CourseContentComponent implements OnInit {
+  public notificationsRes='';
   public notifications: notificationDTO[]=[];
   public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
@@ -52,6 +53,13 @@ export class CourseContentComponent implements OnInit {
       (response: notificationDTO[])=>
       {
         this.notifications=response;
+        if(this.notifications.length==0)
+        {
+          this.notificationsRes="No hay notificaciones nuevas"
+        }
+        else{
+          this.notificationsRes=""
+        }
       },
       (error: HttpErrorResponse)=>
       {
@@ -59,6 +67,15 @@ export class CourseContentComponent implements OnInit {
       }
     )
   } 
+  public redirigirCurso( idCurso: string)
+  {
+    sessionStorage.setItem('currentCourse',idCurso);
+
+    this.router.navigate(['/courses/' + idCurso]);
+    location.reload();
+
+    console.log("debugeando")
+  }
   public updateNotifications(): void{
     this.notisSvc.updateNotifications().subscribe(
     (response)=>
