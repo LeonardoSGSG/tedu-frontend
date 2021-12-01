@@ -11,23 +11,23 @@
         <div class="card-body form-group">
             <mat-form-field appearance="fill">
                 <mat-label>Nombres y Apellidos</mat-label>
-                <input [(ngModel)]="usuario.name" name="name" type="text" matInput required>
+                <input [(ngModel)]="usuario.name" [maxlength]="100" name="name" type="text" matInput required>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Correo Electrónico</mat-label>
-                <input [(ngModel)]="usuario.email" name="email" matInput placeholder="pat@ejemplo.com"  required>
+                <input [(ngModel)]="usuario.email" [maxlength]="255" name="email" matInput placeholder="pat@ejemplo.com"  required>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Institución Educativa</mat-label>
-                <input [(ngModel)]="usuario.institution" name="institution" matInput >
+                <input [(ngModel)]="usuario.institution" [maxlength]="50" name="institution" matInput >
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input matInput [(ngModel)]="usuario.phone" name="phone" value="" placeholder="999-999-999" mask="000-000-000">
+                <input matInput [(ngModel)]="usuario.phone" [maxlength]="15" name="phone" value="" placeholder="999-999-999" mask="000-000-000">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="usuario.password" name="password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
+                <input matInput [(ngModel)]="usuario.password" [maxlength]="120" name="password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
                 <mat-icon style="cursor: pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </mat-form-field>  
             <div class="form-group mt-3">

@@ -82,4 +82,5 @@ export class AddCourseComponent implements OnInit {
   public agregar(){
     this.dialogRef.close();
   }
+  
 }
