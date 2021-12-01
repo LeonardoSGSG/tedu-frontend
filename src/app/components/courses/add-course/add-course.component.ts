@@ -49,6 +49,18 @@ export class AddCourseComponent implements OnInit {
     {viewValue: '15:00'},{viewValue: '16:00'},{viewValue: '17:00'},{viewValue: '18:00'},
     {viewValue: '19:00'},{viewValue: '20:00'},{viewValue: '21:00'},{viewValue: '22:00'},
   ]
+  horas1: Hora[] = [
+    {viewValue: '7:00'},{viewValue: '8:00'},{viewValue: '9:00'},{viewValue: '10:00'},
+    {viewValue: '11:00'},{viewValue: '12:00'},{viewValue: '13:00'},{viewValue: '14:00'},
+    {viewValue: '15:00'},{viewValue: '16:00'},{viewValue: '17:00'},{viewValue: '18:00'},
+    {viewValue: '19:00'},{viewValue: '20:00'},{viewValue: '21:00'},{viewValue: '22:00'},
+  ]
+  horas2: Hora[] = [
+    {viewValue: '7:00'},{viewValue: '8:00'},{viewValue: '9:00'},{viewValue: '10:00'},
+    {viewValue: '11:00'},{viewValue: '12:00'},{viewValue: '13:00'},{viewValue: '14:00'},
+    {viewValue: '15:00'},{viewValue: '16:00'},{viewValue: '17:00'},{viewValue: '18:00'},
+    {viewValue: '19:00'},{viewValue: '20:00'},{viewValue: '21:00'},{viewValue: '22:00'},
+  ]
   constructor(private api:CoursesService,
               public router:Router,
               private dialog:MatDialog,
@@ -82,5 +94,18 @@ export class AddCourseComponent implements OnInit {
   public agregar(){
     this.dialogRef.close();
   }
-  
+  public selectDate(i:number, event: any, dat:string){
+    this.horas2= [
+      {viewValue: '7:00'},{viewValue: '8:00'},{viewValue: '9:00'},{viewValue: '10:00'},
+      {viewValue: '11:00'},{viewValue: '12:00'},{viewValue: '13:00'},{viewValue: '14:00'},
+      {viewValue: '15:00'},{viewValue: '16:00'},{viewValue: '17:00'},{viewValue: '18:00'},
+      {viewValue: '19:00'},{viewValue: '20:00'},{viewValue: '21:00'},{viewValue: '22:00'},
+    ];
+    if(event.value.includes(":") && dat=="inicio"){
+      for(let i=0; i<parseInt(event.value.split(":")[0])-6;i++){
+        this.horas2.shift();
+      }
+    }
+
+  }
 }

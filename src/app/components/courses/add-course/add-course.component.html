@@ -21,7 +21,7 @@
                     <div class="form-group row">
                         <mat-form-field class="col-md-3" appearance="fill">
                             <mat-label [attr.for]="'day'+i">Día</mat-label>
-                            <mat-select [attr.id]="'day'+i" formControlName="day" required>
+                            <mat-select  [attr.id]="'day'+i" formControlName="day" required>
                             <mat-option *ngFor="let dia of dias" [value]="dia.value">
                                 {{dia.viewValue}}
                             </mat-option>
@@ -29,16 +29,18 @@
                         </mat-form-field>  
                         <mat-form-field class="col-md-4" appearance="fill">
                             <mat-label [attr.for]="'start'+i">Hora Inicio</mat-label>
-                            <mat-select [attr.id]="'start'+i" formControlName="start" required>
-                            <mat-option *ngFor="let hora of horas" [value]="hora.viewValue">
+                            <mat-select id="{{'inicio'+i}}" (selectionChange)="selectDate(i, $event, 'inicio')" [attr.id]="'start'+i" formControlName="start" required>
+                                <mat-option value="" selected>escoja un horario...</mat-option>
+                                <mat-option *ngFor="let hora of horas1" [value]="hora.viewValue">
                                 {{hora.viewValue}}
                             </mat-option>
                             </mat-select>
                         </mat-form-field>   
                         <mat-form-field class="col-md-4" appearance="fill">
                             <mat-label [attr.for]="'end'+i">Hora Fin</mat-label>
-                            <mat-select [attr.id]="'end'+i" formControlName="end" required>
-                            <mat-option *ngFor="let hora of horas" [value]="hora.viewValue">
+                            <mat-select id="{{'fin'+i}}" (selectionChange)="selectDate(i, $event, 'fin')" [attr.id]="'end'+i" formControlName="end" required>
+                            <mat-option value="">escoja un horario...</mat-option>
+                            <mat-option *ngFor="let hora of horas2" [value]="hora.viewValue">
                                 {{hora.viewValue}}
                             </mat-option>
                             </mat-select>
