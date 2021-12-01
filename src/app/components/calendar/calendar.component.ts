@@ -41,9 +41,10 @@ export class CalendarComponent implements OnInit {
       editable: false,
       eventClick: (info:any) => {
         let data = {          
-          id: info.event.id          
+          id: info.event.id,
+          title: info.event.title
         };
-        this.openModal(data.id);
+        this.openModal(data.id,data.title);
         console.log(data.id)
       }  
       /*eventClick: function(info: any){
@@ -58,11 +59,12 @@ export class CalendarComponent implements OnInit {
     
     this.getAllUserEvents();
   }
-  openModal(id:any) {
+  openModal(id:any,title:string) {
     const modalRef = this.dialog.open(DeleteEventComponent,{
       disableClose: false,
       data:{
-        id: id
+        id: id,
+        title: title
       }
     }).afterClosed().subscribe(res =>{
       //console.log(res)
@@ -100,11 +102,12 @@ export class CalendarComponent implements OnInit {
       }
     })
   }
-  public onDeleteEvent(event_id:number){
+  public onDeleteEvent(event_id:number,event_title:string){
     this.dialog.open(DeleteEventComponent,{
       disableClose: true,
       data:{
-        event_id: event_id
+        event_id: event_id,
+        event_title: event_title
       }
     }).afterClosed().subscribe(res =>{
       //console.log(res)

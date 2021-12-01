@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Eliminar evento</h1>
-<div mat-dialog-content>¿Está seguro que desea quitar este evento {{data.id}}? </div>
+<div mat-dialog-content>¿Está seguro que desea quitar el evento: {{data.title}}? </div>
 <div mat-dialog-actions>
     <button mat-button id="no-button" [mat-dialog-close]="false" cdkFocusInitial>Cancelar</button>
     <button mat-button id="yes-button" [mat-dialog-close]="true" mat-dialog-close color="warn" (click)="removeEvent(data.id)">Eliminar</button>
