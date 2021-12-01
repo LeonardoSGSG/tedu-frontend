@@ -4,7 +4,7 @@
         <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
           </button>-->
-        <span id="tedu" (click)="irTedu()">Tedu</span>
+        <span id="tedu" (click)="irTedu()" style="cursor: pointer;">Tedu</span>
         <!--Boton Cuenta-->
         <button id="btnCuenta" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>account_circle</mat-icon>
@@ -38,7 +38,10 @@
             
                     </div>
           </mat-menu>
-
+    <!--Boton calendario-->
+    <button (click)="redirCalendar()" id="btnCalendar" mat-icon-button aria-label="btn_calendar">
+        <mat-icon>calendar_today</mat-icon>
+      </button>
     </mat-toolbar>
 
 

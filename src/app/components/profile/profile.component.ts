@@ -116,6 +116,9 @@ this.router.navigate(['/courses']);
     }
     )
   }
+  public redirCalendar(){
+    this.router.navigate(['/calendar']);
+  }
   /*public eliminar(): void
 
   {

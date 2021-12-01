@@ -87,4 +87,7 @@ export class CourseContentComponent implements OnInit {
     }
     )
   }
+  public redirCalendar(){
+    this.router.navigate(['/calendar']);
+  }
 }

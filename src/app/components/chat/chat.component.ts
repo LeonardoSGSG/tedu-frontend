@@ -151,4 +151,7 @@ this.router.navigate(['/courses']);
     this.router.navigate(['/login']);
 
   }
+  public redirCalendar(){
+    this.router.navigate(['/calendar']);
+  }
 }

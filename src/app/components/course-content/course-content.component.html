@@ -35,6 +35,10 @@
             
                         </div>
           </mat-menu>
+          <!--Boton calendario-->
+          <button (click)="redirCalendar()" id="btnCalendar" mat-icon-button aria-label="btn_calendar">
+            <mat-icon>calendar_today</mat-icon>
+          </button>
         </mat-toolbar>
     </p>
     <div *ngIf="myId != pId"><button class="mat-focus-indicator mat-raised-button mat-button-base mat-warn" data-toggle="modal" data-target="#deleteCourseModal">Abandonar Curso</button></div>
