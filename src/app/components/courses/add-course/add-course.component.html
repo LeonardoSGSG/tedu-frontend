@@ -14,7 +14,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Nro de semanas</mat-label>
-                <input matInput formControlName="weeks" name="weeks" min="1" type="number" required>
+                <input matInput formControlName="weeks" name="weeks" min="1" type="number" required step="1" pattern="\d*">
             </mat-form-field>                              
             <div formArrayName="schedule" *ngFor="let s of schedule.controls; let i=index">
                 <div [formGroupName]="i">
