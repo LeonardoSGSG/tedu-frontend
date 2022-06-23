@@ -21,6 +21,9 @@ export class ChatComponent implements OnInit {
     text: new FormControl('')
   })
   public notificationsRes='';
+  public mArchivos: string[]=[];
+  public archivosMensaje: any[]=[];
+  public numeroArchivosMensaje:number=0;
   public notifications: notificationDTO[]=[];
   public messages: messageDTO[]=[];
   public idMessage: string='';
@@ -153,5 +156,51 @@ this.router.navigate(['/courses']);
   }
   public redirCalendar(){
     this.router.navigate(['/calendar']);
+  }
+  public clicArchivo(){
+    document.getElementById('archivos')?.click();
+    this.limpiarArchivos();
+  }
+  public cambioArchivos(event:any){
+    //this.limpiarArchivos();
+    let archivo = event.target.files;
+    this.numeroArchivosMensaje=event.target.files.length;
+    if(event.target.files.length>0){
+      let tNombres = document.createElement("div");
+      tNombres.textContent="Nombre de archivos:";
+      document.getElementById("tNombres")?.appendChild(tNombres);
+    }
+    for(let i=0; i<event.target.files.length; i++){
+      let reader=new FileReader();
+      var nomCort:string;
+      if(archivo[i].name.length>25){
+        nomCort = (archivo[i].name).substring(0,22)+"...";
+        this.mArchivos.push(nomCort);
+      }else{
+        this.mArchivos.push(archivo[i].name);
+      }
+      reader.readAsDataURL(archivo[i]);
+      reader.onloadend=()=>{
+        //console.log(reader.result);
+        this.archivosMensaje.push(reader.result);
+      }
+    }
+    
+  }
+  public limpiarArchivos(){
+    var e = document.getElementById("nombresArchivos");
+    var f = document.getElementById("tNombres");
+    this.mArchivos = [];
+    this.archivosMensaje=[];
+    var child = e!.lastElementChild;
+    while(child!=null){
+      e!.removeChild(child);
+      child = e!.lastElementChild;
+    }
+    var child2 = f!.lastChild;
+    while(child2!=null){
+      f!.removeChild(child2);
+      child2 = f!.lastElementChild;
+    }
   }
 }

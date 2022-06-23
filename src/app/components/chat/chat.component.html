@@ -49,7 +49,7 @@
 <div style="width: 50%; margin: auto;">
 <mat-card style="border-color: black; background-color:rgb(80, 115, 212); color: white">Conversando con:
     {{nombreDestino}}  </mat-card>
-<mat-card-content>
+<mat-card-content style="background-color: rgb(237,237,237);">
 
     <div class="scroll-div">
         <div *ngFor="let message of messages">
@@ -99,16 +99,27 @@
             <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
                 <div class="card-body form-group img-push">
                     <div>
-                        <mat-form-field appearance="outline">
-                            <mat-label id="cajaMensaje">Escribe un mensaje</mat-label>
-                            <input id="envMensaje" matInput formControlName="text" name="text" type="text">
+                        <mat-form-field style="width: 100%;" appearance="outline">
+                            <mat-label  id="cajaMensaje" >Escribe un mensaje</mat-label>
+                            <input  id="envMensaje" matInput formControlName="text" name="text" type="text">
                         </mat-form-field>
                     </div>
-                    <div>
-                        <button type="submit" color="basic" mat-raised-button color="primary">
+                    <div style="text-align: right; display: flex;">
+                        <div style="width: 46%; text-align: left; margin-left: 1%;">
+                            <div id="tNombres" class="TNombres"></div>
+                            <div id="nombresArchivos" class="nombresArchivos">
+                                <div *ngFor="let archivo of mArchivos">
+                                    •{{archivo}}
+                                </div> 
+                            </div>
+                        </div>
+                        <button type="button" (click)="clicArchivo()" style="margin-right: 1%; width: 25%;" color="basic" mat-raised-button color="primary">
+                            Subir archivo
+                        </button>
+                        <input type="file" multiple="multiple" (change)="cambioArchivos($event)" id="archivos" style="display: none;" />
+                        <button type="submit" color="basic" mat-raised-button color="primary" style="width: 27%;">
                             Enviar mensaje
                         </button>
-
                     </div>
                 </div>
             </form>

@@ -94,7 +94,7 @@ export class AddPostComponent implements OnInit {
       }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
-        console.log(reader.result);
+        //console.log(reader.result);
         this.archivosPost.push(reader.result);
       }
     }
@@ -103,7 +103,7 @@ export class AddPostComponent implements OnInit {
   }
   limpiarArchivos(){
     var e = document.getElementById("nombresArchivos");
-    var f = document.getElementById("tNombres")
+    var f = document.getElementById("tNombres");
     this.archivosPost=[];
     this.nombresArchivosPost=[];
     //e.firstElementChild can be used.
