@@ -11,6 +11,7 @@ import { notificationDTO } from 'src/app/entities/notificationDTO';
 import { debug } from 'console';
 import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
 import { NotificacionesService } from '../notificaciones/notificaciones.service';
+import { StorageService } from '../storage/storage.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -22,6 +23,7 @@ export class ChatComponent implements OnInit {
   })
   public notificationsRes='';
   public mArchivos: string[]=[];
+  public nombresArchivosReales: string[]=[];
   public archivosMensaje: any[]=[];
   public numeroArchivosMensaje:number=0;
   public notifications: notificationDTO[]=[];
@@ -31,7 +33,7 @@ export class ChatComponent implements OnInit {
   public cont!:number;
   idDestino: string| null= sessionStorage.getItem('idChatDestino'); 
   nombreDestino: string| null= sessionStorage.getItem('nombreChatDestino');
-  constructor(private chatSvc: ChatService, private router: Router, private notisSvc: NotificacionesService) { }
+  constructor(private chatSvc: ChatService, private router: Router, private notisSvc: NotificacionesService, private apiFiles:StorageService) { }
 
   ngOnInit(): void {
     this.allMessages();
@@ -101,26 +103,49 @@ this.router.navigate(['/courses']);
     }
     )
   }
-  postFormMessage(msg: msg){    
-    msg.userId= this.idDestino;    
-    (<HTMLInputElement>document.getElementById("envMensaje")).value = '';
-      console.log("debug")
-      this.sendMessage(msg);
-          
+  postFormMessage(msg: msg){   
+    if(msg.text==null || msg.text==""){
+      //Controlar mensajes vacios
+    } else{
+      msg.userId= this.idDestino;    
+        //console.log("debug")
+        this.sendMessage(msg);
+    }
   }  
   public sendMessage(msg: msg): void{
     
     this.ordenarMensajes;
 
-    console.log("entra");
+    //console.log("entra");
     
     this.chatSvc.sendMessage(msg).subscribe(
       res=>
       {
-        console.log(res.text);
-        console.log(msg.userId);
-        this.allMessages();
-        
+        if(this.numeroArchivosMensaje>0){
+          for(let i=0;i<this.numeroArchivosMensaje;i++){
+            let archivosReales = (<HTMLInputElement>document.getElementById('archivos'))!;
+            this.apiFiles.subirImagen(this.nombresArchivosReales[i]/*+"_"+Date.now()*/,this.archivosMensaje[i]).then(urlImagen=>{
+              this.apiFiles.createMessageFile(urlImagen!,res.id+"",this.mArchivos[i]).subscribe(res=>{
+                if(i==this.numeroArchivosMensaje-1){
+                  //se envia el ultimo archivo
+                  this.limpiarArchivos();
+                  this.addMessageForm = new FormGroup({
+                    text: new FormControl('')
+                  });
+                  (<HTMLInputElement>document.getElementById('archivos')).value='';
+                  (<HTMLInputElement>document.getElementById('envMensaje')).value='';
+                  this.allMessages();
+                }
+              }),(error: HttpErrorResponse)=>{
+                alert(error.message);
+              }
+            })
+          }
+        }else{
+          (<HTMLInputElement>document.getElementById('archivos')).value='';
+          (<HTMLInputElement>document.getElementById('envMensaje')).value='';
+          this.allMessages();
+        }
       },
       (error:HttpErrorResponse)=>
       {
@@ -170,19 +195,25 @@ this.router.navigate(['/courses']);
       tNombres.textContent="Nombre de archivos:";
       document.getElementById("tNombres")?.appendChild(tNombres);
     }
-    for(let i=0; i<event.target.files.length; i++){
+    for(let i=0; i<archivo.length; i++){
       let reader=new FileReader();
       var nomCort:string;
-      if(archivo[i].name.length>25){
+      if(archivo[i].name.length<=25){
+        this.mArchivos.push(archivo[i].name);
+        this.nombresArchivosReales.push(archivo[i].name);
+      }else if(archivo[i].name.length <= 50){
         nomCort = (archivo[i].name).substring(0,22)+"...";
         this.mArchivos.push(nomCort);
+        this.nombresArchivosReales.push(archivo[i].name);
       }else{
-        this.mArchivos.push(archivo[i].name);
+        alert("El archivo de nombre: ("+archivo[i].name+") tiene un nombre muy largo, favor de recortar e intentar de nuevo");
+        this.limpiarArchivos();
       }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
-        //console.log(reader.result);
-        this.archivosMensaje.push(reader.result);
+        if(archivo[i].name.length<=50){
+          this.archivosMensaje.push(reader.result);
+        }
       }
     }
     
@@ -190,6 +221,9 @@ this.router.navigate(['/courses']);
   public limpiarArchivos(){
     var e = document.getElementById("nombresArchivos");
     var f = document.getElementById("tNombres");
+    (<HTMLInputElement>document.getElementById('archivos')).value='';
+    this.numeroArchivosMensaje=0;
+    this.nombresArchivosReales = [];
     this.mArchivos = [];
     this.archivosMensaje=[];
     var child = e!.lastElementChild;
@@ -202,5 +236,8 @@ this.router.navigate(['/courses']);
       f!.removeChild(child2);
       child2 = f!.lastElementChild;
     }
+  }
+  accederArchivo(url:string){
+    window.open(url, '_blank')
   }
 }

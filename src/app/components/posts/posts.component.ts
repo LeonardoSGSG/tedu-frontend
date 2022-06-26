@@ -164,7 +164,7 @@ export class PostsComponent implements OnInit {
           }
         });
         for(let i=0;i<this.numeroArchivos;i++){
-          this.apiFile.subirImagen(this.nombresArchivos[i]+"_"+Date.now(),this.archivos[i]).then(url=>{
+          this.apiFile.subirImagen(this.nombresArchivos[i]/*+"_"+Date.now()*/,this.archivos[i]).then(url=>{
             console.log(url);
             this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[i]).subscribe(res=>{
             console.log("Se guardo la url de firebase en la BD")
@@ -283,12 +283,18 @@ export class PostsComponent implements OnInit {
         nomCort = (archivo[i].name).substring(0,47)+"...";
         this.nombresArchivos.push(nomCort);
       }else{
-        this.nombresArchivos.push(archivo[i].name);
+        if(archivo[i].name.length<=50){
+          this.nombresArchivos.push(archivo[i].name);
+        }else{
+          alert("El archivo de nombre: ("+archivo[i].name+") tiene un nombre muy largo, favor de recortar e intentar de nuevo");
+          this.limpiarArchivos();
+        }
       }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
-        console.log(reader.result);
-        this.archivos.push(reader.result);
+        if(archivo[i].name.length<=50){
+          this.archivos.push(reader.result);
+        }
       }
     }
   }
@@ -296,6 +302,7 @@ export class PostsComponent implements OnInit {
     var e = document.getElementById("nombresArchivos");
     this.archivos=[];
     this.nombresArchivos=[];
+    this.numeroArchivos=0;
     //e.firstElementChild can be used.
     var child = e!.lastElementChild; 
     while (child) {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { Observable } from 'rxjs';
+import { msg } from 'src/app/components/chat/DTOs/msg';
 import { Archivo } from 'src/app/entities/archivo';
 import { Post } from 'src/app/entities/post';
 import { environment } from 'src/environments/environment';
@@ -48,6 +49,15 @@ export class StorageService {
    };
    let envio={key:url, name:nombreAr};
    return this.http.post<{comment:Comment, key:string, id:number}>(this.apiServerUrl+"/courses/"+sessionStorage.getItem('currentCourse')+"/posts/"+postId+"/comments/"+commentId+"/files",envio,opts);
+  }
+  public createMessageFile(url:string, messageID:string, nombreAr:string):Observable<{}>{
+    const opts={
+      headers: new HttpHeaders({
+        'Authorization': 'Token ' + sessionStorage.getItem('token')
+      })
+    };
+    let envio = {key:url, name:nombreAr};
+    return this.http.post<{message: msg, key:string, id:number}>(this.apiServerUrl+"/messages/"+messageID+"/files",envio,opts);
   }
   async eliminarImagenes(urls:Archivo[]){
     try{

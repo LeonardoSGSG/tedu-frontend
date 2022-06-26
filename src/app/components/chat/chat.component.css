@@ -1,12 +1,18 @@
-p
+.mens
 {
     font-size: medium;
     background-color: lightgreen;
-    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 10px;
+    padding-bottom:10px !important;
     width: fit-content;
-    border-radius: 5px;
-    margin:7px
+    border-radius: 7px;
+    margin-left:7px;
+    margin-top:5px;
+    margin-right:7px;
 }
+
 .ownContainer
 {
     justify-content: flex-end;
@@ -16,10 +22,15 @@ p
 {
     background-color: lightblue;
     align-self: flex-end;
-    border-radius: 5px;
-    padding: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 10px;
+    padding-bottom:0px;
     font-size:large;
-    margin:7px
+    border-radius: 7px;
+    margin-left:7px;
+    margin-top:5px;
+    margin-right:7px;
 }
 #tedu{
     margin-left: 1.3em;
@@ -60,5 +71,37 @@ p
 ::ng-deep .cdk-overlay-pane {
     max-height: 40%;
   }
-
+.fila{
+height: auto;
+}
+.elementoArchivos1{
+width: 70%;
+float: left;
+height: auto;
+margin-top: 3%;
+}
+.elementoArchivos2{
+width: 25%;
+float: left;
+height: auto;
+text-align: right;
+margin-top: 3%;
+vertical-align: middle;
+}
+.dividerArchivos{
+margin-left: 10%;
+margin-right: 10%;
+margin-top: 1%;
+margin-bottom: 1%;
+height: auto;
+}
+.listaArchivos{
+    padding: 0px 12px 0px 17px;
+    margin-bottom: 0%;
+  }
+.TLista{
+padding: 2%;
+margin-top: 3% 0 3% 0;
+height: auto;
+}
   

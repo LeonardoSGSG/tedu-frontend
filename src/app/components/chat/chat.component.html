@@ -51,21 +51,26 @@
     {{nombreDestino}}  </mat-card>
 <mat-card-content style="background-color: rgb(237,237,237);">
 
-    <div class="scroll-div">
-        <div *ngFor="let message of messages">
+    <div class="scroll-div" style="padding-bottom: 10px; margin-top: 7px;">
+        <div *ngFor="let message of messages; let i=index">
             <div class="post-comment">
                 <div class="box-footer box-comments">
                     <div class="box-comment">
                         <span class="username">
-                            <mat-card>
+                            <div style="padding-top: 0px; padding-bottom: 0px; border-radius: 0px;">
+                                <div *ngIf="i > 1" style="height: 0%;">
+                                    <div style="height: 10%;" *ngIf="messages[i].sender.id.toString() != messages[i-1].sender.id.toString()">
+    
+                                    </div>
+                                </div>
                                 <span style="display:flex;"
-                                    [ngClass]="{ownContainer: message.receiver.id.toString() === myId}">
+                                    [ngClass]="{'ownContainer': message.receiver.id.toString() === myId}">
                                     <div class="row">
 
                                         <div class="col-sm">
-                                            <p style="border-radius: 7px; margin:7px; padding: 15px; font-size: medium;"
-                                                [ngClass]="{ownMessage: message.receiver.id.toString()===myId}">
-                                                {{message.sender.name}}: {{message.text}}
+                                            <div style= "font-size: medium;"
+                                                [ngClass]="{'ownMessage': message.receiver.id.toString()===myId}" class="mens">
+                                                <b>{{message.sender.name}}:</b> {{message.text}}
 
                                                 <button style="height: 0px; line-height: 0px;"
                                                     *ngIf="myId == message.sender.id.toString()" mat-icon-button
@@ -80,13 +85,23 @@
                                                         </button>
                                                     </mat-menu>
                                                 </button>
-                                            </p>
+                                                <mat-divider style="margin-right:10%;margin-left: 10%; width: 80%; margin-top: 10px;" *ngIf="message.files.length>0"></mat-divider>
+                                                <div class="TLista" style="margin-top: 0px;" *ngIf="message.files.length>0">
+                                                    <a><b>Archivos adjuntos:</b></a>
+                                                </div>
+                                                <div style="height: auto; overflow: hidden" class="fila" *ngFor="let file of message.files; let i=index">
+                                                    <mat-divider style="width: 70%;" class="dividerArchivos" *ngIf="i!=0"></mat-divider>
+                                                    <div class="listaArchivos elementoArchivos1"><a style="word-wrap: break-word;">•{{file.name}}</a></div>
+                                                    <div class="elementoArchivos2"><mat-icon style="cursor: pointer;" (click)="accederArchivo(file.key)">cloud_download</mat-icon></div>
+                                                </div>
+                                            </div>
+                                            
                                         </div>
 
 
                                     </div>
                                 </span>
-                            </mat-card>
+                            </div>
                         </span>
 
                     </div>
@@ -96,8 +111,8 @@
     </div>
     <mat-card-footer>
         <div class="box-footer-form">
-            <form [formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
-                <div class="card-body form-group img-push">
+            <form id="formul"[formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
+                <div class="card-body form-group img-push" style="padding-top:10px !important">
                     <div>
                         <mat-form-field style="width: 100%;" appearance="outline">
                             <mat-label  id="cajaMensaje" >Escribe un mensaje</mat-label>

@@ -43,11 +43,11 @@ export class AddPostComponent implements OnInit {
           h1.textContent="No cierre ni recargue el navegador hasta que se cierre este mensaje";
           document.getElementById("ContenedroCreacion")?.appendChild(h1);
           for(let i=0; i<this.numeroArchivosPost;i++){
-            this.apiFiles.subirImagen(this.nombresArchivosPost[i]+"_"+Date.now(),this.archivosPost[i]).then(urlImagen=>{
-              console.log(urlImagen);
+            this.apiFiles.subirImagen(this.nombresArchivosPost[i]/*+"_"+Date.now()*/,this.archivosPost[i]).then(urlImagen=>{
+              //console.log(urlImagen);
               this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivosPost[i]).subscribe(res=>{
-                console.log(res.id+" "+res.key);
-                console.log("Se guardo la url de firebase en la BD")
+                //console.log(res.id+" "+res.key);
+                //console.log("Se guardo la url de firebase en la BD")
                 if(i==this.numeroArchivosPost-1){
                   location.reload
                   //notification.close();
@@ -90,12 +90,19 @@ export class AddPostComponent implements OnInit {
         nomCort = (archivo[i].name).substring(0,47)+"...";
         this.nombresArchivosPost.push(nomCort);
       }else{
-        this.nombresArchivosPost.push(archivo[i].name);
+        if(archivo[i].name.length<=50){
+          this.nombresArchivosPost.push(archivo[i].name);
+        }else{
+          alert("El archivo de nombre: ("+archivo[i].name+") tiene un nombre muy largo, favor de recortar e intentar de nuevo");
+          this.limpiarArchivos();
+        }
       }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
         //console.log(reader.result);
-        this.archivosPost.push(reader.result);
+        if(archivo[i].name.length<=50){
+          this.archivosPost.push(reader.result);
+        }
       }
     }
     
@@ -106,6 +113,7 @@ export class AddPostComponent implements OnInit {
     var f = document.getElementById("tNombres");
     this.archivosPost=[];
     this.nombresArchivosPost=[];
+    this.numeroArchivosPost=0;
     //e.firstElementChild can be used.
     var child = e!.lastElementChild; 
     while (child) {

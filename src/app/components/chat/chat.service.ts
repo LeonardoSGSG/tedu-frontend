@@ -15,7 +15,7 @@ export class ChatService {
   
   constructor(private http: HttpClient) { }
 
-  public sendMessage(msg: msg):Observable<msg>
+  public sendMessage(msg: msg):Observable<messageDTO>
   {
 
     const idUser= sessionStorage.getItem('idChatDestino')!
@@ -25,7 +25,7 @@ export class ChatService {
 
     })
    };
-   return this.http.post<msg>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
+   return this.http.post<messageDTO>(this.apiServerUrl+'/messages/' + idUser, msg, opts)
   }
   
 
