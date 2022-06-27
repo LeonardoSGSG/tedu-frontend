@@ -79,7 +79,7 @@
                                                     <mat-icon>more_vert</mat-icon>
                                                     <mat-menu #menu="matMenu">
 
-                                                        <button (click)="deleteMessage(message.id)" mat-menu-item>
+                                                        <button (click)="deleteMessage(message.id, message.files)" mat-menu-item>
                                                             <mat-icon>remove_circle</mat-icon><span>Eliminar
                                                                 mensaje</span>
                                                         </button>
@@ -92,7 +92,7 @@
                                                 <div style="height: auto; overflow: hidden" class="fila" *ngFor="let file of message.files; let i=index">
                                                     <mat-divider style="width: 70%;" class="dividerArchivos" *ngIf="i!=0"></mat-divider>
                                                     <div class="listaArchivos elementoArchivos1"><a style="word-wrap: break-word;">•{{file.name}}</a></div>
-                                                    <div class="elementoArchivos2"><mat-icon style="cursor: pointer;" (click)="accederArchivo(file.key)">cloud_download</mat-icon></div>
+                                                    <a class="elementoArchivos2" [attr.href]="file.key" [attr.download]="file.name" target="_blank"><mat-icon style="cursor: pointer;">cloud_download</mat-icon></a>
                                                 </div>
                                             </div>
                                             

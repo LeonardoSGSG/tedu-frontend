@@ -12,6 +12,9 @@ import { debug } from 'console';
 import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
 import { NotificacionesService } from '../notificaciones/notificaciones.service';
 import { StorageService } from '../storage/storage.service';
+import { Archivo } from 'src/app/entities/archivo';
+import { ConfirmDeleteCommentComponent } from '../posts/confirm-delete-comment/confirm-delete-comment.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -33,7 +36,7 @@ export class ChatComponent implements OnInit {
   public cont!:number;
   idDestino: string| null= sessionStorage.getItem('idChatDestino'); 
   nombreDestino: string| null= sessionStorage.getItem('nombreChatDestino');
-  constructor(private chatSvc: ChatService, private router: Router, private notisSvc: NotificacionesService, private apiFiles:StorageService) { }
+  constructor(private chatSvc: ChatService,private dialog:MatDialog, private router: Router, private notisSvc: NotificacionesService, private apiFiles:StorageService) { }
 
   ngOnInit(): void {
     this.allMessages();
@@ -113,8 +116,15 @@ this.router.navigate(['/courses']);
     }
   }  
   public sendMessage(msg: msg): void{
-    
-    this.ordenarMensajes;
+    if(this.numeroArchivosMensaje>0){
+      var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
+        disableClose: true,
+        data:{
+          postId: null,
+          commentId:null
+        }
+      });}
+    //this.ordenarMensajes;
 
     //console.log("entra");
     
@@ -123,18 +133,23 @@ this.router.navigate(['/courses']);
       {
         if(this.numeroArchivosMensaje>0){
           for(let i=0;i<this.numeroArchivosMensaje;i++){
+            let tempI=i;
             let archivosReales = (<HTMLInputElement>document.getElementById('archivos'))!;
-            this.apiFiles.subirImagen(this.nombresArchivosReales[i]/*+"_"+Date.now()*/,this.archivosMensaje[i]).then(urlImagen=>{
-              this.apiFiles.createMessageFile(urlImagen!,res.id+"",this.mArchivos[i]).subscribe(res=>{
-                if(i==this.numeroArchivosMensaje-1){
-                  //se envia el ultimo archivo
-                  this.limpiarArchivos();
-                  this.addMessageForm = new FormGroup({
-                    text: new FormControl('')
-                  });
-                  (<HTMLInputElement>document.getElementById('archivos')).value='';
-                  (<HTMLInputElement>document.getElementById('envMensaje')).value='';
-                  this.allMessages();
+            let nomCortado:string[] = this.nombresArchivosReales[i].split('.');
+            this.apiFiles.subirImagen((nomCortado[0].length>35? nomCortado[0].substring(0,34):nomCortado[0]) + Date.now()+ this.myId +"."+nomCortado[nomCortado.length-1],this.archivosMensaje[i]).then(urlImagen=>{
+              this.apiFiles.createMessageFile(urlImagen!,res.id+"",this.mArchivos[tempI]).subscribe(res=>{
+                if(tempI==this.numeroArchivosMensaje-1){
+                  window.setTimeout(() => {
+                    //se envia el ultimo archivo
+                    this.limpiarArchivos();
+                    this.addMessageForm = new FormGroup({
+                      text: new FormControl('')
+                    });
+                    (<HTMLInputElement>document.getElementById('archivos')).value='';
+                    (<HTMLInputElement>document.getElementById('envMensaje')).value='';
+                    this.allMessages();
+                    dialogo.close();
+                  },2500);
                 }
               }),(error: HttpErrorResponse)=>{
                 alert(error.message);
@@ -153,11 +168,12 @@ this.router.navigate(['/courses']);
       }
     )
   }
-  public deleteMessage(idN: number): void
+  public deleteMessage(idN: number, archivos:Archivo[]): void
   {
     this.chatSvc.deleteMessage(idN).subscribe(
       res=>
       {
+        this.apiFiles.eliminarImagenes(archivos);
         console.log("Mensaje con id: " + idN + "eliminado");
         this.allMessages();
       },
@@ -206,7 +222,7 @@ this.router.navigate(['/courses']);
         this.mArchivos.push(nomCort);
         this.nombresArchivosReales.push(archivo[i].name);
       }else{
-        alert("El archivo de nombre: ("+archivo[i].name+") tiene un nombre muy largo, favor de recortar e intentar de nuevo");
+        alert("El archivo de nombre: '"+archivo[i].name+"' tiene un nombre muy largo, favor de recortar e intentar de nuevo");
         this.limpiarArchivos();
       }
       reader.readAsDataURL(archivo[i]);
@@ -237,7 +253,7 @@ this.router.navigate(['/courses']);
       child2 = f!.lastElementChild;
     }
   }
-  accederArchivo(url:string){
+  accederArchivo(url:string){ 
     window.open(url, '_blank')
   }
 }

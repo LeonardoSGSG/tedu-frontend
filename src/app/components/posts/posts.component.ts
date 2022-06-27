@@ -103,18 +103,6 @@ export class PostsComponent implements OnInit {
       //console.log(res)    
       this.getPosts(this.course);                    
     })
-  /*
-    this.apiFile.eliminarImagenes(urls);
-    console.log("curso: "+this.course+" idPost: "+postId)
-    this.postsService.deletePost(this.course, postId+"").subscribe(
-      res=>{
-        console.log("se elimino");
-        this.getPosts(this.course);
-      },
-      err=>{
-        console.log(err);
-      }
-    )*/
   }
   public popupUpdate(id:string){
     sessionStorage.setItem('currentPost',id);
@@ -152,23 +140,26 @@ export class PostsComponent implements OnInit {
       this.addComment(formu,postId,j);    
   }  
   addComment(formu:Comment,postId:string, j:number){
+    if(this.numeroArchivos>0){
+      var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
+        disableClose: true,
+        data:{
+          postId: null,
+          commentId:null
+        }
+      });}
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
       console.log(postId);
       console.log(data.id);
       if(this.numeroArchivos>0){
-        var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
-          disableClose: true,
-          data:{
-            postId: null,
-            commentId:null
-          }
-        });
         for(let i=0;i<this.numeroArchivos;i++){
-          this.apiFile.subirImagen(this.nombresArchivos[i]/*+"_"+Date.now()*/,this.archivos[i]).then(url=>{
+          let tempI=i;
+          let nomCortado:string[] = this.nombresArchivos[i].split('.');
+          this.apiFile.subirImagen((nomCortado[0].length>35? nomCortado[0].substring(0,34):nomCortado[0]) + Date.now()+ this.myId + "."+nomCortado[nomCortado.length-1],this.archivos[i]).then(url=>{
             console.log(url);
-            this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[i]).subscribe(res=>{
+            this.apiFile.createCommentFile(url!,postId,data.id, this.nombresArchivos[tempI]).subscribe(res=>{
             console.log("Se guardo la url de firebase en la BD")
-            if(i==this.numeroArchivos-1){
+            if(tempI==this.numeroArchivos-1){
               window.setTimeout(() => {
                 (<HTMLInputElement>document.getElementById("inputComentario"+postId)!).value="";
                 (<HTMLInputElement>document.getElementById("inputFile"+j)!).value="";

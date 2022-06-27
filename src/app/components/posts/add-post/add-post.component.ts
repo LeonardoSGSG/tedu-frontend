@@ -17,6 +17,7 @@ export class AddPostComponent implements OnInit {
   addPostForm = new FormGroup({
     text: new FormControl('',[Validators.required])
   })
+  public myId:string = sessionStorage.getItem('id')!;
   archivosPost: any[]=[];
   nombresArchivosPost: string[]=[];
   numeroArchivosPost: number=0;
@@ -43,15 +44,19 @@ export class AddPostComponent implements OnInit {
           h1.textContent="No cierre ni recargue el navegador hasta que se cierre este mensaje";
           document.getElementById("ContenedroCreacion")?.appendChild(h1);
           for(let i=0; i<this.numeroArchivosPost;i++){
-            this.apiFiles.subirImagen(this.nombresArchivosPost[i]/*+"_"+Date.now()*/,this.archivosPost[i]).then(urlImagen=>{
+            let tempI=i;
+            let nomCortado:string[] = this.nombresArchivosPost[i].split('.');
+            this.apiFiles.subirImagen((nomCortado[0].length>35? nomCortado[0].substring(0,34):nomCortado[0]) + Date.now()+ this.myId +"."+nomCortado[nomCortado.length-1],this.archivosPost[i]).then(urlImagen=>{
               //console.log(urlImagen);
-              this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivosPost[i]).subscribe(res=>{
+              this.apiFiles.createPostFile(urlImagen!,res.id, this.nombresArchivosPost[tempI]).subscribe(res=>{
                 //console.log(res.id+" "+res.key);
                 //console.log("Se guardo la url de firebase en la BD")
-                if(i==this.numeroArchivosPost-1){
-                  location.reload
-                  //notification.close();
-                  this.dialogRef.close();
+                if(tempI==this.numeroArchivosPost-1){
+                  window.setTimeout(() => {
+                    location.reload
+                    //notification.close();
+                    this.dialogRef.close();
+                  },2500);
                 }
               }),
               (error: HttpErrorResponse)=>{
@@ -85,17 +90,12 @@ export class AddPostComponent implements OnInit {
     }
     for(let i=0; i<event.target.files.length;i++){
       let reader=new FileReader();
-      var nomCort:string;
-      if(false/*archivo[i].name.length>50*/){
-        nomCort = (archivo[i].name).substring(0,47)+"...";
-        this.nombresArchivosPost.push(nomCort);
+      var nomCort:string;        
+      if(archivo[i].name.length<=50){
+        this.nombresArchivosPost.push(archivo[i].name);
       }else{
-        if(archivo[i].name.length<=50){
-          this.nombresArchivosPost.push(archivo[i].name);
-        }else{
-          alert("El archivo de nombre: ("+archivo[i].name+") tiene un nombre muy largo, favor de recortar e intentar de nuevo");
-          this.limpiarArchivos();
-        }
+        alert("El archivo de nombre: '"+archivo[i].name+"' tiene un nombre muy largo, favor de recortar e intentar de nuevo");
+        this.limpiarArchivos();
       }
       reader.readAsDataURL(archivo[i]);
       reader.onloadend=()=>{
