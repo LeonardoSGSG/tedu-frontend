@@ -1,23 +1,35 @@
 <div class="body">
   <div class="login">
-    <form (submit)="ingresar()">
+    <form (submit)="ingresar()" [formGroup]="logForm">
       <div class="form-group">
         <img src="../../../assets/img/user.png" width="50%">
 
         <h1>Login</h1>
         <mat-form-field class="ancho" appearance="fill">
-            <mat-label>Usuario</mat-label>
-            <input type="text" [maxlength]="255" name="email" matInput autocomplete="off" [(ngModel)]="formularioLogin.email" class="form-control" placeholder="Email" autofocus required>
+            <mat-label for="inputCorreo">Correo</mat-label>
+            <input type="email" id="inputCorreo" formControlName="emailFormControl" [maxlength]="255" name="email" matInput autocomplete="off" [(ngModel)]="formularioLogin.email" class="form-control" placeholder="Email" autofocus required>
+            <mat-error *ngIf="logForm.get('emailFormControl')!.hasError('email') && !logForm.get('emailFormControl')!.hasError('required')">
+              Ingresar un email válido
+            </mat-error>
+            <mat-error *ngIf="logForm.get('emailFormControl')!.hasError('required')">
+              Ingresar un email registrado
+            </mat-error>
           </mat-form-field>
       </div>
       <div class="form-group">
         <mat-form-field class="ancho" appearance="fill">
-          <mat-label>Contraseña</mat-label>
-          <input type="password" name="password" matInput autocomplete="off" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
+          <mat-label for="passwordInput">Contraseña</mat-label>
+          <input type="password" formControlName="passwordFormControl" id="passwordInput" name="password" matInput autocomplete="off" [(ngModel)]="formularioLogin.password" class="form-control" placeholder="password" minlength="6" autofocus [type]="hide ? 'password' : 'text'" required>
           <mat-icon style="cursor: pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <mat-error *ngIf="logForm.get('passwordFormControl')!.hasError('minlength') && !logForm.get('passwordFormControl')!.hasError('required')">
+            Contraseña es de mínimo 6 caracteres
+          </mat-error>
+          <mat-error *ngIf="logForm.get('passwordFormControl')!.hasError('required')">
+            Ingresar la contraseña
+          </mat-error>
         </mat-form-field>
       </div>
-      <button type="submit" mat-raised-button color="primary" class="btn btn-primary btn-block" >
+      <button type="submit" mat-raised-button color="primary" [disabled]="!logForm.valid" class="btn btn-primary btn-block" >
         Ingresar
       </button>
       <br>
