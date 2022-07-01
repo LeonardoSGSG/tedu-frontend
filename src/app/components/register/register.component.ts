@@ -23,6 +23,13 @@ export class RegisterComponent implements OnInit {
     institution:'',
     phone:''
   }
+  regFormGroup = new FormGroup({
+    nombreFormControl: new FormControl('',[Validators.required]),
+    correoFormControl: new FormControl('',[Validators.required, Validators.email]),
+    institucionFormControl: new FormControl(''),
+    telefFormControl: new FormControl(''),
+    passwordFormControl: new FormControl('',[Validators.required])
+  });
   constructor(private api:RegisterService, private router:Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

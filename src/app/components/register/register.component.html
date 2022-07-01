@@ -7,31 +7,56 @@
 <!--form-->
 <div id="form-register"  class="card container mt-3">
     <h1 class="card-header mt-3">Regístrate</h1>
-    <form (submit)="submitRegister()">
+    <form (submit)="submitRegister()" [formGroup]="regFormGroup">
         <div class="card-body form-group">
             <mat-form-field appearance="fill">
                 <mat-label>Nombres y Apellidos</mat-label>
-                <input [(ngModel)]="usuario.name" [maxlength]="100" name="name" type="text" matInput required>
+                <input pattern="[a-zA-Z, ,ñ,Ñ]*" [(ngModel)]="usuario.name" formControlName="nombreFormControl" [maxlength]="100" name="name" type="text" matInput required>
+                <mat-error *ngIf="regFormGroup.get('nombreFormControl')!.hasError('required')">
+                    Ingrese nombres y apellidos
+                </mat-error>
+                <mat-error *ngIf="regFormGroup.get('nombreFormControl')!.hasError('pattern') && !regFormGroup.get('nombreFormControl')!.hasError('required')">
+                    No se aceptan números como nombres
+                </mat-error>
+            
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Correo Electrónico</mat-label>
-                <input [(ngModel)]="usuario.email" [maxlength]="255" name="email" matInput placeholder="pat@ejemplo.com"  required>
+                <input [(ngModel)]="usuario.email" formControlName="correoFormControl" [maxlength]="255" name="email" matInput placeholder="pat@ejemplo.com"  required>
+                <mat-error *ngIf="regFormGroup.get('correoFormControl')!.hasError('email') && !regFormGroup.get('correoFormControl')!.hasError('required')">
+                    Ingresar un email válido
+                </mat-error>
+                <mat-error *ngIf="regFormGroup.get('correoFormControl')!.hasError('required')">
+                    Ingresar un email
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Institución Educativa</mat-label>
-                <input [(ngModel)]="usuario.institution" [maxlength]="50" name="institution" matInput >
+                <input [(ngModel)]="usuario.institution" formControlName="institucionFormControl" [maxlength]="50" name="institution" matInput >
+                <mat-error *ngIf="regFormGroup.get('institucionFormControl')!.hasError('maxlength')">
+                    Nombre de institución muy largo
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Teléfono</mat-label>
-                <input matInput [(ngModel)]="usuario.phone" [maxlength]="15" name="phone" value="" placeholder="999-999-999" mask="000-000-000">
+                <input matInput [(ngModel)]="usuario.phone" formControlName="telefFormControl" [maxlength]="15" name="phone" value="" placeholder="999-999-999" mask="000-000-000">
+                <mat-error *ngIf="regFormGroup.get('telefFormControl')!.hasError('mask')">
+                    Dejar en blanco o ingresar número válido
+                </mat-error>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="usuario.password" [maxlength]="120" name="password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
+                <input matInput [(ngModel)]="usuario.password" formControlName="passwordFormControl" minlength="6" [maxlength]="120" name="password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
                 <mat-icon style="cursor: pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="regFormGroup.get('passwordFormControl')!.hasError('required')">
+                    Ingrese una contraseña
+                </mat-error>
+                <mat-error *ngIf="regFormGroup.get('passwordFormControl')!.hasError('minlength') && !regFormGroup.get('passwordFormControl')!.hasError('required')">
+                    La contraseña debe tener mínimo 6 caracteres
+                </mat-error>
             </mat-form-field>  
             <div class="form-group mt-3">
-                <button type="submit" mat-raised-button color="primary">
+                <button type="submit" [disabled]="!regFormGroup.valid" mat-raised-button color="primary">
                     Crear Cuenta
                 </button>
                 <button id="btnCancelar" routerLink="../" mat-stroked-button color="primary">Cancelar</button>
