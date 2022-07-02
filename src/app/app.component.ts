@@ -14,7 +14,7 @@ export class AppComponent {
 
   ngOnInit(){
     this.coursesSvc.getAllCourses().subscribe(res =>{
-      console.log('Res',res);
+      //console.log('Res',res);
     })
   }
 }

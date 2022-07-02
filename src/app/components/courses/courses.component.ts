@@ -17,9 +17,10 @@ import { notificationDTO } from 'src/app/entities/notificationDTO';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  public notificationsRes='';
+  public notificationsRes = '';
   public notifications: notificationDTO[]=[];
-  public courses: Curso[]=[];  
+  public courses: Curso[]=[];
+  //public courses: [a: Curso[], b: Curso[]] = [[],[]];
   public ownedCourses: ownedCourses[] =[];
   public editCourse: Curso | undefined;
   public deleteCourse!: Curso;
@@ -28,7 +29,7 @@ export class CoursesComponent implements OnInit {
   durationInSeconds = 5;
   joinCourseForm = new FormGroup({
     code: new FormControl(''),
-  })
+  });
 
   constructor(private coursesService: CoursesService, public dialog: MatDialog, private router: Router,
               private _snackBar: MatSnackBar, private notisSvc: NotificacionesService) { }
@@ -69,8 +70,12 @@ export class CoursesComponent implements OnInit {
   }
   public getCourses(): void{
     this.coursesService.getAllCourses().subscribe(
+      //(response: {enrolledCourses: Curso[], ownedCourses: Curso[]}) => {
       (response: Curso[]) => {
         this.courses = response;
+        //this.courses[0] = response.ownedCourses;
+        //this.courses[1] = response.enrolledCourses;
+        console.log(this.courses);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

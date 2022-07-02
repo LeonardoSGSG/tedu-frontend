@@ -68,8 +68,11 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container" id="main-container">
   <div class="row">
-    <div *ngFor='let ownedCourses of courses | coursesArray' class="row">      
-      <div *ngFor='let course of ownedCourses' class="col"> 
+    <!--<div *ngFor='let ownedCourses of courses | coursesArray' class="row">-->
+    <div *ngFor='let ownedCourses of courses | coursesArray; let i = index' class="row">
+      <h3 *ngIf="i == 0" style="font-size: 30px; font-weight: 500; margin-top: 2rem;">Cursos inscritos<hr></h3>
+      <h3 *ngIf="i == 1" style="font-size: 30px; font-weight: 500; margin-top: 2rem;">Cursos creados<hr></h3>
+      <div *ngFor='let course of ownedCourses' class="col">
         <div class="card card-small" id="card-curso">
             <div class="thumbnail" id="card-curso">                        
               <a style="cursor: pointer;" (click) = "entrarCurso(course?.id, course?.teacher.id)">
@@ -82,8 +85,8 @@
             <div class="card-info" style="cursor: pointer;" (click) = "entrarCurso(course?.id, course?.teacher.id)">
                 <div class="moving">
                     <a>
-                        <h3>{{course.name}}</h3>
-                        <p> {{(course.desc)}}</p>
+                      <h3>{{course.name}}</h3>
+                      <p> {{(course.desc)}}</p>
                     </a>                         
                 </div>
             </div>

@@ -11,7 +11,8 @@ export class CoursesService {
   private apiServerUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
-
+  
+  //public getAllCourses(): Observable<{enrolledCourses: Curso[], ownedCourses: Curso[]}>{
   public getAllCourses(): Observable<Curso[]>{
     const id=sessionStorage.getItem('id');
     const opts={

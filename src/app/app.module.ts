@@ -80,10 +80,6 @@ import { DeleteEventComponent } from './components/calendar/delete-event/delete-
 import { DialogExitCourseComponent } from './components/course-members/dialog-exit-course/dialog-exit-course.component';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
