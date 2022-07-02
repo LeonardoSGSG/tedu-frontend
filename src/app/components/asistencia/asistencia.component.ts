@@ -16,6 +16,7 @@ export class AsistenciaComponent implements OnInit {
   public asistenciasGenerales: AsistenciaGeneral[] = [];
   public myId:string = sessionStorage.getItem('id')!;
   public pId:string = sessionStorage.getItem('pId')!;
+  public course:string = window.location.href.split("/")[4];
 
   constructor(private asistenciaService:AsistenciaService, private dialog:MatDialog, private router:Router) { }
 
@@ -24,7 +25,7 @@ export class AsistenciaComponent implements OnInit {
   }
 
   public getAttendances():void{
-    this.asistenciaService.getAllAttendances().subscribe(
+    this.asistenciaService.getAllAttendances(this.course).subscribe(
       (response: AsistenciaGeneral[]) => {
         var sorted_asists = response.sort(function(a, b) {
           return a.id - b.id;
@@ -45,7 +46,7 @@ export class AsistenciaComponent implements OnInit {
     )
   }
   public verAsistencia(id:number){
-    this.asistenciaService.getAttendanceById(id).subscribe(
+    this.asistenciaService.getAttendanceById(id, this.course).subscribe(
       (response:AsistenciaGeneral)=>{
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;

@@ -12,7 +12,8 @@ import { ConfirmDeleteCommentService } from './confirm-delete-comment.service';
   styleUrls: ['./confirm-delete-comment.component.css']
 })
 export class ConfirmDeleteCommentComponent implements OnInit {
-  public course:string = sessionStorage.getItem('currentCourse')!;
+  //public course:string = sessionStorage.getItem('currentCourse')!;
+  public course:string = window.location.href.split("/")[4];
 
   constructor(private service: ConfirmDeleteCommentService, private comService: CommentService, private apiFiles:StorageService,
               @Inject(MAT_DIALOG_DATA) public data: any) { }

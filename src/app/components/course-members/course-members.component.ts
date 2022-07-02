@@ -18,7 +18,8 @@ export class CourseMembersComponent implements OnInit {
   public members: membersObject=<membersObject>{};
   public teacher: Usuario=<Usuario>{};
   public students: Usuario[]=[];
-  public course:string = sessionStorage.getItem('currentCourse')!;
+  //public course:string = sessionStorage.getItem('currentCourse')!;
+  public course:string = window.location.href.split("/")[4];
   public myId:string = sessionStorage.getItem('id')!;
   public myIdN:number = Number(this.myId);
   displayedColumns: string[]=['index','name','action'];

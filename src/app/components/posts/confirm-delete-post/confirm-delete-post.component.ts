@@ -14,7 +14,8 @@ import { ConfirmDeletePostService } from './confirm-delete-post.service';
   styleUrls: ['./confirm-delete-post.component.css']
 })
 export class ConfirmDeletePostComponent implements OnInit {
-  public course=sessionStorage.getItem('currentCourse');
+  //public course=sessionStorage.getItem('currentCourse');
+  public course:string = window.location.href.split("/")[4];
   public dialogo:any = null;
   constructor(private dialogRef: MatDialogRef<ConfirmDeletePostComponent>, private service: ConfirmDeletePostService, private posService: PostsService, private comService:CommentService, private apiFiles:StorageService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }

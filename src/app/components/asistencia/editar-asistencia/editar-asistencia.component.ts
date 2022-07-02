@@ -20,7 +20,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./editar-asistencia.component.css']
 })
 export class EditarAsistenciaComponent implements OnInit {
-  courseId: string = sessionStorage.getItem('currentCourse')!;
+  //courseId: string = sessionStorage.getItem('currentCourse')!;
+  public courseId:string = window.location.href.split("/")[4];
   asistenciaId: number = 0;
   asistencias: AsistenciaDetalle[]=[];
   formulario: FormularioAsistencia[]=[];
@@ -33,7 +34,7 @@ export class EditarAsistenciaComponent implements OnInit {
     this.cargarAlumnos();
   }
   public cargarAlumnos(){
-    this.api.getAttendanceById(this.asistenciaId).subscribe(
+    this.api.getAttendanceById(this.asistenciaId, this.courseId).subscribe(
       (response)=>{
         this.asistencias=response.userAttendances;
         for(var i = 0; i < response.userAttendances.length; i++){
@@ -67,7 +68,7 @@ export class EditarAsistenciaComponent implements OnInit {
       } 
       this.formulario![i].student_id = this.asistencias[i].user.id;
     }
-    this.api.updateAttendance(this.formulario!,this.asistenciaId).subscribe(
+    this.api.updateAttendance(this.formulario!,this.asistenciaId, this.courseId).subscribe(
       (response)=>{
         this.dialogRef.close()
       },

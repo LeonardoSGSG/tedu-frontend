@@ -12,6 +12,8 @@ import { PostsService } from '../posts.service';
   styleUrls: ['./update-post.component.css']
 })
 export class UpdatePostComponent implements OnInit {
+  public course:string = window.location.href.split("/")[4];
+
   addPostForm = new FormGroup({
     text: new FormControl('',[Validators.required])
   })
@@ -21,8 +23,10 @@ export class UpdatePostComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
   postForm(form:Post){
-    this.api.updatePost(form, sessionStorage.getItem('currentCourse')!, sessionStorage.getItem('currentPost')!).subscribe(
+    //this.api.updatePost(form, sessionStorage.getItem('currentCourse')!, sessionStorage.getItem('currentPost')!).subscribe(
+      this.api.updatePost(form, this.course, sessionStorage.getItem('currentPost')!).subscribe(
       res=>{
         console.log("se envió el formulario satisfactoriamente");
       },

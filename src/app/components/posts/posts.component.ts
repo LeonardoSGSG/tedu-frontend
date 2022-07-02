@@ -43,12 +43,14 @@ export class PostsComponent implements OnInit {
   public idPost: string ='';
   public idComment: string ='';
   public shouldRun: boolean = false;
-  public course:string = sessionStorage.getItem('currentCourse')!;
+  //public course:string = sessionStorage.getItem('currentCourse')!;
+  public course:string = window.location.href.split("/")[4];
   public myId:string = sessionStorage.getItem('id')!;
   public pId:string = sessionStorage.getItem('pId')!;
   constructor(private postsService: PostsService, private dialog:MatDialog, private comSvc:CommentService, private apiFile:StorageService) { }
 
   ngOnInit(): void {
+
     this.getPosts(this.course);  
   }
   

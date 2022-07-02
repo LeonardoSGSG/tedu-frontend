@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsComponent } from '../posts/posts.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseContentService } from './course-content.service';
 import { CursoLeave } from './DTOS/cursoLeave';
 import { Curso } from 'src/app/entities/curso';
@@ -20,22 +20,34 @@ export class CourseContentComponent implements OnInit {
   public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
 
-  constructor(private router: Router, private CCService:CourseContentService, private notisSvc: NotificacionesService) { }
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private CCService:CourseContentService, 
+    private notisSvc: NotificacionesService
+  ) { }
 
   ngOnInit(): void {
+    this.setCurrentCourseVariable();
   }
-  public redirProfile()
-  {
-    this.router.navigate(['/profile']);
 
+  public setCurrentCourseVariable(): void {
+    /*this.route.paramMap.subscribe(paramMap => {
+      sessionStorage.setItem('currentCourse', paramMap.get('id')!);
+    });*/
+    sessionStorage.setItem('currentCourse', window.location.href.split("/")[4]);
   }
-  public LogOut()
-  {
+
+  public redirProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+  public LogOut() {
     sessionStorage.clear();
     this.router.navigate(['/login']);
-
   }
-  public leaveCourse(): void{
+
+  public leaveCourse(): void {
     console.log("click en eliminar")
     var form: CursoLeave={
       course_id : sessionStorage.getItem('currentCourse')!
@@ -45,10 +57,12 @@ export class CourseContentComponent implements OnInit {
       this.router.navigate(['/courses'])
     })
   }
-  regresarCursos(){
+
+  regresarCursos() {
     this.router.navigate(['/courses']);
   }
-  public getUnseen(): void{
+
+  public getUnseen(): void {
     this.notisSvc.getUnseen().subscribe(
       (response: notificationDTO[])=>
       {
@@ -67,15 +81,16 @@ export class CourseContentComponent implements OnInit {
       }
     )
   } 
-  public redirigirCurso( idCurso: string)
-  {
-    sessionStorage.setItem('currentCourse',idCurso);
+
+  public redirigirCurso( idCurso: string) {
+    sessionStorage.setItem('currentCourse', idCurso);
     this.router.navigate(['/courses/' + idCurso]);
     location.reload();
 
     console.log("debugeando")
   }
-  public updateNotifications(): void{
+
+  public updateNotifications(): void {
     this.notisSvc.updateNotifications().subscribe(
     (response)=>
     {
@@ -86,7 +101,9 @@ export class CourseContentComponent implements OnInit {
     }
     )
   }
+
   public redirCalendar(){
     this.router.navigate(['/calendar']);
   }
+
 }

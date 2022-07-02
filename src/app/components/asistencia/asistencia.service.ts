@@ -14,8 +14,9 @@ export class AsistenciaService {
 
   constructor(private http: HttpClient) { }
   
-  public getAllAttendances():Observable<AsistenciaGeneral[]>{
-    const idCurso=sessionStorage.getItem('currentCourse');
+  public getAllAttendances(_idCurso: string):Observable<AsistenciaGeneral[]>{
+    //const idCurso=sessionStorage.getItem('currentCourse');
+    const idCurso = _idCurso;
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
@@ -23,8 +24,9 @@ export class AsistenciaService {
    };
     return this.http.get<AsistenciaGeneral[]>(this.apiServerUrl + "/courses/"+idCurso+"/attendances", opts)
   }
-  public getAttendanceById(idAs:number):Observable<AsistenciaGeneral>{
-    const idCurso=sessionStorage.getItem('currentCourse');
+  public getAttendanceById(idAs:number, _idCurso: string):Observable<AsistenciaGeneral>{
+    //const idCurso=sessionStorage.getItem('currentCourse');
+    const idCurso = _idCurso;
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
@@ -33,8 +35,9 @@ export class AsistenciaService {
    };
    return this.http.get<AsistenciaGeneral>(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAs, opts);
   }
-  public registerAttendance(formulario:FormularioAsistencia[], idAsist:number):Observable<{registered:boolean}>{
-    const idCurso=sessionStorage.getItem('currentCourse');
+  public registerAttendance(formulario:FormularioAsistencia[], idAsist:number, _idCurso: string):Observable<{registered:boolean}>{
+    //const idCurso=sessionStorage.getItem('currentCourse');
+    const idCurso = _idCurso;
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')
@@ -44,8 +47,9 @@ export class AsistenciaService {
    const jsonData = JSON.parse(data);
    return this.http.post<{registered:boolean}>(this.apiServerUrl + "/courses/"+idCurso+"/attendances/"+idAsist+"/register",jsonData, opts);
   }
-  public updateAttendance(formulario:FormularioAsistencia[], idAsist:number):Observable<{updated:boolean}>{
-    const idCurso=sessionStorage.getItem('currentCourse');
+  public updateAttendance(formulario:FormularioAsistencia[], idAsist:number, _idCurso: string):Observable<{updated:boolean}>{
+    //const idCurso=sessionStorage.getItem('currentCourse');
+    const idCurso = _idCurso;
     const opts={
       headers: new HttpHeaders({
      'Authorization': 'Token ' + sessionStorage.getItem('token')

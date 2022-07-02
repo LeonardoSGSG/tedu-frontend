@@ -18,6 +18,7 @@ export class AddPostComponent implements OnInit {
     text: new FormControl('',[Validators.required])
   })
   public myId:string = sessionStorage.getItem('id')!;
+  public courseId:string = window.location.href.split("/")[4];
   archivosPost: any[]=[];
   nombresArchivosPost: string[]=[];
   numeroArchivosPost: number=0;
@@ -30,7 +31,8 @@ export class AddPostComponent implements OnInit {
   ngOnInit(): void {
   }
   postForm(form:Post){
-    this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
+    //this.api.createPost(form, sessionStorage.getItem('currentCourse')!).subscribe(
+      this.api.createPost(form, this.courseId).subscribe(
       res=>{
         if(this.numeroArchivosPost>0){
           var e = document.getElementById("ContenedroCreacion");
