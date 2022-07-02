@@ -18,7 +18,7 @@
             </mat-form-field>                              
             <div formArrayName="schedule" *ngFor="let s of schedule.controls; let i=index">
                 <div [formGroupName]="i">
-                    <div class="form-group row">
+                    <div class="form-group row" style="margin-bottom: 0rem; flex-wrap: nowrap;">
                         <mat-form-field class="col-md-3" appearance="fill">
                             <mat-label [attr.for]="'day'+i">Día</mat-label>
                             <mat-select  [attr.id]="'day'+i" formControlName="day" required>
@@ -45,11 +45,12 @@
                             </mat-option>
                             </mat-select>
                         </mat-form-field>  
-                        <a *ngIf="i==0" mat-icon-button color="primary" (click)="agregarSchedule()"><mat-icon>add_circle_outline</mat-icon></a>
+                        <!--<a *ngIf="i==0" mat-icon-button color="primary" (click)="agregarSchedule()"><mat-icon>add_circle_outline</mat-icon></a>-->
                         <a *ngIf="i>0" mat-icon-button color="warn" (click)="removerSchedule(i)"><mat-icon>remove_circle_outline</mat-icon></a>                                               
                     </div>
                 </div>
             </div>
+            <a style="margin-bottom: 1rem;" mat-icon-button color="primary" (click)="agregarSchedule()"><mat-icon>add_circle_outline</mat-icon></a>
             <mat-form-field appearance="fill">
                 <mat-label>Vacantes</mat-label>
                 <input formControlName="vacancies" name="vacancies" min="0" type="number" matInput required step="1" pattern="\d*">
