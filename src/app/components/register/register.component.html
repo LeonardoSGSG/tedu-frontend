@@ -16,7 +16,7 @@
                     Ingrese nombres y apellidos
                 </mat-error>
                 <mat-error *ngIf="regFormGroup.get('nombreFormControl')!.hasError('pattern') && !regFormGroup.get('nombreFormControl')!.hasError('required')">
-                    No se aceptan números como nombres
+                    Solo se aceptan letras
                 </mat-error>
             
             </mat-form-field>
@@ -46,7 +46,7 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput [(ngModel)]="usuario.password" formControlName="passwordFormControl" minlength="6" [maxlength]="120" name="password" class="form-control" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
+                <input matInput [(ngModel)]="usuario.password" formControlName="passwordFormControl" minlength="6" [maxlength]="120" name="password" placeholder="password" autofocus [type]="hide ? 'password' : 'text'" required>
                 <mat-icon style="cursor: pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="regFormGroup.get('passwordFormControl')!.hasError('required')">
                     Ingrese una contraseña

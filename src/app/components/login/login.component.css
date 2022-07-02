@@ -11,11 +11,10 @@
     width: 100%;
     max-width: 330px;
     text-align: center;
-    
 }
 .ancho
 {
-    width: 80%;
+    width: 100%;
 }
 .button
 {
@@ -23,7 +22,7 @@
 }
 .boton
 {
-    background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -32,6 +31,7 @@
   display: inline-block;
   font-size: 16px;
 }
-input:invalid {
-    color: red;
-  }
+/*.form-control:focus{
+    background-color: #eee;
+    box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 0%);
+}*/
