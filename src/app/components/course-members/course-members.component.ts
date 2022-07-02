@@ -6,7 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { membersObject } from 'src/app/entities/membersObject';
 import { Usuario } from 'src/app/entities/usuario';
+import { CursoLeave } from '../course-content/DTOS/cursoLeave';
 import { CourseMembersService } from './course-members.service';
+import { DialogExitCourseComponent } from './dialog-exit-course/dialog-exit-course.component';
 import { DialogRemoveStudentComponent } from './dialog-remove-student/dialog-remove-student.component';
 
 @Component({
@@ -20,6 +22,7 @@ export class CourseMembersComponent implements OnInit {
   public students: Usuario[]=[];
   //public course:string = sessionStorage.getItem('currentCourse')!;
   public course:string = window.location.href.split("/")[4];
+  public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
   public myIdN:number = Number(this.myId);
   displayedColumns: string[]=['index','name','action'];
@@ -27,7 +30,7 @@ export class CourseMembersComponent implements OnInit {
   dataSource = new MatTableDataSource<Usuario>(this.students);
   durationInSeconds = 5;
 
-  constructor(private courseMembersSvc: CourseMembersService, private router: Router, public dialog: MatDialog,
+  constructor(public courseMembersSvc: CourseMembersService, private router: Router,public dialogSalirCurso: MatDialog, public dialog: MatDialog,
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -46,12 +49,20 @@ export class CourseMembersComponent implements OnInit {
       }
     )
   }
+
+  
+
   irChat(id: string, nombre: string)
   {
     sessionStorage.setItem('idChatDestino', id+'');
     sessionStorage.setItem('nombreChatDestino', nombre);
 
     this.router.navigate(['/chat']);
+  }
+  openDialog(){
+    return this.dialogSalirCurso.open(DialogExitCourseComponent,{
+      disableClose:true
+    });
   }
   onDelete(student_id:number,course_id:string){
     return this.dialog.open(DialogRemoveStudentComponent,{

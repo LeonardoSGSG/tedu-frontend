@@ -36,3 +36,9 @@ mat-card{
   border-radius: 0%;
   margin-bottom: 1px;
 }
+.espacioBoton{
+  margin-left: 0rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}

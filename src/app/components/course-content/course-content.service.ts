@@ -15,15 +15,4 @@ export class CourseContentService {
 
   constructor(private http: HttpClient) {
   }
-
-  public leaveCourse(cl:CursoLeave):Observable<RespuestaCursoLeave>{
-    const opts={
-      headers: new HttpHeaders({
-     'Authorization': 'Token ' + sessionStorage.getItem('token')
-    }),
-    body:cl
-   };
-   return this.http.delete<RespuestaCursoLeave>(this.apiServerUrl+'/enrollment/leave', opts);
-  }
-
 }

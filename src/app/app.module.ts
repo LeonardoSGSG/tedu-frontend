@@ -50,6 +50,7 @@ import { RegistrarAsistenciaComponent } from './components/asistencia/registrar-
 import { EditarAsistenciaComponent } from './components/asistencia/editar-asistencia/editar-asistencia.component';
 import { ConfirmDeletePostComponent } from './components/posts/confirm-delete-post/confirm-delete-post.component';
 
+
 //Conectar con backend
 import { LoginService } from './components/login/login.service';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -76,6 +77,7 @@ import { NotificacionesComponent } from './components/notificaciones/notificacio
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 import { DeleteEventComponent } from './components/calendar/delete-event/delete-event.component';
+import { DialogExitCourseComponent } from './components/course-members/dialog-exit-course/dialog-exit-course.component';
 
 
 
@@ -110,6 +112,7 @@ import { DeleteEventComponent } from './components/calendar/delete-event/delete-
     CalendarComponent,
     CreateEventComponent,
     DeleteEventComponent,
+    DialogExitCourseComponent,
   ],
   imports: [
     BrowserModule,

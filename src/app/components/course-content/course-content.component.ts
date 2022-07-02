@@ -19,7 +19,7 @@ export class CourseContentComponent implements OnInit {
   public notifications: notificationDTO[]=[];
   public pId:string = sessionStorage.getItem('pId')!;
   public myId:string = sessionStorage.getItem('id')!;
-
+  public course:string = window.location.href.split("/")[4];
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
@@ -45,17 +45,6 @@ export class CourseContentComponent implements OnInit {
   public LogOut() {
     sessionStorage.clear();
     this.router.navigate(['/login']);
-  }
-
-  public leaveCourse(): void {
-    console.log("click en eliminar")
-    var form: CursoLeave={
-      course_id : sessionStorage.getItem('currentCourse')!
-    };
-    this.CCService.leaveCourse(form).subscribe(res =>{
-      console.log(res.message);
-      this.router.navigate(['/courses'])
-    })
   }
 
   regresarCursos() {
