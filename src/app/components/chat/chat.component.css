@@ -1,3 +1,27 @@
+.prueba::placeholder{
+    color: #fff;
+}
+.iconoPrueba{
+    transition: color 0.2s;
+    position: relative;
+    top: 3px;
+    color: #fff;
+}
+.botonPrueba{
+    border: 1px solid rgba(0,0,0,0); 
+    border-radius: 50%; 
+    background-color: #3f51b5; 
+    margin-left: 10px;
+    transition: background-color .2s, border .2s;
+}
+.botonPrueba:hover{
+    background-color: #fff;
+    border: 0.5px solid #3f51b5;
+}
+.botonPrueba:hover > .iconoPrueba{
+    color: #3f51b5;
+}
+
 .mens
 {
     font-size: medium;

@@ -36,6 +36,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourses();
+    this.getUnseen();
   }
   postJoinForm(form:Curso){
     console.log(form);
@@ -159,10 +160,13 @@ export class CoursesComponent implements OnInit {
         this.notifications=response;
         if(this.notifications.length==0)
         {
-          this.notificationsRes="No hay notificaciones nuevas"
+          (document.getElementById("btnNotification")?.childNodes[0].childNodes[1] as HTMLElement).classList.add("d-none");
+          this.notificationsRes="No hay notificaciones nuevas";
         }
         else{
-          this.notificationsRes=""
+          (document.getElementById("btnNotification")?.childNodes[0].childNodes[1] as HTMLElement).classList.remove("d-none");
+          (document.getElementById("btnNotification")?.childNodes[0].childNodes[1] as HTMLElement).innerText = `+${this.notifications.length}`;
+          this.notificationsRes="";
         }
       },
       (error: HttpErrorResponse)=>

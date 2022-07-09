@@ -22,6 +22,10 @@
     <!--Boton Notificacion-->
     <button (click)="getUnseen()" (click)="updateNotifications()" id="btnNotification" mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="Example icon button with a menu icon">
       <mat-icon>notifications</mat-icon>
+      <span style="top: 20% !important; left: 80% !important;" class="d-none position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        99+
+        <span class="visually-hidden">unread messages</span>
+      </span>
     </button>
     <mat-menu xPosition="before" #appMenu="matMenu">
           

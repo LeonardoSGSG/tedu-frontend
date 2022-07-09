@@ -113,11 +113,20 @@
         <div class="box-footer-form">
             <form id="formul"[formGroup]="addMessageForm" (ngSubmit)="postFormMessage(addMessageForm.value)">
                 <div class="card-body form-group img-push" style="padding-top:10px !important">
-                    <div>
-                        <mat-form-field style="width: 100%;" appearance="outline">
+                    <div style="display: flex; padding-inline: 10px; height: 38px;">
+                        <!--<mat-form-field style="width: 100%;" appearance="outline">
                             <mat-label  id="cajaMensaje" >Escribe un mensaje</mat-label>
                             <input  id="envMensaje" matInput formControlName="text" name="text" type="text">
-                        </mat-form-field>
+                        </mat-form-field>-->
+                        <input style="
+                        display: inline-block; 
+                        width: 100%; border-radius: 
+                        5px; border: none;
+                        background-color: rgba(0, 0, 0, 0.65);
+                        color: #fff;
+                        padding-inline: 10px;" id="envMensaje" class="prueba" formControlName="text" name="text" type="text" placeholder="Escribe un mensaje">
+                        <button type="button" class="botonPrueba" (click)="clicArchivo()"><mat-icon class="iconoPrueba">attach_file</mat-icon></button>
+                        <button type="submit" class="botonPrueba" onclick="document.getElementById('botonBypass').click()"><mat-icon class="iconoPrueba">send</mat-icon></button>
                     </div>
                     <div style="text-align: right; display: flex;">
                         <div style="width: 46%; text-align: left; margin-left: 1%;">
@@ -128,12 +137,15 @@
                                 </div> 
                             </div>
                         </div>
-                        <button type="button" (click)="clicArchivo()" style="margin-right: 1%; width: 25%;" color="basic" mat-raised-button color="primary">
-                            Subir archivo
-                        </button>
                         <input type="file" multiple="multiple" (change)="cambioArchivos($event)" id="archivos" style="display: none;" />
-                        <button type="submit" color="basic" mat-raised-button color="primary" style="width: 27%;">
+                        <!--<button type="button" (click)="clicArchivo()" style="margin-right: 1%; width: 25%;" color="basic" mat-raised-button color="primary">
+                            Subir archivo
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                        <input type="file" multiple="multiple" (change)="cambioArchivos($event)" id="archivos" style="display: none;" />-->
+                        <button type="submit" id="botonBypass" color="basic" mat-raised-button color="primary" style="width: 27%; display: none;">
                             Enviar mensaje
+                            <mat-icon>send</mat-icon>
                         </button>
                     </div>
                 </div>
