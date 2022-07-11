@@ -1,20 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { ChatService } from './chat.service';
 import { messageDTO } from './DTOs/messageDTO';
 import { msg } from './DTOs/msg';
-import { ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { notificationDTO } from 'src/app/entities/notificationDTO';
-import { debug } from 'console';
-import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
 import { NotificacionesService } from '../notificaciones/notificaciones.service';
 import { StorageService } from '../storage/storage.service';
 import { Archivo } from 'src/app/entities/archivo';
-import { ConfirmDeleteCommentComponent } from '../posts/confirm-delete-comment/confirm-delete-comment.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SubidaArchivoComponent } from '../subida-archivo/subida-archivo.component';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -117,17 +113,9 @@ this.router.navigate(['/courses']);
   }  
   public sendMessage(msg: msg): void{
     if(this.numeroArchivosMensaje>0){
-      var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
-        disableClose: true,
-        data:{
-          postId: null,
-          commentId:null
-        }
+      var dialogo = this.dialog.open(SubidaArchivoComponent,{
+        disableClose: true
       });}
-    //this.ordenarMensajes;
-
-    //console.log("entra");
-    
     this.chatSvc.sendMessage(msg).subscribe(
       res=>
       {

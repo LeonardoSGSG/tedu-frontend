@@ -78,7 +78,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 import { DeleteEventComponent } from './components/calendar/delete-event/delete-event.component';
 import { DialogExitCourseComponent } from './components/course-members/dialog-exit-course/dialog-exit-course.component';
-
+import { SubidaArchivoComponent } from './components/subida-archivo/subida-archivo.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { DialogExitCourseComponent } from './components/course-members/dialog-ex
     CreateEventComponent,
     DeleteEventComponent,
     DialogExitCourseComponent,
+    SubidaArchivoComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,9 +150,10 @@ import { DialogExitCourseComponent } from './components/course-members/dialog-ex
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
     FullCalendarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [LoginService,CoursesService,CoursesComponent/*, ScreenTrackingService,UserTrackingService*/],
   bootstrap: [AppComponent],
-  entryComponents:[DialogRemoveStudentComponent]
+  entryComponents:[DialogRemoveStudentComponent],
 })
 export class AppModule { }

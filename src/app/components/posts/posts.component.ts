@@ -17,6 +17,7 @@ import { Archivo } from 'src/app/entities/archivo';
 import { StorageService } from '../storage/storage.service';
 import {ViewEncapsulation} from '@angular/core';
 import { ConfirmDeletePostComponent } from './confirm-delete-post/confirm-delete-post.component';
+import { SubidaArchivoComponent } from '../subida-archivo/subida-archivo.component';
 
 @Component({
   selector: 'app-posts',
@@ -143,12 +144,9 @@ export class PostsComponent implements OnInit {
   }  
   addComment(formu:Comment,postId:string, j:number){
     if(this.numeroArchivos>0){
-      var dialogo = this.dialog.open(ConfirmDeleteCommentComponent,{
+      var dialogo = this.dialog.open(SubidaArchivoComponent,{
         disableClose: true,
-        data:{
-          postId: null,
-          commentId:null
-        }
+        
       });}
     this.comSvc.createComment(formu,this.course,postId).subscribe(data =>{
       console.log(postId);

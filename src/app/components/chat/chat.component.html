@@ -126,7 +126,7 @@
                         color: #fff;
                         padding-inline: 10px;" id="envMensaje" class="prueba" formControlName="text" name="text" type="text" placeholder="Escribe un mensaje">
                         <button type="button" class="botonPrueba" (click)="clicArchivo()"><mat-icon class="iconoPrueba">attach_file</mat-icon></button>
-                        <button type="submit" class="botonPrueba" onclick="document.getElementById('botonBypass').click()"><mat-icon class="iconoPrueba">send</mat-icon></button>
+                        <button type="submit" class="botonPrueba"><mat-icon class="iconoPrueba">send</mat-icon></button>
                     </div>
                     <div style="text-align: right; display: flex;">
                         <div style="width: 46%; text-align: left; margin-left: 1%;">
@@ -143,10 +143,10 @@
                             <mat-icon>attach_file</mat-icon>
                         </button>
                         <input type="file" multiple="multiple" (change)="cambioArchivos($event)" id="archivos" style="display: none;" />-->
-                        <button type="submit" id="botonBypass" color="basic" mat-raised-button color="primary" style="width: 27%; display: none;">
+                        <!--<button type="submit" id="botonBypass" color="basic" mat-raised-button color="primary" style="width: 27%; display: none;">
                             Enviar mensaje
                             <mat-icon>send</mat-icon>
-                        </button>
+                        </button>-->
                     </div>
                 </div>
             </form>
