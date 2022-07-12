@@ -145,6 +145,9 @@ this.router.navigate(['/courses']);
             })
           }
         }else{
+          this.addMessageForm = new FormGroup({
+            text: new FormControl('')
+          });
           (<HTMLInputElement>document.getElementById('archivos')).value='';
           (<HTMLInputElement>document.getElementById('envMensaje')).value='';
           this.allMessages();
