@@ -11,6 +11,7 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DeleteEventComponent } from './delete-event/delete-event.component';
 
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -29,6 +30,7 @@ export class CalendarComponent implements OnInit {
     this.options = {
       plugins: [dayGridPlugin,timeGridPlugin,interactionPlugin],
       defaultDate: new Date(),
+      locale: 'es',
       header: {
         left:'prev,next',
         center:'title',
